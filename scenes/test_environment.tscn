@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://d2vfs1qvkkqlr"]
+
+[ext_resource type="Script" uid="uid://pako0mjr7pit" path="res://src/debug/freecam.gd" id="1_8ya4j"]
+[ext_resource type="Shader" uid="uid://b2ohrsb5y4koh" path="res://assets/shaders/vignette.gdshader" id="2_5qein"]
+[ext_resource type="Texture2D" uid="uid://dav75n60ubaek" path="res://assets/textures/sky.jpg" id="3_frvy6"]
+[ext_resource type="Texture2D" uid="uid://2rrm25svrirb" path="res://assets/textures/dead_grass.jpg" id="4_b2arr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8cj0n"]
+shader = ExtResource("2_5qein")
+shader_parameter/alpha = 1.2
+shader_parameter/inner_radius = 0.0
+shader_parameter/outer_radius = 4.0
+
+[sub_resource type="Environment" id="Environment_83ng5"]
+volumetric_fog_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lnu2h"]
+cull_mode = 1
+albedo_texture = ExtResource("3_frvy6")
+
+[sub_resource type="BoxMesh" id="BoxMesh_xhnq4"]
+material = SubResource("StandardMaterial3D_lnu2h")
+size = Vector3(500, 500, 500)
+
+[sub_resource type="FogMaterial" id="FogMaterial_ca36r"]
+density = 0.8
+albedo = Color(0.29437688, 0.37215257, 0.1751729, 1)
+emission = Color(0.25637797, 0.32701945, 0.17660847, 1)
+height_falloff = 0.20171101
+edge_fade = 0.51418495
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iywne"]
+albedo_color = Color(0.43586, 0.43244725, 0.41060662, 1)
+albedo_texture = ExtResource("4_b2arr")
+uv1_scale = Vector3(25, 25, 25)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_83ng5"]
+material = SubResource("StandardMaterial3D_iywne")
+size = Vector2(30, 30)
+
+[sub_resource type="BoxMesh" id="BoxMesh_83ng5"]
+size = Vector3(2.8916016, 2.5203857, 1)
+
+[node name="Game" type="Node3D" unique_id=204302908]
+
+[node name="Player" type="Camera3D" parent="." unique_id=1783075112]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9400816, 3.7366195)
+script = ExtResource("1_8ya4j")
+
+[node name="GUI" type="Control" parent="Player" unique_id=1496035697]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="Vignette" type="ColorRect" parent="Player/GUI" unique_id=1037735218]
+material = SubResource("ShaderMaterial_8cj0n")
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="World" type="Node" parent="." unique_id=750280328]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World" unique_id=315795507]
+environment = SubResource("Environment_83ng5")
+
+[node name="Skybox" type="MeshInstance3D" parent="World/WorldEnvironment" unique_id=654802643]
+mesh = SubResource("BoxMesh_xhnq4")
+metadata/_edit_lock_ = true
+
+[node name="FogVolume" type="FogVolume" parent="World/WorldEnvironment" unique_id=870188881]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1224172, 0)
+shape = 4
+material = SubResource("FogMaterial_ca36r")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World/WorldEnvironment" unique_id=578331651]
+transform = Transform3D(0.79376996, -0.28991374, 0.5346768, 0, 0.87908727, 0.47666085, -0.6082181, -0.37835905, 0.69779307, 4.9426937, 10.104957, 6.3584127)
+
+[node name="Ground" type="MeshInstance3D" parent="World" unique_id=682032546]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.066041, 0)
+mesh = SubResource("PlaneMesh_83ng5")
+
+[node name="Prism" type="MeshInstance3D" parent="World" unique_id=844828494]
+transform = Transform3D(0.8735505, 0, 0.48673356, 0, 1, 0, -0.48673356, 0, 0.8735505, -3.8897986, 2.3343768, -3.7755048)
+mesh = SubResource("BoxMesh_83ng5")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="World" unique_id=339773691]
+transform = Transform3D(0.72228074, 0.2541985, -0.64319026, 0.6916, -0.2654752, 0.6717234, 0, -0.9300032, -0.36755136, -6.3404293, 6.6511602, -7.1096773)
+light_energy = 8.129
+spot_range = 13.258465
+spot_angle = 30.109695
