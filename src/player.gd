@@ -18,6 +18,7 @@ var exertion := 0.0
 @export var deceleration := 5
 @export var air_control := 0.3
 
+@export var fov := 75.0
 
 const SENSITIVITY = 0.002
 
@@ -27,7 +28,11 @@ const SENSITIVITY = 0.002
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
+	camera.fov = fov
+	Settings.fov_changed.connect(_on_fov_changed)
+
+func _on_fov_changed(new_fov: float) -> void:
+	camera.fov = new_fov
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
@@ -46,6 +51,7 @@ func _physics_process(delta: float) -> void:
 	var direction = (head.global_transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	var target_velocity = direction * max_speed
 
+	@warning_ignore("incompatible_ternary")
 	var current_accel = acceleration if direction.length() > 0.1 else deceleration
 	if not is_on_floor():
 		current_accel *= air_control
