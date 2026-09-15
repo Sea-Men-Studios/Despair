@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://c5rko5adsmpom" path="res://assets/images/MMbg.png" id="1_0ykhv"]
 [ext_resource type="Script" uid="uid://byodywni8fvgd" path="res://src/main_menu.gd" id="1_2wh52"]
 [ext_resource type="FontFile" uid="uid://bdc5pulf3pph6" path="res://assets/fonts/Philophobia-0p8d.ttf" id="2_2wh52"]
+[ext_resource type="Texture2D" uid="uid://c1ojid35x6vj0" path="res://assets/images/BloodyParchment.png" id="4_ow34m"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dtook"]
 font = ExtResource("2_2wh52")
@@ -18,6 +19,16 @@ font_color = Color(0.49411765, 0.49411765, 0.49411765, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xw254"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yaulk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dtook"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_risc5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_two6q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wihdw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o5div"]
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=1764355155]
 script = ExtResource("1_2wh52")
@@ -50,12 +61,12 @@ horizontal_alignment = 1
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
+offset_left = 61.0
 offset_right = 460.0
 grow_vertical = 2
 offset_transform_enabled = true
-offset_transform_position_ratio = Vector2(0.22, 0.085)
-offset_transform_scale = Vector2(1.24, 1.24)
-theme_override_constants/separation = 124
+offset_transform_position_ratio = Vector2(0, 0.07)
+theme_override_constants/separation = 169
 alignment = 1
 
 [node name="Control" type="Control" parent="Control/VBoxContainer" unique_id=167703401]
@@ -70,7 +81,7 @@ offset_bottom = -2.0
 offset_transform_enabled = true
 theme_override_colors/font_color = Color(0.49411765, 0.49411765, 0.49411765, 1)
 theme_override_fonts/font = ExtResource("2_2wh52")
-theme_override_font_sizes/font_size = 90
+theme_override_font_sizes/font_size = 120
 theme_override_styles/normal = SubResource("StyleBoxEmpty_gh7k3")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_qfsrg")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_qk5rn")
@@ -91,7 +102,7 @@ offset_bottom = -2.0
 offset_transform_enabled = true
 theme_override_colors/font_color = Color(0.49411765, 0.49411765, 0.49411765, 1)
 theme_override_fonts/font = ExtResource("2_2wh52")
-theme_override_font_sizes/font_size = 90
+theme_override_font_sizes/font_size = 120
 theme_override_styles/normal = SubResource("StyleBoxEmpty_gh7k3")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_qfsrg")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_qk5rn")
@@ -112,7 +123,7 @@ offset_bottom = -2.0
 offset_transform_enabled = true
 theme_override_colors/font_color = Color(0.49411765, 0.49411765, 0.49411765, 1)
 theme_override_fonts/font = ExtResource("2_2wh52")
-theme_override_font_sizes/font_size = 90
+theme_override_font_sizes/font_size = 120
 theme_override_styles/normal = SubResource("StyleBoxEmpty_gh7k3")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_qfsrg")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_qk5rn")
@@ -121,6 +132,75 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_yaulk")
 text = "Exit
 "
 
+[node name="TextureRect2" type="TextureRect" parent="Control" unique_id=1228650863]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -583.37354
+offset_top = -421.25
+offset_right = 583.37354
+offset_bottom = 421.25
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_ow34m")
+
+[node name="Label" type="Label" parent="Control/TextureRect2" unique_id=208426950]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -99.0
+offset_top = 91.25
+offset_right = 110.0
+offset_bottom = 191.25
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_2wh52")
+theme_override_font_sizes/font_size = 70
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/TextureRect2" unique_id=1680593527]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.034
+anchor_bottom = 0.047000002
+offset_left = 222.37354
+offset_top = 185.25
+offset_right = 959.7041
+offset_bottom = 659.65247
+offset_transform_enabled = true
+theme_override_constants/separation = 54
+
+[node name="Volume" type="VSlider" parent="Control/TextureRect2/HBoxContainer" unique_id=643072066]
+layout_mode = 2
+offset_transform_scale = Vector2(1.615, 1.615)
+ticks_on_borders = true
+
+[node name="FoV" type="VSlider" parent="Control/TextureRect2/HBoxContainer" unique_id=1396317106]
+layout_mode = 2
+
+[node name="Sensitivity" type="VSlider" parent="Control/TextureRect2/HBoxContainer" unique_id=659231611]
+layout_mode = 2
+
+[node name="Back" type="Button" parent="Control/TextureRect2" unique_id=1230344367]
+layout_mode = 0
+offset_left = 155.37354
+offset_top = 76.25
+offset_right = 214.37354
+offset_bottom = 204.25
+theme_override_fonts/font = ExtResource("2_2wh52")
+theme_override_font_sizes/font_size = 90
+theme_override_styles/normal = SubResource("StyleBoxEmpty_dtook")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_risc5")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_two6q")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_wihdw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_o5div")
+text = "x"
+
 [connection signal="pressed" from="Control/VBoxContainer/Control/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/Control2/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/Control3/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Control/TextureRect2/Back" to="." method="_on_back_pressed"]
