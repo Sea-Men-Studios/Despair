@@ -3,15 +3,14 @@ extends Node3D
 @export var camera: Camera3D
 @export var player_hitbox: CollisionShape3D
 
-const RAY_LENGTH = 1000
+const RAY_LENGTH = 5 # Reach distance
 var space_state: PhysicsDirectSpaceState3D
 
 func _physics_process(_delta: float) -> void:
 	space_state = get_world_3d().direct_space_state
 
 func interact():
-	var viewport_center = get_viewport().size / 2
-	print(viewport_center)
+	var viewport_center = Vector2(1920, 1080) / 2
 	
 	var origin = camera.project_ray_origin(viewport_center)
 	var end = origin + camera.project_ray_normal(viewport_center) * RAY_LENGTH
@@ -20,9 +19,12 @@ func interact():
 	if player_hitbox: query.exclude = [player_hitbox]
 	query.collide_with_areas = true
 	
-	var result = space_state.intersect_ray(query)#["collider"]
-	print(result)
-	#print(result.get_parent().name)
+	var result = space_state.intersect_ray(query)
+	
+	if result:
+		var obj_node = result["collider"].get_parent()
+		if obj_node is InteractableObject:
+			obj_node.interact()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
