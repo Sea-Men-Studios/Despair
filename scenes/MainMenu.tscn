@@ -1,0 +1,126 @@
+[gd_scene format=3 uid="uid://skgr55v5oqsr"]
+
+[ext_resource type="Texture2D" uid="uid://c5rko5adsmpom" path="res://assets/images/MMbg.png" id="1_0ykhv"]
+[ext_resource type="Script" uid="uid://byodywni8fvgd" path="res://src/main_menu.gd" id="1_2wh52"]
+[ext_resource type="FontFile" uid="uid://bdc5pulf3pph6" path="res://assets/fonts/Philophobia-0p8d.ttf" id="2_2wh52"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dtook"]
+font = ExtResource("2_2wh52")
+font_size = 200
+font_color = Color(0.49411765, 0.49411765, 0.49411765, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gh7k3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qfsrg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qk5rn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xw254"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yaulk"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1764355155]
+script = ExtResource("1_2wh52")
+
+[node name="Control" type="Control" parent="." unique_id=325137248]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control" unique_id=351287474]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_0ykhv")
+
+[node name="Despair" type="Label" parent="Control" unique_id=8800671]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 200.0
+grow_horizontal = 2
+text = "DESPAIR"
+label_settings = SubResource("LabelSettings_dtook")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=1568568466]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 460.0
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0.22, 0.085)
+offset_transform_scale = Vector2(1.24, 1.24)
+theme_override_constants/separation = 124
+alignment = 1
+
+[node name="Control" type="Control" parent="Control/VBoxContainer" unique_id=167703401]
+layout_mode = 2
+
+[node name="Play" type="Button" parent="Control/VBoxContainer/Control" unique_id=1374732594]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -130.0
+offset_right = 132.0
+offset_bottom = -2.0
+offset_transform_enabled = true
+theme_override_colors/font_color = Color(0.49411765, 0.49411765, 0.49411765, 1)
+theme_override_fonts/font = ExtResource("2_2wh52")
+theme_override_font_sizes/font_size = 90
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gh7k3")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_qfsrg")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_qk5rn")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_xw254")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yaulk")
+text = "Play
+"
+
+[node name="Control2" type="Control" parent="Control/VBoxContainer" unique_id=1905655122]
+layout_mode = 2
+
+[node name="Settings" type="Button" parent="Control/VBoxContainer/Control2" unique_id=2038097347]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -130.0
+offset_right = 132.0
+offset_bottom = -2.0
+offset_transform_enabled = true
+theme_override_colors/font_color = Color(0.49411765, 0.49411765, 0.49411765, 1)
+theme_override_fonts/font = ExtResource("2_2wh52")
+theme_override_font_sizes/font_size = 90
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gh7k3")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_qfsrg")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_qk5rn")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_xw254")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yaulk")
+text = "Setttings
+"
+
+[node name="Control3" type="Control" parent="Control/VBoxContainer" unique_id=685518873]
+layout_mode = 2
+
+[node name="Exit" type="Button" parent="Control/VBoxContainer/Control3" unique_id=1382541039]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -130.0
+offset_right = 132.0
+offset_bottom = -2.0
+offset_transform_enabled = true
+theme_override_colors/font_color = Color(0.49411765, 0.49411765, 0.49411765, 1)
+theme_override_fonts/font = ExtResource("2_2wh52")
+theme_override_font_sizes/font_size = 90
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gh7k3")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_qfsrg")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_qk5rn")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_xw254")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yaulk")
+text = "Exit
+"
+
+[connection signal="pressed" from="Control/VBoxContainer/Control/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Control2/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Control3/Exit" to="." method="_on_exit_pressed"]
