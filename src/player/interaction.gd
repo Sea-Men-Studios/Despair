@@ -1,6 +1,7 @@
 extends Node3D
 
 @export var camera: Camera3D
+@export var inventory: Node3D
 @export var player_hitbox: CollisionShape3D
 
 const RAY_LENGTH = 5 # Reach distance
@@ -24,6 +25,7 @@ func interact():
 	if result:
 		var obj_node = result["collider"].get_parent()
 		if obj_node is InteractableObject:
+			obj_node.target_inventory = inventory
 			obj_node.interact()
 
 func _input(event: InputEvent) -> void:
