@@ -1,26 +1,10 @@
 [gd_scene format=3 uid="uid://d2vfs1qvkkqlr"]
 
-[ext_resource type="Script" uid="uid://pako0mjr7pit" path="res://src/debug/freecam.gd" id="1_8ya4j"]
-[ext_resource type="Shader" uid="uid://b2ohrsb5y4koh" path="res://assets/shaders/vignette.gdshader" id="2_5qein"]
-[ext_resource type="Script" uid="uid://digqebucckmc6" path="res://src/player/interaction.gd" id="2_frvy6"]
-[ext_resource type="Script" uid="uid://bbqmonnvc8a2e" path="res://src/player/inventory.gd" id="3_810np"]
 [ext_resource type="Texture2D" uid="uid://dav75n60ubaek" path="res://assets/textures/sky.jpg" id="3_frvy6"]
+[ext_resource type="PackedScene" uid="uid://dulbjs303pf3h" path="res://scenes/Player.tscn" id="3_nbain"]
 [ext_resource type="Texture2D" uid="uid://2rrm25svrirb" path="res://assets/textures/dead_grass.jpg" id="4_b2arr"]
 [ext_resource type="Script" uid="uid://bn3i3o85qv2ar" path="res://src/objects/test_grabbable.gd" id="6_frvy6"]
 [ext_resource type="Script" uid="uid://drc54agwk85uw" path="res://src/objects/note.gd" id="7_b2arr"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8cj0n"]
-shader = ExtResource("2_5qein")
-shader_parameter/alpha = 1.2
-shader_parameter/inner_radius = 0.0
-shader_parameter/outer_radius = 4.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_83ng5"]
-bg_color = Color(1, 1, 1, 0.39215687)
-corner_radius_top_left = 50
-corner_radius_top_right = 50
-corner_radius_bottom_right = 50
-corner_radius_bottom_left = 50
 
 [sub_resource type="Environment" id="Environment_83ng5"]
 volumetric_fog_enabled = true
@@ -40,18 +24,6 @@ emission = Color(0.25637797, 0.32701945, 0.17660847, 1)
 height_falloff = 0.20171101
 edge_fade = 0.51418495
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iywne"]
-albedo_color = Color(0.43586, 0.43244725, 0.41060662, 1)
-albedo_texture = ExtResource("4_b2arr")
-uv1_scale = Vector3(25, 25, 25)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_83ng5"]
-material = SubResource("StandardMaterial3D_iywne")
-size = Vector2(30, 30)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_5qein"]
-size = Vector3(30, 0.5058594, 30)
-
 [sub_resource type="BoxMesh" id="BoxMesh_83ng5"]
 size = Vector3(2.8916016, 2.5203857, 1)
 
@@ -67,48 +39,15 @@ resource_local_to_scene = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_83ng5"]
 size = Vector3(0.8, 1, 0.122)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gh7k3"]
+albedo_texture = ExtResource("4_b2arr")
+uv1_scale = Vector3(50, 50, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dtook"]
+material = SubResource("StandardMaterial3D_gh7k3")
+subdivide_depth = 1
+
 [node name="Game" type="Node3D" unique_id=204302908]
-
-[node name="Player" type="Camera3D" parent="." unique_id=1783075112]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9400816, 3.7366195)
-script = ExtResource("1_8ya4j")
-
-[node name="Interactor" type="Node3D" parent="Player" unique_id=251728735 node_paths=PackedStringArray("camera", "crosshair", "inventory")]
-script = ExtResource("2_frvy6")
-camera = NodePath("..")
-crosshair = NodePath("../GUI/Crosshair")
-inventory = NodePath("../Inventory")
-
-[node name="Inventory" type="Node3D" parent="Player" unique_id=699497259 node_paths=PackedStringArray("camera")]
-script = ExtResource("3_810np")
-camera = NodePath("..")
-
-[node name="GUI" type="Control" parent="Player" unique_id=1496035697]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
-
-[node name="Vignette" type="ColorRect" parent="Player/GUI" unique_id=1037735218]
-material = SubResource("ShaderMaterial_8cj0n")
-layout_mode = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
-
-[node name="Crosshair" type="PanelContainer" parent="Player/GUI" unique_id=2065805496]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -2.0
-offset_top = -2.0
-offset_right = 2.0
-offset_bottom = 2.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_83ng5")
 
 [node name="World" type="Node" parent="." unique_id=750280328]
 
@@ -126,16 +65,6 @@ material = SubResource("FogMaterial_ca36r")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="World/WorldEnvironment" unique_id=578331651]
 transform = Transform3D(0.79376996, -0.28991374, 0.5346768, 0, 0.87908727, 0.47666085, -0.6082181, -0.37835905, 0.69779307, 4.9426937, 10.104957, 6.3584127)
-
-[node name="Ground" type="MeshInstance3D" parent="World" unique_id=682032546]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.066041, 0)
-mesh = SubResource("PlaneMesh_83ng5")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="World/Ground" unique_id=1233124715]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Ground/StaticBody3D" unique_id=1979214961]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.24707031, 0)
-shape = SubResource("BoxShape3D_5qein")
 
 [node name="Prism" type="MeshInstance3D" parent="World" unique_id=844828494]
 transform = Transform3D(0.8735505, 0, 0.48673356, 0, 1, 0, -0.48673356, 0, 0.8735505, -3.8897986, 2.3343768, -3.7755048)
@@ -160,7 +89,7 @@ script = ExtResource("6_frvy6")
 use_collision = true
 
 [node name="Note" type="Node3D" parent="World" unique_id=101931614]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 3.5, 1.099, -2.51)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 3.5, 2.198248, -2.51)
 script = ExtResource("7_b2arr")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Note" unique_id=1545694441]
@@ -172,3 +101,20 @@ surface_material_override/0 = SubResource("StandardMaterial3D_0hxc1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/Note/StaticBody3D" unique_id=728807953]
 shape = SubResource("BoxShape3D_83ng5")
+
+[node name="Prism2" type="CSGBox3D" parent="World" unique_id=1898726315]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.221624, 3.7913022, -7.639598)
+use_collision = true
+size = Vector3(5.2021484, 5.3620605, 3.7041016)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World" unique_id=575210740]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0.782671, 0)
+mesh = SubResource("BoxMesh_dtook")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/MeshInstance3D" unique_id=1678435]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/MeshInstance3D/StaticBody3D" unique_id=97510277]
+shape = SubResource("ConcavePolygonShape3D_5qein")
+
+[node name="CharacterBody3D" parent="." unique_id=136917392 instance=ExtResource("3_nbain")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6298447, 0)

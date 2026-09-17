@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://dulbjs303pf3h"]
+
+[ext_resource type="Script" uid="uid://db34a3xstkoq7" path="res://src/player/player.gd" id="1_p0vlq"]
+[ext_resource type="Script" uid="uid://digqebucckmc6" path="res://src/player/interaction.gd" id="2_3li8b"]
+[ext_resource type="Shader" uid="uid://b2ohrsb5y4koh" path="res://assets/shaders/vignette.gdshader" id="3_mdl7e"]
+[ext_resource type="Script" uid="uid://bbqmonnvc8a2e" path="res://src/player/inventory.gd" id="3_qu4a1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dtook"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qu4a1"]
+shader = ExtResource("3_mdl7e")
+shader_parameter/alpha = 1.2
+shader_parameter/inner_radius = 0.0
+shader_parameter/outer_radius = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_70d11"]
+bg_color = Color(1, 1, 1, 0.39215687)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=136917392]
+script = ExtResource("1_p0vlq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2123408655]
+shape = SubResource("CapsuleShape3D_dtook")
+debug_color = Color(0.8058387, 0, 0.103776984, 0.41960785)
+
+[node name="Node3D" type="Node3D" parent="." unique_id=883265346]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.43530035, -0.39765012)
+
+[node name="Camera3D" type="Camera3D" parent="Node3D" unique_id=1572165867]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.33607864)
+
+[node name="Interactor" type="Node3D" parent="." unique_id=1104841263 node_paths=PackedStringArray("camera", "crosshair", "inventory", "player_hitbox")]
+script = ExtResource("2_3li8b")
+camera = NodePath("../Node3D/Camera3D")
+crosshair = NodePath("../GUI/Crosshair")
+inventory = NodePath("../Inventory")
+player_hitbox = NodePath("../CollisionShape3D")
+
+[node name="Inventory" type="Node3D" parent="." unique_id=2068928696 node_paths=PackedStringArray("camera")]
+script = ExtResource("3_qu4a1")
+camera = NodePath("../Node3D/Camera3D")
+
+[node name="GUI" type="Control" parent="." unique_id=1000661624]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="Vignette" type="ColorRect" parent="GUI" unique_id=773381837]
+material = SubResource("ShaderMaterial_qu4a1")
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="Crosshair" type="PanelContainer" parent="GUI" unique_id=1960691575]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_70d11")

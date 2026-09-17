@@ -7,7 +7,7 @@ extends Node3D
 
 var init_crosshair_size: Vector2
 
-const RAY_LENGTH = 5 # Reach distance
+const RAY_LENGTH = 8 # Reach distance
 var space_state: PhysicsDirectSpaceState3D
 var hovered_obj: InteractableObject = null
 
@@ -19,8 +19,9 @@ func _physics_process(_delta: float) -> void:
 	check_hovered()
 
 func interact():
-	hovered_obj.target_inventory = inventory
-	hovered_obj.interact()
+	if hovered_obj:
+		hovered_obj.target_inventory = inventory
+		hovered_obj.interact()
 
 func check_hovered():
 	var viewport_center = Vector2(1920, 1080) / 2
