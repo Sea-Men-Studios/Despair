@@ -117,7 +117,7 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_qfsrg")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_qk5rn")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_xw254")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_yaulk")
-text = "Setttings
+text = "Settings
 "
 
 [node name="Control3" type="Control" parent="Control/VBoxContainer" unique_id=685518873]
@@ -141,7 +141,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_yaulk")
 text = "Exit
 "
 
-[node name="TextureRect2" type="TextureRect" parent="Control" unique_id=1228650863]
+[node name="SettingsPanel" type="TextureRect" parent="Control" unique_id=1228650863]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -157,7 +157,7 @@ grow_vertical = 2
 scale = Vector2(1.35, 1.35)
 texture = ExtResource("4_ow34m")
 
-[node name="Settings" type="Label" parent="Control/TextureRect2" unique_id=208426950]
+[node name="Settings" type="Label" parent="Control/SettingsPanel" unique_id=208426950]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -172,7 +172,7 @@ theme_override_font_sizes/font_size = 70
 text = "Settings"
 horizontal_alignment = 1
 
-[node name="Back" type="Button" parent="Control/TextureRect2" unique_id=1230344367]
+[node name="Back" type="Button" parent="Control/SettingsPanel" unique_id=1230344367]
 layout_mode = 0
 offset_left = 155.37354
 offset_top = 76.25
@@ -187,7 +187,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_wihdw")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_o5div")
 text = "x"
 
-[node name="Volume" type="VSlider" parent="Control/TextureRect2" unique_id=643072066]
+[node name="Volume" type="VSlider" parent="Control/SettingsPanel" unique_id=643072066]
 layout_mode = 0
 offset_left = 222.0
 offset_top = 208.0
@@ -201,7 +201,7 @@ ticks_on_borders = true
 script = ExtResource("5_l72w3")
 audio_bus_name = "Master"
 
-[node name="Volume" type="Label" parent="Control/TextureRect2/Volume" unique_id=247833460]
+[node name="Volume" type="Label" parent="Control/SettingsPanel/Volume" unique_id=247833460]
 layout_mode = 0
 offset_left = -24.626465
 offset_top = 384.25
@@ -211,7 +211,7 @@ theme_override_fonts/font = ExtResource("2_2wh52")
 theme_override_font_sizes/font_size = 23
 text = "Vol ume"
 
-[node name="VolumeNum" type="Label" parent="Control/TextureRect2/Volume" unique_id=431507264]
+[node name="VolumeNum" type="Label" parent="Control/SettingsPanel/Volume" unique_id=431507264]
 layout_mode = 0
 offset_left = -6.626465
 offset_top = -30.75
@@ -221,7 +221,7 @@ theme_override_fonts/font = ExtResource("6_8a8k8")
 theme_override_font_sizes/font_size = 30
 text = "100"
 
-[node name="FoV" type="VSlider" parent="Control/TextureRect2" unique_id=1396317106]
+[node name="FoV" type="VSlider" parent="Control/SettingsPanel" unique_id=1396317106]
 layout_mode = 0
 offset_left = 312.0
 offset_top = 208.0
@@ -232,7 +232,7 @@ max_value = 120.0
 value = 75.0
 script = ExtResource("6_ucygd")
 
-[node name="FoV" type="Label" parent="Control/TextureRect2/FoV" unique_id=1703903816]
+[node name="FoV" type="Label" parent="Control/SettingsPanel/FoV" unique_id=1703903816]
 layout_mode = 0
 offset_left = -8.000488
 offset_top = 385.25
@@ -242,7 +242,7 @@ theme_override_fonts/font = ExtResource("2_2wh52")
 theme_override_font_sizes/font_size = 23
 text = "FoV"
 
-[node name="FoVNum" type="Label" parent="Control/TextureRect2/FoV" unique_id=299681314]
+[node name="FoVNum" type="Label" parent="Control/SettingsPanel/FoV" unique_id=299681314]
 layout_mode = 0
 offset_left = -6.626465
 offset_top = -30.75
@@ -252,7 +252,7 @@ theme_override_fonts/font = ExtResource("6_8a8k8")
 theme_override_font_sizes/font_size = 30
 text = "100"
 
-[node name="Sensitivity" type="VSlider" parent="Control/TextureRect2" unique_id=659231611]
+[node name="Sensitivity" type="VSlider" parent="Control/SettingsPanel" unique_id=659231611]
 layout_mode = 0
 offset_left = 402.0
 offset_top = 208.0
@@ -264,7 +264,7 @@ step = 0.001
 value = 0.001
 script = ExtResource("7_mipys")
 
-[node name="Sensitivity" type="Label" parent="Control/TextureRect2/Sensitivity" unique_id=1381886220]
+[node name="Sensitivity" type="Label" parent="Control/SettingsPanel/Sensitivity" unique_id=1381886220]
 layout_mode = 0
 offset_left = -33.00049
 offset_top = 383.25
@@ -274,7 +274,7 @@ theme_override_fonts/font = ExtResource("2_2wh52")
 theme_override_font_sizes/font_size = 23
 text = "Sensitivity"
 
-[node name="SensNum" type="Label" parent="Control/TextureRect2/Sensitivity/Sensitivity" unique_id=1453458074]
+[node name="SensNum" type="Label" parent="Control/SettingsPanel/Sensitivity/Sensitivity" unique_id=1453458074]
 layout_mode = 0
 offset_left = 26.0
 offset_top = -413.0
@@ -284,7 +284,7 @@ theme_override_fonts/font = ExtResource("6_8a8k8")
 theme_override_font_sizes/font_size = 30
 text = "100"
 
-[node name="Brightness" type="VSlider" parent="Control/TextureRect2" unique_id=129437412]
+[node name="Brightness" type="VSlider" parent="Control/SettingsPanel" unique_id=129437412]
 layout_mode = 0
 offset_left = 492.0
 offset_top = 208.0
@@ -297,7 +297,7 @@ value = 0.75
 ticks_on_borders = true
 script = ExtResource("9_7la6k")
 
-[node name="Britghness" type="Label" parent="Control/TextureRect2/Brightness" unique_id=341471454]
+[node name="Britghness" type="Label" parent="Control/SettingsPanel/Brightness" unique_id=341471454]
 layout_mode = 0
 offset_left = -24.626465
 offset_top = 384.25
@@ -307,7 +307,7 @@ theme_override_fonts/font = ExtResource("2_2wh52")
 theme_override_font_sizes/font_size = 23
 text = "Brightness"
 
-[node name="BrightnessNum" type="Label" parent="Control/TextureRect2/Brightness" unique_id=788311705]
+[node name="BrightnessNum" type="Label" parent="Control/SettingsPanel/Brightness" unique_id=788311705]
 layout_mode = 0
 offset_left = -6.626465
 offset_top = -30.75
@@ -317,7 +317,7 @@ theme_override_fonts/font = ExtResource("6_8a8k8")
 theme_override_font_sizes/font_size = 30
 text = "100"
 
-[node name="ColorBlindMode" type="CheckBox" parent="Control/TextureRect2" unique_id=1091317730]
+[node name="ColorBlindMode" type="CheckBox" parent="Control/SettingsPanel" unique_id=1091317730]
 layout_mode = 0
 offset_left = 574.37354
 offset_top = 198.25
@@ -337,9 +337,9 @@ autoplay = true
 [connection signal="pressed" from="Control/VBoxContainer/Control/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/Control2/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/Control3/Exit" to="." method="_on_exit_pressed"]
-[connection signal="pressed" from="Control/TextureRect2/Back" to="." method="_on_back_pressed"]
-[connection signal="value_changed" from="Control/TextureRect2/Volume" to="Control/TextureRect2/Volume" method="_on_value_changed"]
-[connection signal="value_changed" from="Control/TextureRect2/FoV" to="Control/TextureRect2/FoV" method="_on_value_changed"]
-[connection signal="value_changed" from="Control/TextureRect2/Sensitivity" to="Control/TextureRect2/Sensitivity" method="_on_value_changed"]
-[connection signal="value_changed" from="Control/TextureRect2/Brightness" to="Control/TextureRect2/Brightness" method="_on_value_changed"]
-[connection signal="toggled" from="Control/TextureRect2/ColorBlindMode" to="Control/TextureRect2/ColorBlindMode" method="_on_toggled"]
+[connection signal="pressed" from="Control/SettingsPanel/Back" to="." method="_on_back_pressed"]
+[connection signal="value_changed" from="Control/SettingsPanel/Volume" to="Control/SettingsPanel/Volume" method="_on_value_changed"]
+[connection signal="value_changed" from="Control/SettingsPanel/FoV" to="Control/SettingsPanel/FoV" method="_on_value_changed"]
+[connection signal="value_changed" from="Control/SettingsPanel/Sensitivity" to="Control/SettingsPanel/Sensitivity" method="_on_value_changed"]
+[connection signal="value_changed" from="Control/SettingsPanel/Brightness" to="Control/SettingsPanel/Brightness" method="_on_value_changed"]
+[connection signal="toggled" from="Control/SettingsPanel/ColorBlindMode" to="Control/SettingsPanel/ColorBlindMode" method="_on_toggled"]

@@ -3,7 +3,7 @@ extends CanvasLayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Control/TextureRect2.visible = false
+	$Control/SettingsPanel.visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -16,7 +16,7 @@ func _on_play_pressed() -> void:
 
 
 func _on_settings_pressed() -> void:
-	$Control/TextureRect2.visible = true
+	$Control/SettingsPanel.visible = true
 
 
 func _on_exit_pressed() -> void:
@@ -24,4 +24,4 @@ func _on_exit_pressed() -> void:
 
 
 func _on_back_pressed() -> void:
-	$Control/TextureRect2.visible = false
+	$Control/SettingsPanel.visible = false
