@@ -1,29 +1,23 @@
 [gd_scene format=3 uid="uid://d2vfs1qvkkqlr"]
 
-[ext_resource type="Texture2D" uid="uid://dav75n60ubaek" path="res://assets/textures/sky.jpg" id="3_frvy6"]
+[ext_resource type="Script" uid="uid://cauguugn3wvws" path="res://src/game.gd" id="1_0hxc1"]
+[ext_resource type="PackedScene" uid="uid://cs6j73x812y32" path="res://scenes/road_segment.tscn" id="2_adw7c"]
 [ext_resource type="PackedScene" uid="uid://dulbjs303pf3h" path="res://scenes/Player.tscn" id="3_nbain"]
 [ext_resource type="Texture2D" uid="uid://c1ojid35x6vj0" path="res://assets/images/BloodyParchment.png" id="4_2qg6i"]
 [ext_resource type="Texture2D" uid="uid://2rrm25svrirb" path="res://assets/textures/dead_grass.jpg" id="4_b2arr"]
 [ext_resource type="FontFile" uid="uid://bdc5pulf3pph6" path="res://assets/fonts/Philophobia-0p8d.ttf" id="5_q7yga"]
-[ext_resource type="Script" uid="uid://iyl54hwv5f1r" path="res://src/volume.gd" id="6_adw7c"]
+[ext_resource type="Script" uid="uid://iyl54hwv5f1r" path="res://src/ui/settings/volume.gd" id="6_adw7c"]
 [ext_resource type="FontFile" uid="uid://c8s3uhtt6pfuo" path="res://assets/fonts/WhoAsksSatan-5vxx.ttf" id="7_0hxc1"]
-[ext_resource type="Script" uid="uid://dpoe6wclu1hb4" path="res://src/fov.gd" id="8_ju4s4"]
-[ext_resource type="Script" uid="uid://cqe7uajt6fcel" path="res://src/sensitivity.gd" id="9_wwk3j"]
-[ext_resource type="Script" uid="uid://dqysogu0xfomq" path="res://src/brightness.gd" id="10_hb1a6"]
+[ext_resource type="Script" uid="uid://dpoe6wclu1hb4" path="res://src/ui/settings/fov.gd" id="8_ju4s4"]
+[ext_resource type="Script" uid="uid://cqe7uajt6fcel" path="res://src/ui/settings/sensitivity.gd" id="9_wwk3j"]
+[ext_resource type="Script" uid="uid://dqysogu0xfomq" path="res://src/ui/settings/brightness.gd" id="10_hb1a6"]
 [ext_resource type="Texture2D" uid="uid://c4a1m8qawojjq" path="res://assets/images/CheckBoxChecked.png" id="11_2ugr5"]
 [ext_resource type="Texture2D" uid="uid://fbfhc2w1txsd" path="res://assets/images/CheckBox.png" id="12_mtjhi"]
-[ext_resource type="Script" uid="uid://fo5fdsw2ihgw" path="res://src/color_blind_mode.gd" id="13_wjdp0"]
+[ext_resource type="Texture2D" uid="uid://bf8fuq0wfg4su" path="res://assets/images/Cog.png" id="13_q7yga"]
+[ext_resource type="Script" uid="uid://fo5fdsw2ihgw" path="res://src/ui/settings/color_blind_mode.gd" id="13_wjdp0"]
 
 [sub_resource type="Environment" id="Environment_83ng5"]
 volumetric_fog_enabled = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lnu2h"]
-cull_mode = 1
-albedo_texture = ExtResource("3_frvy6")
-
-[sub_resource type="BoxMesh" id="BoxMesh_xhnq4"]
-material = SubResource("StandardMaterial3D_lnu2h")
-size = Vector3(500, 500, 500)
 
 [sub_resource type="FogMaterial" id="FogMaterial_ca36r"]
 density = 0.8
@@ -53,16 +47,45 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o8806"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dtook"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gh7k3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qfsrg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qk5rn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xw254"]
+
+[sub_resource type="FontVariation" id="FontVariation_bmi3a"]
+base_font = ExtResource("5_q7yga")
+spacing_glyph = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yaulk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_risc5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_two6q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wihdw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o5div"]
+
+[sub_resource type="FontVariation" id="FontVariation_u4one"]
+base_font = ExtResource("5_q7yga")
+spacing_glyph = 5
+
+[sub_resource type="FontVariation" id="FontVariation_0xux2"]
+base_font = ExtResource("5_q7yga")
+spacing_glyph = 5
+
 [node name="Game" type="Node3D" unique_id=204302908]
+script = ExtResource("1_0hxc1")
 
 [node name="World" type="Node" parent="." unique_id=750280328]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="World" unique_id=315795507]
 environment = SubResource("Environment_83ng5")
-
-[node name="Skybox" type="MeshInstance3D" parent="World/WorldEnvironment" unique_id=654802643]
-mesh = SubResource("BoxMesh_xhnq4")
-metadata/_edit_lock_ = true
 
 [node name="FogVolume" type="FogVolume" parent="World/WorldEnvironment" unique_id=870188881]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1224172, 0)
@@ -83,17 +106,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.6831117, 2.7819872, -7.639
 use_collision = true
 size = Vector3(5.2021484, 5.3620605, 3.7041016)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="World" unique_id=575210740]
-transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0.782671, 0)
+[node name="Floor" type="MeshInstance3D" parent="World" unique_id=575210740]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0.031560898, 0.7205572, -0.019916534)
 mesh = SubResource("BoxMesh_dtook")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="World/MeshInstance3D" unique_id=1678435]
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Floor" unique_id=1678435]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/MeshInstance3D/StaticBody3D" unique_id=97510277]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Floor/StaticBody3D" unique_id=97510277]
 shape = SubResource("ConcavePolygonShape3D_nbain")
 
-[node name="CharacterBody3D" parent="." unique_id=136917392 instance=ExtResource("3_nbain")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1083074, 0)
+[node name="RoadSegment" parent="World" unique_id=1578908710 instance=ExtResource("2_adw7c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.18717, 2.4155931, 0)
 
 [node name="SettingsPanel" type="TextureRect" parent="." unique_id=1559758909]
 visible = false
@@ -102,35 +125,184 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -745.0
-offset_top = -565.0
-offset_right = 421.74707
-offset_bottom = 277.5
+offset_left = -766.9999
+offset_top = -567.0
+offset_right = 399.7472
+offset_bottom = 275.5
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.35, 1.35)
 texture = ExtResource("4_2qg6i")
 
-[node name="Settings" type="Label" parent="SettingsPanel" unique_id=774664944]
+[node name="Settings" type="Control" parent="SettingsPanel" unique_id=1648884615]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Settings" type="Label" parent="SettingsPanel/Settings" unique_id=774664944]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -99.0
-offset_top = 91.25
-offset_right = 110.0
-offset_bottom = 191.25
+offset_left = 466.66663
+offset_top = 77.77777
+offset_right = 675.6666
+offset_bottom = 177.77777
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("5_q7yga")
 theme_override_font_sizes/font_size = 70
 text = "Settings"
 horizontal_alignment = 1
 
-[node name="Back" type="Button" parent="SettingsPanel" unique_id=385489376]
+[node name="Volume" type="VSlider" parent="SettingsPanel/Settings" unique_id=1375613757]
 layout_mode = 0
-offset_left = 155.37354
+offset_left = 221.99988
+offset_top = 208.00002
+offset_right = 237.99988
+offset_bottom = 587.0
+offset_transform_scale = Vector2(1.615, 1.615)
+max_value = 1.0
+step = 0.05
+value = 0.75
+ticks_on_borders = true
+script = ExtResource("6_adw7c")
+audio_bus_name = "Master"
+
+[node name="Volume" type="Label" parent="SettingsPanel/Settings/Volume" unique_id=1645821215]
+layout_mode = 0
+offset_left = -24.626465
+offset_top = 384.25
+offset_right = 41.373535
+offset_bottom = 417.25
+theme_override_fonts/font = ExtResource("5_q7yga")
+theme_override_font_sizes/font_size = 23
+text = "Vol ume"
+
+[node name="VolumeNum" type="Label" parent="SettingsPanel/Settings/Volume" unique_id=1665572341]
+layout_mode = 0
+offset_left = -6.626465
+offset_top = -30.75
+offset_right = 23.373535
+offset_bottom = -3.75
+theme_override_fonts/font = ExtResource("7_0hxc1")
+theme_override_font_sizes/font_size = 30
+text = "100"
+
+[node name="FoV" type="VSlider" parent="SettingsPanel/Settings" unique_id=1065038809]
+layout_mode = 0
+offset_left = 311.99988
+offset_top = 208.00002
+offset_right = 327.99988
+offset_bottom = 587.0
+min_value = 60.0
+max_value = 120.0
+value = 75.0
+script = ExtResource("8_ju4s4")
+
+[node name="FoV" type="Label" parent="SettingsPanel/Settings/FoV" unique_id=761049508]
+layout_mode = 0
+offset_left = -8.000488
+offset_top = 385.25
+offset_right = 23.999512
+offset_bottom = 418.25
+theme_override_fonts/font = ExtResource("5_q7yga")
+theme_override_font_sizes/font_size = 23
+text = "FoV"
+
+[node name="FoVNum" type="Label" parent="SettingsPanel/Settings/FoV" unique_id=2045054617]
+layout_mode = 0
+offset_left = -6.626465
+offset_top = -30.75
+offset_right = 23.373535
+offset_bottom = -3.75
+theme_override_fonts/font = ExtResource("7_0hxc1")
+theme_override_font_sizes/font_size = 30
+text = "100"
+
+[node name="Sensitivity" type="VSlider" parent="SettingsPanel/Settings" unique_id=1934881081]
+layout_mode = 0
+offset_left = 401.99988
+offset_top = 208.00002
+offset_right = 417.99988
+offset_bottom = 587.0
+min_value = 0.001
+max_value = 0.01
+step = 0.001
+value = 0.001
+script = ExtResource("9_wwk3j")
+
+[node name="Sensitivity" type="Label" parent="SettingsPanel/Settings/Sensitivity" unique_id=852586026]
+layout_mode = 0
+offset_left = -33.00049
+offset_top = 383.25
+offset_right = 47.99951
+offset_bottom = 416.25
+theme_override_fonts/font = ExtResource("5_q7yga")
+theme_override_font_sizes/font_size = 23
+text = "Sensitivity"
+
+[node name="SensNum" type="Label" parent="SettingsPanel/Settings/Sensitivity/Sensitivity" unique_id=1330510204]
+layout_mode = 0
+offset_left = 26.0
+offset_top = -413.0
+offset_right = 56.0
+offset_bottom = -386.0
+theme_override_fonts/font = ExtResource("7_0hxc1")
+theme_override_font_sizes/font_size = 30
+text = "100"
+
+[node name="Brightness" type="VSlider" parent="SettingsPanel/Settings" unique_id=232803044]
+layout_mode = 0
+offset_left = 491.99988
+offset_top = 208.00002
+offset_right = 507.99988
+offset_bottom = 587.0
+offset_transform_scale = Vector2(1.615, 1.615)
+max_value = 1.0
+step = 0.05
+value = 0.75
+ticks_on_borders = true
+script = ExtResource("10_hb1a6")
+
+[node name="Britghness" type="Label" parent="SettingsPanel/Settings/Brightness" unique_id=1828662013]
+layout_mode = 0
+offset_left = -24.626465
+offset_top = 384.25
+offset_right = 41.373535
+offset_bottom = 417.25
+theme_override_fonts/font = ExtResource("5_q7yga")
+theme_override_font_sizes/font_size = 23
+text = "Brightness"
+
+[node name="BrightnessNum" type="Label" parent="SettingsPanel/Settings/Brightness" unique_id=116072112]
+layout_mode = 0
+offset_left = -6.626465
+offset_top = -30.75
+offset_right = 23.373535
+offset_bottom = -3.75
+theme_override_fonts/font = ExtResource("7_0hxc1")
+theme_override_font_sizes/font_size = 30
+text = "100"
+
+[node name="ColorBlindMode" type="CheckBox" parent="SettingsPanel/Settings" unique_id=1226121266]
+layout_mode = 0
+offset_left = 574.3734
+offset_top = 198.25002
+offset_right = 787.3734
+offset_bottom = 246.25002
+theme_override_fonts/font = ExtResource("5_q7yga")
+theme_override_font_sizes/font_size = 26
+theme_override_icons/checked = ExtResource("11_2ugr5")
+theme_override_icons/unchecked = ExtResource("12_mtjhi")
+text = "ColorBlind Mode"
+script = ExtResource("13_wjdp0")
+
+[node name="Back" type="Button" parent="SettingsPanel/Settings" unique_id=385489376]
+layout_mode = 0
+offset_left = 155.37352
 offset_top = 76.25
-offset_right = 214.37354
+offset_right = 214.37352
 offset_bottom = 204.25
 theme_override_fonts/font = ExtResource("5_q7yga")
 theme_override_font_sizes/font_size = 90
@@ -141,152 +313,83 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_tp0ba")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_o8806")
 text = "x"
 
-[node name="Volume" type="VSlider" parent="SettingsPanel" unique_id=1375613757]
-layout_mode = 0
-offset_left = 222.0
-offset_top = 208.0
-offset_right = 238.0
-offset_bottom = 587.0
-offset_transform_scale = Vector2(1.615, 1.615)
-max_value = 1.0
-step = 0.05
-value = 0.75
-ticks_on_borders = true
-script = ExtResource("6_adw7c")
-audio_bus_name = "Master"
+[node name="MainPauseMenu" type="Control" parent="SettingsPanel" unique_id=326991035]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="Volume" type="Label" parent="SettingsPanel/Volume" unique_id=1645821215]
+[node name="SettingsCogButton" type="Button" parent="SettingsPanel/MainPauseMenu" unique_id=1111628094]
 layout_mode = 0
-offset_left = -24.626465
-offset_top = 384.25
-offset_right = 41.373535
-offset_bottom = 417.25
-theme_override_fonts/font = ExtResource("5_q7yga")
-theme_override_font_sizes/font_size = 23
-text = "Vol ume"
+offset_left = 916.2963
+offset_top = 92.59259
+offset_right = 985.185
+offset_bottom = 156.2963
+theme_override_styles/normal = SubResource("StyleBoxEmpty_dtook")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_gh7k3")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_qfsrg")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_qk5rn")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xw254")
+icon = ExtResource("13_q7yga")
 
-[node name="VolumeNum" type="Label" parent="SettingsPanel/Volume" unique_id=1665572341]
+[node name="Resume" type="Button" parent="SettingsPanel/MainPauseMenu" unique_id=1678529818]
 layout_mode = 0
-offset_left = -6.626465
-offset_top = -30.75
-offset_right = 23.373535
-offset_bottom = -3.75
-theme_override_fonts/font = ExtResource("7_0hxc1")
-theme_override_font_sizes/font_size = 30
-text = "100"
+offset_left = 467.40738
+offset_top = 215.55556
+offset_right = 681.40735
+offset_bottom = 329.55554
+theme_override_fonts/font = SubResource("FontVariation_bmi3a")
+theme_override_font_sizes/font_size = 90
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yaulk")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_risc5")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_two6q")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_wihdw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_o5div")
+text = "Resume"
 
-[node name="FoV" type="VSlider" parent="SettingsPanel" unique_id=1065038809]
+[node name="Exit to menu" type="Button" parent="SettingsPanel/MainPauseMenu" unique_id=1934030678]
 layout_mode = 0
-offset_left = 312.0
-offset_top = 208.0
-offset_right = 328.0
-offset_bottom = 587.0
-min_value = 60.0
-max_value = 120.0
-value = 75.0
-script = ExtResource("8_ju4s4")
+offset_left = 342.2222
+offset_top = 366.66666
+offset_right = 875.22217
+offset_bottom = 494.66666
+theme_override_fonts/font = SubResource("FontVariation_u4one")
+theme_override_font_sizes/font_size = 90
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yaulk")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_risc5")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_two6q")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_wihdw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_o5div")
+text = "Quit  to Menu
+"
 
-[node name="FoV" type="Label" parent="SettingsPanel/FoV" unique_id=761049508]
+[node name="Exit" type="Button" parent="SettingsPanel/MainPauseMenu" unique_id=1276624138]
 layout_mode = 0
-offset_left = -8.000488
-offset_top = 385.25
-offset_right = 23.999512
-offset_bottom = 418.25
-theme_override_fonts/font = ExtResource("5_q7yga")
-theme_override_font_sizes/font_size = 23
-text = "FoV"
+offset_left = 487.4074
+offset_top = 497.03705
+offset_right = 678.5185
+offset_bottom = 625.0371
+theme_override_fonts/font = SubResource("FontVariation_0xux2")
+theme_override_font_sizes/font_size = 90
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yaulk")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_risc5")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_two6q")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_wihdw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_o5div")
+text = "Quit
+"
 
-[node name="FoVNum" type="Label" parent="SettingsPanel/FoV" unique_id=2045054617]
-layout_mode = 0
-offset_left = -6.626465
-offset_top = -30.75
-offset_right = 23.373535
-offset_bottom = -3.75
-theme_override_fonts/font = ExtResource("7_0hxc1")
-theme_override_font_sizes/font_size = 30
-text = "100"
+[node name="CharacterBody3D" parent="." unique_id=136917392 instance=ExtResource("3_nbain")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1083074, 0)
 
-[node name="Sensitivity" type="VSlider" parent="SettingsPanel" unique_id=1934881081]
-layout_mode = 0
-offset_left = 402.0
-offset_top = 208.0
-offset_right = 418.0
-offset_bottom = 587.0
-min_value = 0.001
-max_value = 0.01
-step = 0.001
-value = 0.001
-script = ExtResource("9_wwk3j")
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1646660393]
 
-[node name="Sensitivity" type="Label" parent="SettingsPanel/Sensitivity" unique_id=852586026]
-layout_mode = 0
-offset_left = -33.00049
-offset_top = 383.25
-offset_right = 47.99951
-offset_bottom = 416.25
-theme_override_fonts/font = ExtResource("5_q7yga")
-theme_override_font_sizes/font_size = 23
-text = "Sensitivity"
-
-[node name="SensNum" type="Label" parent="SettingsPanel/Sensitivity/Sensitivity" unique_id=1330510204]
-layout_mode = 0
-offset_left = 26.0
-offset_top = -413.0
-offset_right = 56.0
-offset_bottom = -386.0
-theme_override_fonts/font = ExtResource("7_0hxc1")
-theme_override_font_sizes/font_size = 30
-text = "100"
-
-[node name="Brightness" type="VSlider" parent="SettingsPanel" unique_id=232803044]
-layout_mode = 0
-offset_left = 492.0
-offset_top = 208.0
-offset_right = 508.0
-offset_bottom = 587.0
-offset_transform_scale = Vector2(1.615, 1.615)
-max_value = 1.0
-step = 0.05
-value = 0.75
-ticks_on_borders = true
-script = ExtResource("10_hb1a6")
-
-[node name="Britghness" type="Label" parent="SettingsPanel/Brightness" unique_id=1828662013]
-layout_mode = 0
-offset_left = -24.626465
-offset_top = 384.25
-offset_right = 41.373535
-offset_bottom = 417.25
-theme_override_fonts/font = ExtResource("5_q7yga")
-theme_override_font_sizes/font_size = 23
-text = "Brightness"
-
-[node name="BrightnessNum" type="Label" parent="SettingsPanel/Brightness" unique_id=116072112]
-layout_mode = 0
-offset_left = -6.626465
-offset_top = -30.75
-offset_right = 23.373535
-offset_bottom = -3.75
-theme_override_fonts/font = ExtResource("7_0hxc1")
-theme_override_font_sizes/font_size = 30
-text = "100"
-
-[node name="ColorBlindMode" type="CheckBox" parent="SettingsPanel" unique_id=1226121266]
-layout_mode = 0
-offset_left = 574.37354
-offset_top = 198.25
-offset_right = 584.37354
-offset_bottom = 208.25
-theme_override_fonts/font = ExtResource("5_q7yga")
-theme_override_font_sizes/font_size = 26
-theme_override_icons/checked = ExtResource("11_2ugr5")
-theme_override_icons/unchecked = ExtResource("12_mtjhi")
-text = "ColorBlind Mode"
-script = ExtResource("13_wjdp0")
-
-[connection signal="pressed" from="SettingsPanel/Back" to="CharacterBody3D" method="_on_back_pressed"]
-[connection signal="value_changed" from="SettingsPanel/Volume" to="SettingsPanel/Volume" method="_on_value_changed"]
-[connection signal="value_changed" from="SettingsPanel/FoV" to="SettingsPanel/FoV" method="_on_value_changed"]
-[connection signal="value_changed" from="SettingsPanel/Sensitivity" to="SettingsPanel/Sensitivity" method="_on_value_changed"]
-[connection signal="value_changed" from="SettingsPanel/Brightness" to="SettingsPanel/Brightness" method="_on_value_changed"]
-[connection signal="toggled" from="SettingsPanel/ColorBlindMode" to="SettingsPanel/ColorBlindMode" method="_on_toggled"]
+[connection signal="value_changed" from="SettingsPanel/Settings/Volume" to="SettingsPanel/Settings/Volume" method="_on_value_changed"]
+[connection signal="value_changed" from="SettingsPanel/Settings/FoV" to="SettingsPanel/Settings/FoV" method="_on_value_changed"]
+[connection signal="value_changed" from="SettingsPanel/Settings/Sensitivity" to="SettingsPanel/Settings/Sensitivity" method="_on_value_changed"]
+[connection signal="value_changed" from="SettingsPanel/Settings/Brightness" to="SettingsPanel/Settings/Brightness" method="_on_value_changed"]
+[connection signal="toggled" from="SettingsPanel/Settings/ColorBlindMode" to="SettingsPanel/Settings/ColorBlindMode" method="_on_toggled"]
+[connection signal="pressed" from="SettingsPanel/Settings/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="SettingsPanel/MainPauseMenu/SettingsCogButton" to="." method="_on_settings_cog_button_pressed"]
+[connection signal="pressed" from="SettingsPanel/MainPauseMenu/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="SettingsPanel/MainPauseMenu/Exit to menu" to="." method="_on_exit_to_menu_pressed"]
+[connection signal="pressed" from="SettingsPanel/MainPauseMenu/Exit" to="." method="_on_exit_pressed"]

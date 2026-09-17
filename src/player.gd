@@ -34,9 +34,6 @@ func _on_fov_changed(new_fov: float) -> void:
 	camera.fov = new_fov
 
 func _unhandled_input(event):
-	if event.is_action_pressed("ui_cancel"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		$"../SettingsPanel".visible = true
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(-event.relative.x * Settings.sensitivity)
 		camera.rotate_x(-event.relative.y * Settings.sensitivity)
@@ -80,8 +77,3 @@ func _breathe(time: float, amp: float) -> Vector3:
 	pos.y = (sin(time * TAU) * 0.7 + sin(time * TAU * 2.3 + 0.6) * 0.3) * amp
 	pos.x = cos(time * TAU * 0.5) * breath_sway
 	return pos
-
-
-func _on_back_pressed() -> void:
-	$"../SettingsPanel".visible = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
