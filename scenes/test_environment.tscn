@@ -16,7 +16,7 @@ shader_parameter/inner_radius = 0.0
 shader_parameter/outer_radius = 4.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_83ng5"]
-bg_color = Color(1, 1, 1, 0.19607843)
+bg_color = Color(1, 1, 1, 0.39215687)
 corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
@@ -59,10 +59,13 @@ size = Vector3(2.8916016, 2.5203857, 1)
 data = PackedVector3Array(-1.4458, 1.2602, 0.5, 1.4458, 1.2602, 0.5, -1.4458, -1.2602, 0.5, 1.4458, 1.2602, 0.5, 1.4458, -1.2602, 0.5, -1.4458, -1.2602, 0.5, 1.4458, 1.2602, -0.5, -1.4458, 1.2602, -0.5, 1.4458, -1.2602, -0.5, -1.4458, 1.2602, -0.5, -1.4458, -1.2602, -0.5, 1.4458, -1.2602, -0.5, 1.4458, 1.2602, 0.5, 1.4458, 1.2602, -0.5, 1.4458, -1.2602, 0.5, 1.4458, 1.2602, -0.5, 1.4458, -1.2602, -0.5, 1.4458, -1.2602, 0.5, -1.4458, 1.2602, -0.5, -1.4458, 1.2602, 0.5, -1.4458, -1.2602, -0.5, -1.4458, 1.2602, 0.5, -1.4458, -1.2602, 0.5, -1.4458, -1.2602, -0.5, 1.4458, 1.2602, 0.5, -1.4458, 1.2602, 0.5, 1.4458, 1.2602, -0.5, -1.4458, 1.2602, 0.5, -1.4458, 1.2602, -0.5, 1.4458, 1.2602, -0.5, -1.4458, -1.2602, 0.5, 1.4458, -1.2602, 0.5, -1.4458, -1.2602, -0.5, 1.4458, -1.2602, 0.5, 1.4458, -1.2602, -0.5, -1.4458, -1.2602, -0.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_frvy6"]
-size = Vector3(1, 1, 0.0107421875)
+size = Vector3(0.8, 1, 0.011)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0hxc1"]
+resource_local_to_scene = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_83ng5"]
-size = Vector3(1, 1, 0.12207031)
+size = Vector3(0.8, 1, 0.122)
 
 [node name="Game" type="Node3D" unique_id=204302908]
 
@@ -70,9 +73,10 @@ size = Vector3(1, 1, 0.12207031)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9400816, 3.7366195)
 script = ExtResource("1_8ya4j")
 
-[node name="Interactor" type="Node3D" parent="Player" unique_id=251728735 node_paths=PackedStringArray("camera", "inventory")]
+[node name="Interactor" type="Node3D" parent="Player" unique_id=251728735 node_paths=PackedStringArray("camera", "crosshair", "inventory")]
 script = ExtResource("2_frvy6")
 camera = NodePath("..")
+crosshair = NodePath("../GUI/Crosshair")
 inventory = NodePath("../Inventory")
 
 [node name="Inventory" type="Node3D" parent="Player" unique_id=699497259 node_paths=PackedStringArray("camera")]
@@ -156,12 +160,13 @@ script = ExtResource("6_frvy6")
 use_collision = true
 
 [node name="Note" type="Node3D" parent="World" unique_id=101931614]
-transform = Transform3D(0.6012584, 0, 0, 0, -3.254851e-08, -1, 0, 0.74462306, -4.371139e-08, 3.765592, 1.0991874, -2.510288)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 3.5, 1.099, -2.51)
 script = ExtResource("7_b2arr")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Note" unique_id=1545694441]
 transform = Transform3D(1, 0, 0, 0, 1, -7.1054274e-15, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_frvy6")
+surface_material_override/0 = SubResource("StandardMaterial3D_0hxc1")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="World/Note" unique_id=1747417670]
 

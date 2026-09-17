@@ -1,16 +1,28 @@
 extends Node3D
 
 @export var camera: Camera3D
+@export var crosshair: PanelContainer
 @export var inventory: Node3D
 @export var player_hitbox: CollisionShape3D
 
+var init_crosshair_size: Vector2
+
 const RAY_LENGTH = 5 # Reach distance
 var space_state: PhysicsDirectSpaceState3D
+var hovered_obj: InteractableObject = null
+
+func _ready():
+	init_crosshair_size = crosshair.get_size()
 
 func _physics_process(_delta: float) -> void:
 	space_state = get_world_3d().direct_space_state
+	check_hovered()
 
 func interact():
+	hovered_obj.target_inventory = inventory
+	hovered_obj.interact()
+
+func check_hovered():
 	var viewport_center = Vector2(1920, 1080) / 2
 	
 	var origin = camera.project_ray_origin(viewport_center)
@@ -25,8 +37,11 @@ func interact():
 	if result:
 		var obj_node = result["collider"].get_parent()
 		if obj_node is InteractableObject:
-			obj_node.target_inventory = inventory
-			obj_node.interact()
+			crosshair.set_size(init_crosshair_size * 2)
+			hovered_obj = obj_node
+		else:
+			crosshair.set_size(init_crosshair_size)
+			hovered_obj = null
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
