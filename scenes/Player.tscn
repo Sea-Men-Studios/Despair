@@ -1,8 +1,14 @@
 [gd_scene format=3 uid="uid://dulbjs303pf3h"]
 
 [ext_resource type="Script" uid="uid://db34a3xstkoq7" path="res://src/player.gd" id="1_p0vlq"]
+[ext_resource type="Script" uid="uid://bro5jal8cds7r" path="res://src/brightness_overlay.gd" id="2_v6fml"]
+[ext_resource type="Shader" uid="uid://dm4kxcvlchodj" path="res://assets/shaders/Player.gdshader" id="3_mdl7e"]
+[ext_resource type="Script" uid="uid://cxccb4277w2d8" path="res://src/color_blind_overlay.gd" id="4_qu4a1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dtook"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dtook"]
+shader = ExtResource("3_mdl7e")
 
 [node name="CharacterBody3D" type="CharacterBody3D" unique_id=136917392]
 script = ExtResource("1_p0vlq")
@@ -16,3 +22,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.43530035, -0.39765012)
 
 [node name="Camera3D" type="Camera3D" parent="Node3D" unique_id=1572165867]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.33607864)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1696356131]
+
+[node name="BrightnessOverlay" type="ColorRect" parent="CanvasLayer" unique_id=1766832078]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("2_v6fml")
+
+[node name="ColorBlindOverlay" type="ColorRect" parent="CanvasLayer" unique_id=1550910077]
+material = SubResource("ShaderMaterial_dtook")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_qu4a1")

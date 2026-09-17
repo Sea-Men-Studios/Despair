@@ -18,9 +18,8 @@ var exertion := 0.0
 @export var deceleration := 5
 @export var air_control := 0.3
 
-@export var fov := 75.0
 
-const SENSITIVITY = 0.002
+var fov = 75
 
 @onready var camera: Camera3D = $Node3D/Camera3D
 @onready var head: Node3D = $Node3D
@@ -28,7 +27,7 @@ const SENSITIVITY = 0.002
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	camera.fov = fov
+	camera.fov = Settings.fov
 	Settings.fov_changed.connect(_on_fov_changed)
 
 func _on_fov_changed(new_fov: float) -> void:
@@ -38,8 +37,8 @@ func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		rotate_y(-event.relative.x * SENSITIVITY)
-		camera.rotate_x(-event.relative.y * SENSITIVITY)
+		rotate_y(-event.relative.x * Settings.sensitivity)
+		camera.rotate_x(-event.relative.y * Settings.sensitivity)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(min_pitch), deg_to_rad(max_pitch))
 		
 func _physics_process(delta: float) -> void:
