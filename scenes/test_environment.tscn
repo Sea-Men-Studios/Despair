@@ -3,11 +3,13 @@
 [ext_resource type="Texture2D" uid="uid://dav75n60ubaek" path="res://assets/textures/sky.jpg" id="3_frvy6"]
 [ext_resource type="PackedScene" uid="uid://dulbjs303pf3h" path="res://scenes/Player.tscn" id="3_nbain"]
 [ext_resource type="Texture2D" uid="uid://2rrm25svrirb" path="res://assets/textures/dead_grass.jpg" id="4_b2arr"]
+[ext_resource type="Script" uid="uid://bwgft50o7gqha" path="res://src/debug/fps.gd" id="6_b2arr"]
 [ext_resource type="Script" uid="uid://bn3i3o85qv2ar" path="res://src/objects/test_grabbable.gd" id="6_frvy6"]
 [ext_resource type="Script" uid="uid://drc54agwk85uw" path="res://src/objects/note.gd" id="7_b2arr"]
 
 [sub_resource type="Environment" id="Environment_83ng5"]
 volumetric_fog_enabled = true
+volumetric_fog_density = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lnu2h"]
 cull_mode = 1
@@ -16,13 +18,6 @@ albedo_texture = ExtResource("3_frvy6")
 [sub_resource type="BoxMesh" id="BoxMesh_xhnq4"]
 material = SubResource("StandardMaterial3D_lnu2h")
 size = Vector3(500, 500, 500)
-
-[sub_resource type="FogMaterial" id="FogMaterial_ca36r"]
-density = 0.8
-albedo = Color(0.29437688, 0.37215257, 0.1751729, 1)
-emission = Color(0.25637797, 0.32701945, 0.17660847, 1)
-height_falloff = 0.20171101
-edge_fade = 0.51418495
 
 [sub_resource type="BoxMesh" id="BoxMesh_83ng5"]
 size = Vector3(2.8916016, 2.5203857, 1)
@@ -47,6 +42,16 @@ uv1_scale = Vector3(50, 50, 50)
 material = SubResource("StandardMaterial3D_gh7k3")
 subdivide_depth = 1
 
+[sub_resource type="FogMaterial" id="FogMaterial_ca36r"]
+density = 0.2
+albedo = Color(0.29437688, 0.37215257, 0.1751729, 1)
+emission = Color(0.25637797, 0.32701945, 0.17660847, 1)
+height_falloff = 0.115852535
+edge_fade = 0.51418495
+
+[sub_resource type="LabelSettings" id="LabelSettings_5qein"]
+font_size = 32
+
 [node name="Game" type="Node3D" unique_id=204302908]
 
 [node name="World" type="Node" parent="." unique_id=750280328]
@@ -57,11 +62,6 @@ environment = SubResource("Environment_83ng5")
 [node name="Skybox" type="MeshInstance3D" parent="World/WorldEnvironment" unique_id=654802643]
 mesh = SubResource("BoxMesh_xhnq4")
 metadata/_edit_lock_ = true
-
-[node name="FogVolume" type="FogVolume" parent="World/WorldEnvironment" unique_id=870188881]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1224172, 0)
-shape = 4
-material = SubResource("FogMaterial_ca36r")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="World/WorldEnvironment" unique_id=578331651]
 transform = Transform3D(0.79376996, -0.28991374, 0.5346768, 0, 0.87908727, 0.47666085, -0.6082181, -0.37835905, 0.69779307, 4.9426937, 10.104957, 6.3584127)
@@ -108,7 +108,7 @@ use_collision = true
 size = Vector3(5.2021484, 5.3620605, 3.7041016)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World" unique_id=575210740]
-transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0.782671, 0)
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, -0.034136176, 0.7149863, 0.022112608)
 mesh = SubResource("BoxMesh_dtook")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="World/MeshInstance3D" unique_id=1678435]
@@ -118,3 +118,17 @@ shape = SubResource("ConcavePolygonShape3D_5qein")
 
 [node name="CharacterBody3D" parent="." unique_id=136917392 instance=ExtResource("3_nbain")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6298447, 0)
+
+[node name="FogVolume" type="FogVolume" parent="CharacterBody3D" unique_id=870188881]
+size = Vector3(100, 30, 100)
+shape = 2
+material = SubResource("FogMaterial_ca36r")
+
+[node name="FPS" type="Label" parent="." unique_id=1996996298]
+offset_left = 9.0
+offset_top = 7.0
+offset_right = 80.0
+offset_bottom = 52.0
+text = "FPS: "
+label_settings = SubResource("LabelSettings_5qein")
+script = ExtResource("6_b2arr")
