@@ -13,7 +13,7 @@ var exertion := 0.0
 @export var min_pitch := -80.0
 @export var max_pitch := 80.0 
 
-@export var max_speed := 3.0
+@export var max_speed := 4.5
 @export var acceleration := 3.0
 @export var deceleration := 5
 @export var air_control := 0.3

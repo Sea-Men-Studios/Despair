@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://skgr55v5oqsr"]
 
-[ext_resource type="Texture2D" uid="uid://c5rko5adsmpom" path="res://assets/images/MMbg.png" id="1_0ykhv"]
 [ext_resource type="Script" uid="uid://byodywni8fvgd" path="res://src/ui/main_menu.gd" id="1_2wh52"]
 [ext_resource type="FontFile" uid="uid://bdc5pulf3pph6" path="res://assets/fonts/Philophobia-0p8d.ttf" id="2_2wh52"]
 [ext_resource type="Texture2D" uid="uid://c1ojid35x6vj0" path="res://assets/images/BloodyParchment.png" id="4_ow34m"]
@@ -13,6 +12,9 @@
 [ext_resource type="Script" uid="uid://fo5fdsw2ihgw" path="res://src/ui/settings/color_blind_mode.gd" id="10_2nypq"]
 [ext_resource type="Texture2D" uid="uid://c4a1m8qawojjq" path="res://assets/images/CheckBoxChecked.png" id="10_l4mxc"]
 [ext_resource type="Texture2D" uid="uid://fbfhc2w1txsd" path="res://assets/images/CheckBox.png" id="11_5faoh"]
+
+[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_70rhe"]
+file = "res://assets/Audio/MainMenuVid.ogg"
 
 [sub_resource type="LabelSettings" id="LabelSettings_dtook"]
 font = ExtResource("2_2wh52")
@@ -50,11 +52,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="Control" unique_id=351287474]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("1_0ykhv")
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="Control" unique_id=590470615]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = SubResource("VideoStreamTheora_70rhe")
+autoplay = true
+loop = true
 
 [node name="Despair" type="Label" parent="Control" unique_id=8800671]
 layout_mode = 1
@@ -142,6 +149,7 @@ text = "Exit
 "
 
 [node name="SettingsPanel" type="TextureRect" parent="Control" unique_id=1228650863]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

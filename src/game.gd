@@ -3,7 +3,7 @@ extends Node3D
 @onready var settings_panel: TextureRect = $SettingsPanel
 @onready var settings: Control = $SettingsPanel/Settings
 @onready var main_pause_menu: Control = $SettingsPanel/MainPauseMenu
-
+@onready var player = $Player
 
 
 # Called when the node enters the scene tree for the first time.
