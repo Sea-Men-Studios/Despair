@@ -1,0 +1,353 @@
+[gd_scene format=3 uid="uid://c8hog0ly8klj3"]
+
+[ext_resource type="Script" path="res://src/ui/main_menu.gd" id="1_2wh52"]
+[ext_resource type="FontFile" path="res://assets/fonts/Philophobia-0p8d.ttf" id="2_2wh52"]
+[ext_resource type="Texture2D" path="res://assets/images/BloodyParchment.png" id="4_ow34m"]
+[ext_resource type="Script" path="res://src/ui/settings/volume.gd" id="5_l72w3"]
+[ext_resource type="FontFile" path="res://assets/fonts/WhoAsksSatan-5vxx.ttf" id="6_8a8k8"]
+[ext_resource type="AudioStream" path="res://assets/Audio/DespairV2.ogg" id="6_826wr"]
+[ext_resource type="Script" path="res://src/ui/settings/fov.gd" id="6_ucygd"]
+[ext_resource type="Script" path="res://src/ui/settings/sensitivity.gd" id="7_mipys"]
+[ext_resource type="Script" path="res://src/ui/settings/brightness.gd" id="9_7la6k"]
+[ext_resource type="Script" path="res://src/ui/settings/color_blind_mode.gd" id="10_2nypq"]
+[ext_resource type="Texture2D" path="res://assets/images/CheckBoxChecked.png" id="10_l4mxc"]
+[ext_resource type="Texture2D" path="res://assets/images/CheckBox.png" id="11_5faoh"]
+
+[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_70rhe"]
+file = "res://assets/Audio/MainMenuVid.ogg"
+
+[sub_resource type="LabelSettings" id="LabelSettings_dtook"]
+font = ExtResource("2_2wh52")
+font_size = 200
+font_color = Color(0.49411765, 0.49411765, 0.49411765, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gh7k3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qfsrg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qk5rn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xw254"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yaulk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dtook"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_risc5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_two6q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wihdw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o5div"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1764355155]
+script = ExtResource("1_2wh52")
+
+[node name="Control" type="Control" parent="." unique_id=325137248]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="Control" unique_id=590470615]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = SubResource("VideoStreamTheora_70rhe")
+autoplay = true
+loop = true
+
+[node name="Despair" type="Label" parent="Control" unique_id=8800671]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 200.0
+grow_horizontal = 2
+text = "DESPAIR"
+label_settings = SubResource("LabelSettings_dtook")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=1568568466]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 61.0
+offset_right = 460.0
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, 0.07)
+theme_override_constants/separation = 169
+alignment = 1
+
+[node name="Control" type="Control" parent="Control/VBoxContainer" unique_id=167703401]
+layout_mode = 2
+
+[node name="Play" type="Button" parent="Control/VBoxContainer/Control" unique_id=1374732594]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -130.0
+offset_right = 132.0
+offset_bottom = -2.0
+offset_transform_enabled = true
+theme_override_colors/font_color = Color(0.49411765, 0.49411765, 0.49411765, 1)
+theme_override_fonts/font = ExtResource("2_2wh52")
+theme_override_font_sizes/font_size = 120
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gh7k3")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_qfsrg")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_qk5rn")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_xw254")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yaulk")
+text = "Play
+"
+
+[node name="Control2" type="Control" parent="Control/VBoxContainer" unique_id=1905655122]
+layout_mode = 2
+
+[node name="Settings" type="Button" parent="Control/VBoxContainer/Control2" unique_id=2038097347]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -130.0
+offset_right = 132.0
+offset_bottom = -2.0
+offset_transform_enabled = true
+theme_override_colors/font_color = Color(0.49411765, 0.49411765, 0.49411765, 1)
+theme_override_fonts/font = ExtResource("2_2wh52")
+theme_override_font_sizes/font_size = 120
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gh7k3")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_qfsrg")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_qk5rn")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_xw254")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yaulk")
+text = "Settings
+"
+
+[node name="Control3" type="Control" parent="Control/VBoxContainer" unique_id=685518873]
+layout_mode = 2
+
+[node name="Exit" type="Button" parent="Control/VBoxContainer/Control3" unique_id=1382541039]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -130.0
+offset_right = 132.0
+offset_bottom = -2.0
+offset_transform_enabled = true
+theme_override_colors/font_color = Color(0.49411765, 0.49411765, 0.49411765, 1)
+theme_override_fonts/font = ExtResource("2_2wh52")
+theme_override_font_sizes/font_size = 120
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gh7k3")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_qfsrg")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_qk5rn")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_xw254")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yaulk")
+text = "Exit
+"
+
+[node name="SettingsPanel" type="TextureRect" parent="Control" unique_id=1228650863]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -745.0
+offset_top = -565.0
+offset_right = 421.74707
+offset_bottom = 277.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.35, 1.35)
+texture = ExtResource("4_ow34m")
+
+[node name="Settings" type="Label" parent="Control/SettingsPanel" unique_id=208426950]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -99.0
+offset_top = 91.25
+offset_right = 110.0
+offset_bottom = 191.25
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_2wh52")
+theme_override_font_sizes/font_size = 70
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="Back" type="Button" parent="Control/SettingsPanel" unique_id=1230344367]
+layout_mode = 0
+offset_left = 155.37354
+offset_top = 76.25
+offset_right = 214.37354
+offset_bottom = 204.25
+theme_override_fonts/font = ExtResource("2_2wh52")
+theme_override_font_sizes/font_size = 90
+theme_override_styles/normal = SubResource("StyleBoxEmpty_dtook")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_risc5")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_two6q")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_wihdw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_o5div")
+text = "x"
+
+[node name="Volume" type="VSlider" parent="Control/SettingsPanel" unique_id=643072066]
+layout_mode = 0
+offset_left = 222.0
+offset_top = 208.0
+offset_right = 238.0
+offset_bottom = 587.0
+offset_transform_scale = Vector2(1.615, 1.615)
+max_value = 1.0
+step = 0.05
+value = 0.75
+ticks_on_borders = true
+script = ExtResource("5_l72w3")
+audio_bus_name = "Master"
+
+[node name="Volume" type="Label" parent="Control/SettingsPanel/Volume" unique_id=247833460]
+layout_mode = 0
+offset_left = -24.626465
+offset_top = 384.25
+offset_right = 41.373535
+offset_bottom = 417.25
+theme_override_fonts/font = ExtResource("2_2wh52")
+theme_override_font_sizes/font_size = 23
+text = "Vol ume"
+
+[node name="VolumeNum" type="Label" parent="Control/SettingsPanel/Volume" unique_id=431507264]
+layout_mode = 0
+offset_left = -6.626465
+offset_top = -30.75
+offset_right = 23.373535
+offset_bottom = -3.75
+theme_override_fonts/font = ExtResource("6_8a8k8")
+theme_override_font_sizes/font_size = 30
+text = "100"
+
+[node name="FoV" type="VSlider" parent="Control/SettingsPanel" unique_id=1396317106]
+layout_mode = 0
+offset_left = 312.0
+offset_top = 208.0
+offset_right = 328.0
+offset_bottom = 587.0
+min_value = 60.0
+max_value = 120.0
+value = 75.0
+script = ExtResource("6_ucygd")
+
+[node name="FoV" type="Label" parent="Control/SettingsPanel/FoV" unique_id=1703903816]
+layout_mode = 0
+offset_left = -8.000488
+offset_top = 385.25
+offset_right = 23.999512
+offset_bottom = 418.25
+theme_override_fonts/font = ExtResource("2_2wh52")
+theme_override_font_sizes/font_size = 23
+text = "FoV"
+
+[node name="FoVNum" type="Label" parent="Control/SettingsPanel/FoV" unique_id=299681314]
+layout_mode = 0
+offset_left = -6.626465
+offset_top = -30.75
+offset_right = 23.373535
+offset_bottom = -3.75
+theme_override_fonts/font = ExtResource("6_8a8k8")
+theme_override_font_sizes/font_size = 30
+text = "100"
+
+[node name="Sensitivity" type="VSlider" parent="Control/SettingsPanel" unique_id=659231611]
+layout_mode = 0
+offset_left = 402.0
+offset_top = 208.0
+offset_right = 418.0
+offset_bottom = 587.0
+min_value = 0.001
+max_value = 0.01
+step = 0.001
+value = 0.001
+script = ExtResource("7_mipys")
+
+[node name="Sensitivity" type="Label" parent="Control/SettingsPanel/Sensitivity" unique_id=1381886220]
+layout_mode = 0
+offset_left = -33.00049
+offset_top = 383.25
+offset_right = 47.99951
+offset_bottom = 416.25
+theme_override_fonts/font = ExtResource("2_2wh52")
+theme_override_font_sizes/font_size = 23
+text = "Sensitivity"
+
+[node name="SensNum" type="Label" parent="Control/SettingsPanel/Sensitivity/Sensitivity" unique_id=1453458074]
+layout_mode = 0
+offset_left = 26.0
+offset_top = -413.0
+offset_right = 56.0
+offset_bottom = -386.0
+theme_override_fonts/font = ExtResource("6_8a8k8")
+theme_override_font_sizes/font_size = 30
+text = "100"
+
+[node name="Brightness" type="VSlider" parent="Control/SettingsPanel" unique_id=129437412]
+layout_mode = 0
+offset_left = 492.0
+offset_top = 208.0
+offset_right = 508.0
+offset_bottom = 587.0
+offset_transform_scale = Vector2(1.615, 1.615)
+max_value = 1.0
+step = 0.05
+value = 0.75
+ticks_on_borders = true
+script = ExtResource("9_7la6k")
+
+[node name="Britghness" type="Label" parent="Control/SettingsPanel/Brightness" unique_id=341471454]
+layout_mode = 0
+offset_left = -24.626465
+offset_top = 384.25
+offset_right = 41.373535
+offset_bottom = 417.25
+theme_override_fonts/font = ExtResource("2_2wh52")
+theme_override_font_sizes/font_size = 23
+text = "Brightness"
+
+[node name="BrightnessNum" type="Label" parent="Control/SettingsPanel/Brightness" unique_id=788311705]
+layout_mode = 0
+offset_left = -6.626465
+offset_top = -30.75
+offset_right = 23.373535
+offset_bottom = -3.75
+theme_override_fonts/font = ExtResource("6_8a8k8")
+theme_override_font_sizes/font_size = 30
+text = "100"
+
+[node name="ColorBlindMode" type="CheckBox" parent="Control/SettingsPanel" unique_id=1091317730]
+layout_mode = 0
+offset_left = 574.37354
+offset_top = 198.25
+offset_right = 584.37354
+offset_bottom = 208.25
+theme_override_fonts/font = ExtResource("2_2wh52")
+theme_override_font_sizes/font_size = 26
+theme_override_icons/checked = ExtResource("10_l4mxc")
+theme_override_icons/unchecked = ExtResource("11_5faoh")
+text = "ColorBlind Mode"
+script = ExtResource("10_2nypq")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1633031663]
+stream = ExtResource("6_826wr")
+autoplay = true
+
+[connection signal="pressed" from="Control/VBoxContainer/Control/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Control2/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Control3/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Control/SettingsPanel/Back" to="." method="_on_back_pressed"]
+[connection signal="value_changed" from="Control/SettingsPanel/Volume" to="Control/SettingsPanel/Volume" method="_on_value_changed"]
+[connection signal="value_changed" from="Control/SettingsPanel/FoV" to="Control/SettingsPanel/FoV" method="_on_value_changed"]
+[connection signal="value_changed" from="Control/SettingsPanel/Sensitivity" to="Control/SettingsPanel/Sensitivity" method="_on_value_changed"]
+[connection signal="value_changed" from="Control/SettingsPanel/Brightness" to="Control/SettingsPanel/Brightness" method="_on_value_changed"]
+[connection signal="toggled" from="Control/SettingsPanel/ColorBlindMode" to="Control/SettingsPanel/ColorBlindMode" method="_on_toggled"]
