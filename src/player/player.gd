@@ -13,13 +13,13 @@ var exertion := 0.0
 @export var min_pitch := -80.0
 @export var max_pitch := 80.0 
 
-@export var max_speed := 4.5
+@export var max_speed := 3.0
 @export var acceleration := 3.0
 @export var deceleration := 5
 @export var air_control := 0.3
 
 
-var fov = 75
+const SENSITIVITY = 0.002
 
 @onready var camera: Camera3D = $Node3D/Camera3D
 @onready var head: Node3D = $Node3D
@@ -27,16 +27,18 @@ var fov = 75
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	camera.fov = Settings.fov
-	Settings.fov_changed.connect(_on_fov_changed)
+	
 
-func _on_fov_changed(new_fov: float) -> void:
-	camera.fov = new_fov
-
-func _unhandled_input(event):
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		
+	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		rotate_y(-event.relative.x * Settings.sensitivity)
-		camera.rotate_x(-event.relative.y * Settings.sensitivity)
+		rotate_y(-event.relative.x * SENSITIVITY)
+		camera.rotate_x(-event.relative.y * SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(min_pitch), deg_to_rad(max_pitch))
 		
 func _physics_process(delta: float) -> void:
@@ -48,7 +50,6 @@ func _physics_process(delta: float) -> void:
 	var direction = (head.global_transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	var target_velocity = direction * max_speed
 
-	@warning_ignore("incompatible_ternary")
 	var current_accel = acceleration if direction.length() > 0.1 else deceleration
 	if not is_on_floor():
 		current_accel *= air_control
