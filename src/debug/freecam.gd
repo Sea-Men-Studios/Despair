@@ -54,10 +54,10 @@ func _input(event):
 				_a = event.pressed
 			KEY_D:
 				_d = event.pressed
-			KEY_Q:
-				_q = event.pressed
-			KEY_E:
-				_e = event.pressed
+			#KEY_Q:
+				#_q = event.pressed
+			#KEY_E:
+				#_e = event.pressed
 			KEY_SHIFT:
 				_shift = event.pressed
 			KEY_ALT:

@@ -34,7 +34,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	_check_raycasts()
-	print("State: ", state, " | Sees via raycast this frame: ", state == State.CHASE)
+	#print("State: ", state, " | Sees via raycast this frame: ", state == State.CHASE)
 
 	match state:
 		State.WANDER:

@@ -17,13 +17,12 @@ var exertion := 0.0
 @export var acceleration := 3.0
 @export var deceleration := 5
 @export var air_control := 0.3
-
+@export var game: Node3D = null
 
 var fov = 75
 
 @onready var camera: Camera3D = $Node3D/Camera3D
 @onready var head: Node3D = $Node3D
-
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -33,7 +32,16 @@ func _ready():
 func _on_fov_changed(new_fov: float) -> void:
 	camera.fov = new_fov
 
-func _unhandled_input(event):
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		
+	#if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
+		#if game.settings_panel.visible:
+			#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		#else:
+			#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(-event.relative.x * Settings.sensitivity)
 		camera.rotate_x(-event.relative.y * Settings.sensitivity)
