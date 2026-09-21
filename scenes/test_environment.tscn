@@ -443,13 +443,6 @@ game = NodePath("..")
 [node name="Enemy" parent="." unique_id=400455958 instance=ExtResource("16_0hxc1")]
 transform = Transform3D(-0.9979056, 0, 0.06468655, 0, 1, 0, -0.06468655, 0, -0.9979056, 5.7266603, 2.1083074, -25.625185)
 
-[node name="World_MeshInstance3D_StaticBody3D#CollisionShape3D" type="CollisionShape3D" parent="." unique_id=669788438]
-shape = SubResource("ConcavePolygonShape3D_5qein")
-
-[node name="CharacterBody3D" parent="." unique_id=1099090014 node_paths=PackedStringArray("game") instance=ExtResource("3_nbain")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6298447, 0)
-game = NodePath("..")
-
 [connection signal="value_changed" from="SettingsPanel/Settings/Volume" to="SettingsPanel/Settings/Volume" method="_on_value_changed"]
 [connection signal="value_changed" from="SettingsPanel/Settings/FoV" to="SettingsPanel/Settings/FoV" method="_on_value_changed"]
 [connection signal="value_changed" from="SettingsPanel/Settings/Sensitivity" to="SettingsPanel/Settings/Sensitivity" method="_on_value_changed"]

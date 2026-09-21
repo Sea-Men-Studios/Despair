@@ -79,12 +79,14 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
+mouse_filter = 2
 
 [node name="Vignette" type="ColorRect" parent="GUI" unique_id=773381837]
 material = SubResource("ShaderMaterial_qu4a1")
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
+mouse_filter = 2
 
 [node name="Crosshair" type="PanelContainer" parent="GUI" unique_id=1960691575]
 layout_mode = 1
@@ -99,4 +101,5 @@ offset_right = 2.0
 offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_70d11")

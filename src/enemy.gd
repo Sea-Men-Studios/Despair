@@ -57,7 +57,7 @@ func _check_raycasts() -> void:
 	var sees_player := false
 	for ray in raycasts:
 		if ray.is_colliding():
-			print(ray.name, " colliding with: ", ray.get_collider())
+			#print(ray.name, " colliding with: ", ray.get_collider())
 			var collider = ray.get_collider()
 			if collider == player or collider.is_in_group("player"):
 				sees_player = true
