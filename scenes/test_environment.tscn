@@ -6,6 +6,10 @@
 [ext_resource type="Script" uid="uid://bwgft50o7gqha" path="res://src/debug/fps.gd" id="6_b2arr"]
 [ext_resource type="Script" uid="uid://bn3i3o85qv2ar" path="res://src/objects/test_grabbable.gd" id="6_frvy6"]
 [ext_resource type="Script" uid="uid://drc54agwk85uw" path="res://src/objects/note.gd" id="7_b2arr"]
+[ext_resource type="FontFile" uid="uid://bdc5pulf3pph6" path="res://assets/fonts/Philophobia-0p8d.ttf" id="5_q7yga"]
+[ext_resource type="Script" uid="uid://brfvy8jw36tet" path="res://src/morsemessages.gd" id="7_hb1a6"]
+[ext_resource type="Script" uid="uid://c2rmuwdteiwgg" path="res://src/audio_stream_player.gd" id="17_ju4s4"]
+[ext_resource type="AudioStream" uid="uid://dxwxwwofkywwj" path="res://assets/Audio/morsecodetest.ogg" id="18_wwk3j"]
 
 [sub_resource type="Environment" id="Environment_83ng5"]
 volumetric_fog_enabled = true
@@ -51,6 +55,61 @@ edge_fade = 0.51418495
 
 [sub_resource type="LabelSettings" id="LabelSettings_5qein"]
 font_size = 32
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_nbain"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="Resource" id="Resource_wwk3j"]
+script = ExtResource("7_hb1a6")
+audio = ExtResource("18_wwk3j")
+subtitle = "This is morse code"
+metadata/_custom_type_script = "uid://brfvy8jw36tet"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kt552"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uslcw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gvjof"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tp0ba"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o8806"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dtook"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gh7k3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qfsrg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qk5rn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xw254"]
+
+[sub_resource type="FontVariation" id="FontVariation_bmi3a"]
+base_font = ExtResource("5_q7yga")
+spacing_glyph = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yaulk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_risc5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_two6q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wihdw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o5div"]
+
+[sub_resource type="FontVariation" id="FontVariation_u4one"]
+base_font = ExtResource("5_q7yga")
+spacing_glyph = 5
+
+[sub_resource type="FontVariation" id="FontVariation_0xux2"]
+base_font = ExtResource("5_q7yga")
+spacing_glyph = 5
+
+[sub_resource type="FontVariation" id="FontVariation_dtook"]
+base_font = ExtResource("5_q7yga")
+spacing_glyph = 5
 
 [node name="Game" type="Node3D" unique_id=204302908]
 
@@ -132,3 +191,38 @@ offset_bottom = 52.0
 text = "FPS: "
 label_settings = SubResource("LabelSettings_5qein")
 script = ExtResource("6_b2arr")
+
+[node name="Player" parent="." unique_id=136917392 groups=["player"] instance=ExtResource("3_nbain")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1083074, 0)
+
+
+[node name="MessagePlayer" type="AudioStreamPlayer" parent="." unique_id=1206028808]
+script = ExtResource("17_ju4s4")
+messages = Array[ExtResource("7_hb1a6")]([SubResource("Resource_wwk3j")])
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=10223312]
+
+[node name="SubtitleLabel" type="RichTextLabel" parent="CanvasLayer" unique_id=1406058893]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -108.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = SubResource("FontVariation_dtook")
+theme_override_font_sizes/normal_font_size = 30
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="finished" from="MessagePlayer" to="MessagePlayer" method="_on_finished"]
+[connection signal="value_changed" from="CanvasLayer/SettingsPanel/Settings/Volume" to="CanvasLayer/SettingsPanel/Settings/Volume" method="_on_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/SettingsPanel/Settings/FoV" to="CanvasLayer/SettingsPanel/Settings/FoV" method="_on_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/SettingsPanel/Settings/Sensitivity" to="CanvasLayer/SettingsPanel/Settings/Sensitivity" method="_on_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/SettingsPanel/Settings/Brightness" to="CanvasLayer/SettingsPanel/Settings/Brightness" method="_on_value_changed"]
+[connection signal="toggled" from="CanvasLayer/SettingsPanel/Settings/ColorBlindMode" to="CanvasLayer/SettingsPanel/Settings/ColorBlindMode" method="_on_toggled"]
+[connection signal="pressed" from="CanvasLayer/SettingsPanel/Settings/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="CanvasLayer/SettingsPanel/MainPauseMenu/SettingsCogButton" to="." method="_on_settings_cog_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/SettingsPanel/MainPauseMenu/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="CanvasLayer/SettingsPanel/MainPauseMenu/Exit to menu" to="." method="_on_exit_to_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/SettingsPanel/MainPauseMenu/Exit" to="." method="_on_exit_pressed"]
