@@ -1,18 +1,6 @@
-[gd_scene format=3 uid="uid://kx7jfgjx5odf"]
+[gd_scene format=3 uid="uid://wlypc1trm7y0"]
 
 [ext_resource type="Script" uid="uid://pako0mjr7pit" path="res://src/debug/freecam.gd" id="1_kru7p"]
-[ext_resource type="Script" uid="uid://digqebucckmc6" path="res://src/player/interaction.gd" id="2_4sktk"]
-[ext_resource type="Script" uid="uid://bbqmonnvc8a2e" path="res://src/player/inventory.gd" id="3_pn3p2"]
 
 [node name="Player" type="Camera3D" unique_id=667282374]
 script = ExtResource("1_kru7p")
-
-[node name="Interactor" type="Node3D" parent="." unique_id=1759606019 node_paths=PackedStringArray("camera", "crosshair", "inventory")]
-script = ExtResource("2_4sktk")
-camera = NodePath("..")
-crosshair = NodePath("")
-inventory = NodePath("../Inventory")
-
-[node name="Inventory" type="Node3D" parent="." unique_id=863133359 node_paths=PackedStringArray("camera")]
-script = ExtResource("3_pn3p2")
-camera = NodePath("..")

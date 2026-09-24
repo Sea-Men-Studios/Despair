@@ -7,14 +7,14 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dtook"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qu4a1"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mdl7e"]
 shader = ExtResource("3_mdl7e")
 shader_parameter/alpha = 1.005
 shader_parameter/inner_radius = -0.305
 shader_parameter/outer_radius = 2.67
 shader_parameter/color = Vector3(0.254, 0.325, 0.176)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_70d11"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qu4a1"]
 bg_color = Color(1, 1, 1, 0.39215687)
 corner_radius_top_left = 50
 corner_radius_top_right = 50
@@ -28,37 +28,38 @@ script = ExtResource("1_p0vlq")
 shape = SubResource("CapsuleShape3D_dtook")
 debug_color = Color(0.8058387, 0, 0.103776984, 0.41960785)
 
-[node name="Node3D" type="Node3D" parent="." unique_id=883265346]
+[node name="Head" type="Node3D" parent="." unique_id=883265346]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.43530035, -0.39765012)
 
-[node name="Camera3D" type="Camera3D" parent="Node3D" unique_id=1572165867]
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=1572165867]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.33607864)
 far = 50.0
 
 [node name="Interactor" type="Node3D" parent="." unique_id=1104841263 node_paths=PackedStringArray("camera", "crosshair", "inventory", "player_hitbox")]
 script = ExtResource("2_3li8b")
-camera = NodePath("../Node3D/Camera3D")
+camera = NodePath("../Head/Camera3D")
 crosshair = NodePath("../GUI/Crosshair")
 inventory = NodePath("../Inventory")
 player_hitbox = NodePath("../CollisionShape3D")
 
 [node name="Inventory" type="Node3D" parent="." unique_id=2068928696 node_paths=PackedStringArray("camera")]
 script = ExtResource("3_qu4a1")
-camera = NodePath("../Node3D/Camera3D")
+camera = NodePath("../Head/Camera3D")
 
-[node name="GUI" type="Control" parent="." unique_id=1000661624]
+[node name="GUI" type="Control" parent="." unique_id=2118452655]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 
-[node name="Vignette" type="ColorRect" parent="GUI" unique_id=773381837]
-material = SubResource("ShaderMaterial_qu4a1")
+[node name="Vignette" type="ColorRect" parent="GUI" unique_id=2027000484]
+material = SubResource("ShaderMaterial_mdl7e")
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
+mouse_filter = 2
 
-[node name="Crosshair" type="PanelContainer" parent="GUI" unique_id=1960691575]
+[node name="Crosshair" type="PanelContainer" parent="GUI" unique_id=796088482]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -71,4 +72,4 @@ offset_right = 2.0
 offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_70d11")
+theme_override_styles/panel = SubResource("StyleBoxFlat_qu4a1")
