@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://dulbjs303pf3h" path="res://scenes/Player.tscn" id="3_nbain"]
 [ext_resource type="Texture2D" uid="uid://2rrm25svrirb" path="res://assets/textures/dead_grass.jpg" id="4_b2arr"]
 [ext_resource type="FontFile" uid="uid://bdc5pulf3pph6" path="res://assets/fonts/Philophobia-0p8d.ttf" id="5_q7yga"]
-[ext_resource type="Texture2D" uid="uid://n6x7333kek1x" path="res://assets/textures/smoke.png" id="5_ut5rl"]
 [ext_resource type="Script" uid="uid://bwgft50o7gqha" path="res://src/debug/fps.gd" id="6_b2arr"]
 [ext_resource type="Script" uid="uid://bn3i3o85qv2ar" path="res://src/objects/test_grabbable.gd" id="6_frvy6"]
 [ext_resource type="Script" uid="uid://drc54agwk85uw" path="res://src/objects/note.gd" id="7_b2arr"]
@@ -13,14 +12,13 @@
 [ext_resource type="AudioStream" uid="uid://dxwxwwofkywwj" path="res://assets/Audio/morsecodetest.ogg" id="18_wwk3j"]
 
 [sub_resource type="Environment" id="Environment_83ng5"]
+fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.29411766, 0.37254903, 0.1764706, 1)
 fog_density = 1.0
 fog_depth_begin = 0.0
 fog_depth_end = 20.0
-volumetric_fog_enabled = true
 volumetric_fog_density = 0.0
-adjustment_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lnu2h"]
 cull_mode = 1
@@ -52,27 +50,6 @@ uv1_scale = Vector3(50, 50, 50)
 [sub_resource type="BoxMesh" id="BoxMesh_dtook"]
 material = SubResource("StandardMaterial3D_gh7k3")
 subdivide_depth = 1
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q7yga"]
-emission_shape = 3
-emission_box_extents = Vector3(20, 5, 20)
-direction = Vector3(0, 0, 0)
-spread = 110.647
-gravity = Vector3(0, 0, 0)
-scale_max = 16.38
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kr1d5"]
-transparency = 1
-albedo_color = Color(0.22207353, 0.2848043, 0.12768137, 1)
-albedo_texture = ExtResource("5_ut5rl")
-emission_enabled = true
-emission = Color(0.22352941, 0.28627452, 0.12941177, 1)
-billboard_mode = 1
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_b2563"]
-material = SubResource("StandardMaterial3D_kr1d5")
-size = Vector2(16, 16)
-orientation = 2
 
 [sub_resource type="FogMaterial" id="FogMaterial_ca36r"]
 density = 0.4
@@ -158,15 +135,6 @@ mesh = SubResource("BoxMesh_dtook")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/MeshInstance3D/StaticBody3D" unique_id=97510277]
 shape = SubResource("ConcavePolygonShape3D_5qein")
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="World" unique_id=182926617]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.474313, 0.23003387)
-sorting_use_aabb_center = false
-amount = 50
-lifetime = 10.0
-fixed_fps = 10
-process_material = SubResource("ParticleProcessMaterial_q7yga")
-draw_pass_1 = SubResource("PlaneMesh_b2563")
 
 [node name="CharacterBody3D" parent="." unique_id=136917392 instance=ExtResource("3_nbain")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6298447, 0)

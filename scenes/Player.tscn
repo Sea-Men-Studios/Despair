@@ -9,9 +9,10 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qu4a1"]
 shader = ExtResource("3_mdl7e")
-shader_parameter/alpha = 1.2
-shader_parameter/inner_radius = 0.0
-shader_parameter/outer_radius = 4.0
+shader_parameter/alpha = 1.58
+shader_parameter/inner_radius = -0.175
+shader_parameter/outer_radius = 2.95
+shader_parameter/color = Vector3(0.254, 0.325, 0.176)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_70d11"]
 bg_color = Color(1, 1, 1, 0.39215687)
