@@ -97,7 +97,7 @@ shape = SubResource("ConcavePolygonShape3D_5qein")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="World" unique_id=339773691]
 transform = Transform3D(0.72228074, 0.2541985, -0.64319026, 0.6916, -0.2654752, 0.6717234, 0, -0.9300032, -0.36755136, -6.3404293, 6.6511602, -7.1096773)
-light_energy = 8.129
+light_energy = 50.0
 spot_range = 13.258465
 spot_angle = 30.109695
 
@@ -107,6 +107,11 @@ script = ExtResource("6_frvy6")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="World/Object" unique_id=431777044]
 use_collision = true
+
+[node name="Prism2" type="CSGBox3D" parent="World" unique_id=1898726315]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.221624, 3.7913022, -7.639598)
+use_collision = true
+size = Vector3(5.2021484, 5.3620605, 3.7041016)
 
 [node name="Note" type="Node3D" parent="World" unique_id=101931614]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 3.5, 2.198248, -2.51)
@@ -121,11 +126,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_0hxc1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/Note/StaticBody3D" unique_id=728807953]
 shape = SubResource("BoxShape3D_83ng5")
-
-[node name="Prism2" type="CSGBox3D" parent="World" unique_id=1898726315]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.221624, 3.7913022, -7.639598)
-use_collision = true
-size = Vector3(5.2021484, 5.3620605, 3.7041016)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World" unique_id=575210740]
 transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, -0.034136176, 0.7149863, 0.022112608)
