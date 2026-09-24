@@ -4,6 +4,9 @@ extends CharacterBody3D
 var SPEED = 2.0
 var CHASE_SPEED = 2.5
 
+var frame_counter := 0
+@export var run_every_n_frames := 5
+
 @onready var raycasts: Array[RayCast3D] = [
 	$Raycasts/RayCast3D,
 	$Raycasts/RayCast3D2,
@@ -33,6 +36,10 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	frame_counter += 1
+	if frame_counter < run_every_n_frames:
+		return
+	frame_counter = 0
 	_check_raycasts()
 	#print("State: ", state, " | Sees via raycast this frame: ", state == State.CHASE)
 
