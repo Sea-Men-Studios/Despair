@@ -32,6 +32,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.43530035, -0.39765012)
 
 [node name="Camera3D" type="Camera3D" parent="Node3D" unique_id=1572165867]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.33607864)
+far = 50.0
 
 [node name="Interactor" type="Node3D" parent="." unique_id=1104841263 node_paths=PackedStringArray("camera", "crosshair", "inventory", "player_hitbox")]
 script = ExtResource("2_3li8b")
