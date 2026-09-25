@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://d2vfs1qvkkqlr"]
 
+[ext_resource type="Texture2D" uid="uid://clcgy0xco0hdp" path="res://assets/textures/sky.exr" id="1_2qg6i"]
+[ext_resource type="Shader" uid="uid://dmcn8vye0bj2x" path="res://assets/shaders/new_shader.gdshader" id="1_q7yga"]
 [ext_resource type="Texture2D" uid="uid://dav75n60ubaek" path="res://assets/textures/sky.jpg" id="3_frvy6"]
 [ext_resource type="PackedScene" uid="uid://dulbjs303pf3h" path="res://scenes/Player.tscn" id="3_nbain"]
 [ext_resource type="Texture2D" uid="uid://2rrm25svrirb" path="res://assets/textures/dead_grass.jpg" id="4_b2arr"]
@@ -12,13 +14,27 @@
 [ext_resource type="Script" uid="uid://c2rmuwdteiwgg" path="res://src/audio_stream_player.gd" id="17_ju4s4"]
 [ext_resource type="AudioStream" uid="uid://dxwxwwofkywwj" path="res://assets/Audio/morsecodetest.ogg" id="18_wwk3j"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q7yga"]
+shader = ExtResource("1_q7yga")
+shader_parameter/panorama_a = ExtResource("1_2qg6i")
+shader_parameter/panorama_b = ExtResource("1_2qg6i")
+shader_parameter/speed_a = 0.02000004845000003
+shader_parameter/speed_b = -0.019999953450000052
+shader_parameter/blend_b = 0.5
+
+[sub_resource type="Sky" id="Sky_htbyd"]
+sky_material = SubResource("ShaderMaterial_q7yga")
+
 [sub_resource type="Environment" id="Environment_83ng5"]
+background_mode = 2
+sky = SubResource("Sky_htbyd")
 fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.29411766, 0.37254903, 0.1764706, 1)
-fog_density = 1.0
+fog_sky_affect = 0.75
 fog_depth_begin = 0.0
 fog_depth_end = 20.0
+volumetric_fog_enabled = true
 volumetric_fog_density = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lnu2h"]
