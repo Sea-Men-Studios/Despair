@@ -17,8 +17,8 @@ var exertion := 0.0
 @export var acceleration := 3.0
 @export var deceleration := 5
 @export var air_control := 0.3
-@export var step_height := 0.6
-@export var step_check_distance := 0.6
+@export var step_height := 0.5
+@export var step_check_distance := 0.5
 
 const SENSITIVITY = 0.002
 
@@ -45,34 +45,27 @@ func _input(event):
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
-
 	var input_dir := Input.get_vector("left", "right", "forwards", "backwards")
 	var direction = (head.global_transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	var target_velocity = direction * max_speed
-
 	var current_accel = acceleration if direction.length() > 0.1 else deceleration
 	if not is_on_floor():
 		current_accel *= air_control
-
 	velocity.x = move_toward(velocity.x, target_velocity.x, current_accel * delta)
 	velocity.z = move_toward(velocity.z, target_velocity.z, current_accel * delta)
 
 	var horizontal_speed = Vector2(velocity.x, velocity.z).length()
 	var target_exertion = clamp(horizontal_speed / max_speed, 0.0, 1.0)
 	exertion = lerp(exertion, target_exertion, 1.0 - exp(-exertion_smoothing * delta))
-
 	var freq = breath_freq * lerp(1.0, exertion_freq_mult, exertion)
 	var amp = breath_amp * lerp(1.0, exertion_amp_mult, exertion)
 	t_breath += delta * freq
-
 	camera.transform.origin = _breathe(t_breath, amp)
-
-	_try_step_up(delta)
+	
+	if is_on_floor():
+		_try_step_up(delta)
 
 	move_and_slide()
-
-
 
 func _breathe(time: float, amp: float) -> Vector3:
 	var pos = Vector3.ZERO
@@ -81,39 +74,26 @@ func _breathe(time: float, amp: float) -> Vector3:
 	return pos
 
 func _try_step_up(delta: float) -> void:
-	if not is_on_floor():
-		return
-
 	var horizontal_vel = Vector3(velocity.x, 0, velocity.z)
-	if horizontal_vel.length() < 0.1:
+	if horizontal_vel.length() < 0.01:
 		return
-
 	var motion = horizontal_vel.normalized() * step_check_distance
 
-	# Check if something blocks at foot level
-	var params := PhysicsTestMotionParameters3D.new()
-	params.from = global_transform
-	params.motion = motion
-	var result := PhysicsTestMotionResult3D.new()
+	# 1. Is something blocking us at foot level right in front?
+	var forward_collision := move_and_collide(motion, true)
+	if forward_collision == null:
+		return  # nothing in the way, no step needed
 
-	if not PhysicsServer3D.body_test_motion(get_rid(), params, result):
-		return # nothing in the way, no step needed
+	# 2. Is there clear space if we lift up by step_height?
+	var up_collision := move_and_collide(Vector3.UP * step_height, true)
+	if up_collision != null:
+		return  # something overhead, can't step up (it's a wall, not a step)
 
-	# See if raising by step_height clears the obstacle
-	var raised_transform = global_transform
-	raised_transform.origin.y += step_height
+	# 3. With that headroom, is the path forward now clear?
+	var forward_at_height := move_and_collide(motion, true)
+	if forward_at_height != null:
+		return  # still blocked even when raised, not a valid step
 
-	params.from = raised_transform
-	params.motion = motion
-
-	if PhysicsServer3D.body_test_motion(get_rid(), params, result):
-		return 
-
-	# Make sure there's floor at that raised height
-	params.from = raised_transform
-	params.motion = Vector3(0, -step_height - 0.05, 0)
-
-	if PhysicsServer3D.body_test_motion(get_rid(), params, result):
-		#found floor within range — snap up onto it
-		global_transform.origin.y += step_height - result.get_travel().length()
-		velocity.y = 0
+	# All clear: actually raise the body. move_and_slide() will then
+	# carry it forward and gravity/floor snap will settle it onto the step.
+	global_position.y += step_height
