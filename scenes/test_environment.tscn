@@ -7,10 +7,11 @@
 [ext_resource type="Script" uid="uid://bwgft50o7gqha" path="res://src/debug/fps.gd" id="6_b2arr"]
 [ext_resource type="Script" uid="uid://bn3i3o85qv2ar" path="res://src/objects/test_grabbable.gd" id="6_frvy6"]
 [ext_resource type="Script" uid="uid://drc54agwk85uw" path="res://src/objects/note.gd" id="7_b2arr"]
-[ext_resource type="Script" uid="uid://brfvy8jw36tet" path="res://src/morsemessages.gd" id="7_hb1a6"]
+[ext_resource type="Script" uid="uid://brfvy8jw36tet" path="res://src/game/morsecode/morsemessages.gd" id="7_hb1a6"]
+[ext_resource type="Script" uid="uid://bjidxs3d64jbk" path="res://src/game/music_controller.gd" id="9_kr1d5"]
 [ext_resource type="Script" uid="uid://c4wxvsalbly6k" path="res://src/debug/debug_tools.gd" id="10_ut5rl"]
-[ext_resource type="Script" uid="uid://c2rmuwdteiwgg" path="res://src/audio_stream_player.gd" id="17_ju4s4"]
-[ext_resource type="AudioStream" uid="uid://dxwxwwofkywwj" path="res://assets/Audio/morsecodetest.ogg" id="18_wwk3j"]
+[ext_resource type="Script" uid="uid://c2rmuwdteiwgg" path="res://src/game/morsecode/audio_stream_player.gd" id="17_ju4s4"]
+[ext_resource type="AudioStream" uid="uid://dxwxwwofkywwj" path="res://assets/audio/morsecodetest.ogg" id="18_wwk3j"]
 
 [sub_resource type="Environment" id="Environment_83ng5"]
 fog_enabled = true
@@ -52,18 +53,13 @@ uv1_scale = Vector3(50, 50, 50)
 material = SubResource("StandardMaterial3D_gh7k3")
 subdivide_depth = 1
 
-[sub_resource type="FogMaterial" id="FogMaterial_ca36r"]
-density = 0.4
-albedo = Color(0.29437688, 0.37215257, 0.1751729, 1)
-emission = Color(0.25637797, 0.32701945, 0.17660847, 1)
-height_falloff = 0.115852535
-edge_fade = 0.51418495
-
 [sub_resource type="Resource" id="Resource_wwk3j"]
 script = ExtResource("7_hb1a6")
 audio = ExtResource("18_wwk3j")
 subtitle = "This is morse code"
 metadata/_custom_type_script = "uid://brfvy8jw36tet"
+
+[sub_resource type="AudioStream" id="AudioStream_ut5rl"]
 
 [sub_resource type="FontVariation" id="FontVariation_dtook"]
 base_font = ExtResource("5_q7yga")
@@ -145,18 +141,16 @@ mesh = SubResource("BoxMesh_dtook")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/MeshInstance3D/StaticBody3D" unique_id=97510277]
 shape = SubResource("ConcavePolygonShape3D_5qein")
 
-[node name="CharacterBody3D" parent="." unique_id=136917392 instance=ExtResource("3_nbain")]
+[node name="Player" parent="." unique_id=136917392 instance=ExtResource("3_nbain")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6298447, 0)
-
-[node name="FogVolume" type="FogVolume" parent="CharacterBody3D" unique_id=870188881]
-visible = false
-size = Vector3(8, 5, 8)
-shape = 2
-material = SubResource("FogMaterial_ca36r")
 
 [node name="MessagePlayer" type="AudioStreamPlayer" parent="." unique_id=1206028808]
 script = ExtResource("17_ju4s4")
 messages = Array[ExtResource("7_hb1a6")]([SubResource("Resource_wwk3j")])
+
+[node name="MusicController" type="AudioStreamPlayer" parent="." unique_id=1004532101]
+stream = SubResource("AudioStream_ut5rl")
+script = ExtResource("9_kr1d5")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=10223312]
 
@@ -180,7 +174,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("10_ut5rl")
-player = NodePath("../CharacterBody3D")
+player = NodePath("../Player")
 
 [node name="DebugMenu" type="PanelContainer" parent="DebugTools" unique_id=1631523238]
 layout_mode = 0
