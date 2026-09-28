@@ -21,8 +21,10 @@ var exertion := 0.0
 
 var fov = 75
 
-@onready var camera: Camera3D = $Node3D/Camera3D
-@onready var head: Node3D = $Node3D
+@onready var camera: Camera3D = $Head/Camera3D
+@onready var head: Node3D = $Head
+
+var can_move = true
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -36,13 +38,10 @@ func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		
-	#if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
-		#if game.settings_panel.visible:
-			#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		#else:
-			#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		
-	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED and can_move:
 		rotate_y(-event.relative.x * Settings.sensitivity)
 		camera.rotate_x(-event.relative.y * Settings.sensitivity)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(min_pitch), deg_to_rad(max_pitch))
@@ -74,9 +73,8 @@ func _physics_process(delta: float) -> void:
 
 	camera.transform.origin = _breathe(t_breath, amp)
 
-
-
-	move_and_slide()
+	if can_move == true:
+		move_and_slide()
 
 
 

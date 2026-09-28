@@ -1,33 +1,37 @@
 [gd_scene format=3 uid="uid://d2vfs1qvkkqlr"]
 
-[ext_resource type="Script" uid="uid://cauguugn3wvws" path="res://src/game.gd" id="1_0hxc1"]
+[ext_resource type="Script" path="res://src/game.gd" id="1_0hxc1"]
 [ext_resource type="PackedScene" uid="uid://cs6j73x812y32" path="res://scenes/road_segment.tscn" id="2_adw7c"]
 [ext_resource type="PackedScene" uid="uid://dulbjs303pf3h" path="res://scenes/Player.tscn" id="3_nbain"]
 [ext_resource type="Texture2D" uid="uid://c1ojid35x6vj0" path="res://assets/images/BloodyParchment.png" id="4_2qg6i"]
 [ext_resource type="Texture2D" uid="uid://2rrm25svrirb" path="res://assets/textures/dead_grass.jpg" id="4_b2arr"]
 [ext_resource type="FontFile" uid="uid://bdc5pulf3pph6" path="res://assets/fonts/Philophobia-0p8d.ttf" id="5_q7yga"]
 [ext_resource type="Script" uid="uid://iyl54hwv5f1r" path="res://src/ui/settings/volume.gd" id="6_adw7c"]
+[ext_resource type="Script" uid="uid://bwgft50o7gqha" path="res://src/debug/fps.gd" id="6_b2arr"]
 [ext_resource type="Script" uid="uid://bn3i3o85qv2ar" path="res://src/objects/test_grabbable.gd" id="6_frvy6"]
 [ext_resource type="FontFile" uid="uid://c8s3uhtt6pfuo" path="res://assets/fonts/WhoAsksSatan-5vxx.ttf" id="7_0hxc1"]
 [ext_resource type="Script" uid="uid://drc54agwk85uw" path="res://src/objects/note.gd" id="7_b2arr"]
+[ext_resource type="Script" uid="uid://brfvy8jw36tet" path="res://src/morsemessages.gd" id="7_hb1a6"]
 [ext_resource type="Script" uid="uid://dpoe6wclu1hb4" path="res://src/ui/settings/fov.gd" id="8_ju4s4"]
 [ext_resource type="Script" uid="uid://cqe7uajt6fcel" path="res://src/ui/settings/sensitivity.gd" id="9_wwk3j"]
 [ext_resource type="Script" uid="uid://dqysogu0xfomq" path="res://src/ui/settings/brightness.gd" id="10_hb1a6"]
+[ext_resource type="Script" uid="uid://c4wxvsalbly6k" path="res://src/debug/debug_tools.gd" id="10_ut5rl"]
 [ext_resource type="Texture2D" uid="uid://c4a1m8qawojjq" path="res://assets/images/CheckBoxChecked.png" id="11_2ugr5"]
 [ext_resource type="Texture2D" uid="uid://fbfhc2w1txsd" path="res://assets/images/CheckBox.png" id="12_mtjhi"]
 [ext_resource type="Texture2D" uid="uid://bf8fuq0wfg4su" path="res://assets/images/Cog.png" id="13_q7yga"]
 [ext_resource type="Script" uid="uid://fo5fdsw2ihgw" path="res://src/ui/settings/color_blind_mode.gd" id="13_wjdp0"]
 [ext_resource type="PackedScene" uid="uid://8f4gruphx4q2" path="res://scenes/enemy.tscn" id="16_0hxc1"]
+[ext_resource type="Script" uid="uid://c2rmuwdteiwgg" path="res://src/audio_stream_player.gd" id="17_ju4s4"]
+[ext_resource type="AudioStream" uid="uid://dxwxwwofkywwj" path="res://assets/Audio/morsecodetest.ogg" id="18_wwk3j"]
 
 [sub_resource type="Environment" id="Environment_83ng5"]
-volumetric_fog_enabled = true
-
-[sub_resource type="FogMaterial" id="FogMaterial_ca36r"]
-density = 0.8
-albedo = Color(0.29437688, 0.37215257, 0.1751729, 1)
-emission = Color(0.25637797, 0.32701945, 0.17660847, 1)
-height_falloff = 0.20171101
-edge_fade = 0.51418495
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.29411766, 0.37254903, 0.1764706, 1)
+fog_density = 1.0
+fog_depth_begin = 0.0
+fog_depth_end = 20.0
+volumetric_fog_density = 0.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_83ng5"]
 size = Vector3(2.8916016, 2.5203857, 1)
@@ -58,6 +62,12 @@ resource_local_to_scene = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_83ng5"]
 size = Vector3(0.8, 1, 0.122)
+
+[sub_resource type="Resource" id="Resource_wwk3j"]
+script = ExtResource("7_hb1a6")
+audio = ExtResource("18_wwk3j")
+subtitle = "This is morse code"
+metadata/_custom_type_script = "uid://brfvy8jw36tet"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kt552"]
 
@@ -101,6 +111,21 @@ spacing_glyph = 5
 base_font = ExtResource("5_q7yga")
 spacing_glyph = 5
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xhnq4"]
+bg_color = Color(0.09411765, 0.09411765, 0.09411765, 0.34901962)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.09411765, 0.09411765, 0.09411765, 0.34901962)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5qein"]
+font_size = 32
+
+[sub_resource type="FontVariation" id="FontVariation_dtook"]
+base_font = ExtResource("5_q7yga")
+spacing_glyph = 5
+
 [node name="Game" type="Node3D" unique_id=204302908]
 script = ExtResource("1_0hxc1")
 
@@ -109,13 +134,8 @@ script = ExtResource("1_0hxc1")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="World" unique_id=315795507]
 environment = SubResource("Environment_83ng5")
 
-[node name="FogVolume" type="FogVolume" parent="World/WorldEnvironment" unique_id=870188881]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1224172, 0)
-shape = 4
-material = SubResource("FogMaterial_ca36r")
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="World/WorldEnvironment" unique_id=578331651]
-transform = Transform3D(0.79376996, -0.28991374, 0.5346768, 0, 0.87908727, 0.47666085, -0.6082181, -0.37835905, 0.69779307, 4.9426937, 10.104957, 6.3584127)
+transform = Transform3D(0.79376996, -0.28991374, 0.5346768, 0, 0.87908727, 0.47666085, -0.6082181, -0.37835905, 0.69779307, 12.085648, 50.240433, 156.24045)
 
 [node name="Prism" type="MeshInstance3D" parent="World" unique_id=844828494]
 transform = Transform3D(0.8735505, 0, 0.48673356, 0, 1, 0, -0.48673356, 0, 0.8735505, -3.8897986, 2.3343768, -3.7755048)
@@ -128,7 +148,7 @@ shape = SubResource("ConcavePolygonShape3D_5qein")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="World" unique_id=339773691]
 transform = Transform3D(0.72228074, 0.2541985, -0.64319026, 0.6916, -0.2654752, 0.6717234, 0, -0.9300032, -0.36755136, -6.3404293, 6.6511602, -7.1096773)
-light_energy = 8.129
+light_energy = 50.0
 spot_range = 13.258465
 spot_angle = 30.109695
 
@@ -157,6 +177,11 @@ script = ExtResource("6_frvy6")
 [node name="CSGSphere3D" type="CSGSphere3D" parent="World/Object" unique_id=431777044]
 use_collision = true
 
+[node name="Prism2" type="CSGBox3D" parent="World" unique_id=266470229]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.221624, 3.7913022, -7.639598)
+use_collision = true
+size = Vector3(5.2021484, 5.3620605, 3.7041016)
+
 [node name="Note" type="Node3D" parent="World" unique_id=101931614]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 3.5, 2.198248, -2.51)
 script = ExtResource("7_b2arr")
@@ -171,12 +196,24 @@ surface_material_override/0 = SubResource("StandardMaterial3D_0hxc1")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/Note/StaticBody3D" unique_id=728807953]
 shape = SubResource("BoxShape3D_83ng5")
 
-[node name="Prism2" type="CSGBox3D" parent="World" unique_id=1501360301]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.221624, 3.7913022, -7.639598)
-use_collision = true
-size = Vector3(5.2021484, 5.3620605, 3.7041016)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World" unique_id=1660636337]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, -0.034136176, 0.7149863, 0.022112608)
+mesh = SubResource("BoxMesh_dtook")
 
-[node name="SettingsPanel" type="TextureRect" parent="." unique_id=1559758909]
+[node name="Player" parent="." unique_id=136917392 node_paths=PackedStringArray("game") groups=["player"] instance=ExtResource("3_nbain")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1083074, 0)
+game = NodePath("..")
+
+[node name="Enemy" parent="." unique_id=400455958 instance=ExtResource("16_0hxc1")]
+transform = Transform3D(-0.9979056, 0, 0.06468655, 0, 1, 0, -0.06468655, 0, -0.9979056, 5.7266603, 2.1083074, -25.625185)
+
+[node name="MessagePlayer" type="AudioStreamPlayer" parent="." unique_id=1206028808]
+script = ExtResource("17_ju4s4")
+messages = Array[ExtResource("7_hb1a6")]([SubResource("Resource_wwk3j")])
+
+[node name="GUI" type="CanvasLayer" parent="." unique_id=10223312]
+
+[node name="SettingsPanel" type="TextureRect" parent="GUI" unique_id=1559758909]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -185,20 +222,20 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -766.9999
 offset_top = -567.0
-offset_right = 399.7472
+offset_right = 399.74707
 offset_bottom = 275.5
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.35, 1.35)
 texture = ExtResource("4_2qg6i")
 
-[node name="Settings" type="Control" parent="SettingsPanel" unique_id=1648884615]
+[node name="Settings" type="Control" parent="GUI/SettingsPanel" unique_id=1648884615]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Settings" type="Label" parent="SettingsPanel/Settings" unique_id=774664944]
+[node name="Settings" type="Label" parent="GUI/SettingsPanel/Settings" unique_id=774664944]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -213,7 +250,7 @@ theme_override_font_sizes/font_size = 70
 text = "Settings"
 horizontal_alignment = 1
 
-[node name="Volume" type="VSlider" parent="SettingsPanel/Settings" unique_id=1375613757]
+[node name="Volume" type="VSlider" parent="GUI/SettingsPanel/Settings" unique_id=1375613757]
 layout_mode = 0
 offset_left = 221.99988
 offset_top = 208.00002
@@ -227,7 +264,7 @@ ticks_on_borders = true
 script = ExtResource("6_adw7c")
 audio_bus_name = "Master"
 
-[node name="Volume" type="Label" parent="SettingsPanel/Settings/Volume" unique_id=1645821215]
+[node name="Volume" type="Label" parent="GUI/SettingsPanel/Settings/Volume" unique_id=1645821215]
 layout_mode = 0
 offset_left = -24.626465
 offset_top = 384.25
@@ -237,7 +274,7 @@ theme_override_fonts/font = ExtResource("5_q7yga")
 theme_override_font_sizes/font_size = 23
 text = "Vol ume"
 
-[node name="VolumeNum" type="Label" parent="SettingsPanel/Settings/Volume" unique_id=1665572341]
+[node name="VolumeNum" type="Label" parent="GUI/SettingsPanel/Settings/Volume" unique_id=1665572341]
 layout_mode = 0
 offset_left = -6.626465
 offset_top = -30.75
@@ -247,7 +284,7 @@ theme_override_fonts/font = ExtResource("7_0hxc1")
 theme_override_font_sizes/font_size = 30
 text = "100"
 
-[node name="FoV" type="VSlider" parent="SettingsPanel/Settings" unique_id=1065038809]
+[node name="FoV" type="VSlider" parent="GUI/SettingsPanel/Settings" unique_id=1065038809]
 layout_mode = 0
 offset_left = 311.99988
 offset_top = 208.00002
@@ -258,7 +295,7 @@ max_value = 120.0
 value = 75.0
 script = ExtResource("8_ju4s4")
 
-[node name="FoV" type="Label" parent="SettingsPanel/Settings/FoV" unique_id=761049508]
+[node name="FoV" type="Label" parent="GUI/SettingsPanel/Settings/FoV" unique_id=761049508]
 layout_mode = 0
 offset_left = -8.000488
 offset_top = 385.25
@@ -268,7 +305,7 @@ theme_override_fonts/font = ExtResource("5_q7yga")
 theme_override_font_sizes/font_size = 23
 text = "FoV"
 
-[node name="FoVNum" type="Label" parent="SettingsPanel/Settings/FoV" unique_id=2045054617]
+[node name="FoVNum" type="Label" parent="GUI/SettingsPanel/Settings/FoV" unique_id=2045054617]
 layout_mode = 0
 offset_left = -6.626465
 offset_top = -30.75
@@ -278,7 +315,7 @@ theme_override_fonts/font = ExtResource("7_0hxc1")
 theme_override_font_sizes/font_size = 30
 text = "100"
 
-[node name="Sensitivity" type="VSlider" parent="SettingsPanel/Settings" unique_id=1934881081]
+[node name="Sensitivity" type="VSlider" parent="GUI/SettingsPanel/Settings" unique_id=1934881081]
 layout_mode = 0
 offset_left = 401.99988
 offset_top = 208.00002
@@ -290,7 +327,7 @@ step = 0.001
 value = 0.001
 script = ExtResource("9_wwk3j")
 
-[node name="Sensitivity" type="Label" parent="SettingsPanel/Settings/Sensitivity" unique_id=852586026]
+[node name="Sensitivity" type="Label" parent="GUI/SettingsPanel/Settings/Sensitivity" unique_id=852586026]
 layout_mode = 0
 offset_left = -33.00049
 offset_top = 383.25
@@ -300,7 +337,7 @@ theme_override_fonts/font = ExtResource("5_q7yga")
 theme_override_font_sizes/font_size = 23
 text = "Sensitivity"
 
-[node name="SensNum" type="Label" parent="SettingsPanel/Settings/Sensitivity/Sensitivity" unique_id=1330510204]
+[node name="SensNum" type="Label" parent="GUI/SettingsPanel/Settings/Sensitivity/Sensitivity" unique_id=1330510204]
 layout_mode = 0
 offset_left = 26.0
 offset_top = -413.0
@@ -310,7 +347,7 @@ theme_override_fonts/font = ExtResource("7_0hxc1")
 theme_override_font_sizes/font_size = 30
 text = "100"
 
-[node name="Brightness" type="VSlider" parent="SettingsPanel/Settings" unique_id=232803044]
+[node name="Brightness" type="VSlider" parent="GUI/SettingsPanel/Settings" unique_id=232803044]
 layout_mode = 0
 offset_left = 491.99988
 offset_top = 208.00002
@@ -323,7 +360,7 @@ value = 0.75
 ticks_on_borders = true
 script = ExtResource("10_hb1a6")
 
-[node name="Britghness" type="Label" parent="SettingsPanel/Settings/Brightness" unique_id=1828662013]
+[node name="Britghness" type="Label" parent="GUI/SettingsPanel/Settings/Brightness" unique_id=1828662013]
 layout_mode = 0
 offset_left = -24.626465
 offset_top = 384.25
@@ -333,7 +370,7 @@ theme_override_fonts/font = ExtResource("5_q7yga")
 theme_override_font_sizes/font_size = 23
 text = "Brightness"
 
-[node name="BrightnessNum" type="Label" parent="SettingsPanel/Settings/Brightness" unique_id=116072112]
+[node name="BrightnessNum" type="Label" parent="GUI/SettingsPanel/Settings/Brightness" unique_id=116072112]
 layout_mode = 0
 offset_left = -6.626465
 offset_top = -30.75
@@ -343,7 +380,7 @@ theme_override_fonts/font = ExtResource("7_0hxc1")
 theme_override_font_sizes/font_size = 30
 text = "100"
 
-[node name="ColorBlindMode" type="CheckBox" parent="SettingsPanel/Settings" unique_id=1226121266]
+[node name="ColorBlindMode" type="CheckBox" parent="GUI/SettingsPanel/Settings" unique_id=1226121266]
 layout_mode = 0
 offset_left = 574.3734
 offset_top = 198.25002
@@ -356,7 +393,7 @@ theme_override_icons/unchecked = ExtResource("12_mtjhi")
 text = "ColorBlind Mode"
 script = ExtResource("13_wjdp0")
 
-[node name="Back" type="Button" parent="SettingsPanel/Settings" unique_id=385489376]
+[node name="Back" type="Button" parent="GUI/SettingsPanel/Settings" unique_id=385489376]
 layout_mode = 0
 offset_left = 155.37352
 offset_top = 76.25
@@ -371,12 +408,12 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_tp0ba")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_o8806")
 text = "x"
 
-[node name="MainPauseMenu" type="Control" parent="SettingsPanel" unique_id=326991035]
+[node name="MainPauseMenu" type="Control" parent="GUI/SettingsPanel" unique_id=326991035]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="SettingsCogButton" type="Button" parent="SettingsPanel/MainPauseMenu" unique_id=1111628094]
+[node name="SettingsCogButton" type="Button" parent="GUI/SettingsPanel/MainPauseMenu" unique_id=1111628094]
 layout_mode = 0
 offset_left = 916.2963
 offset_top = 92.59259
@@ -389,7 +426,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_qk5rn")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_xw254")
 icon = ExtResource("13_q7yga")
 
-[node name="Resume" type="Button" parent="SettingsPanel/MainPauseMenu" unique_id=1678529818]
+[node name="Resume" type="Button" parent="GUI/SettingsPanel/MainPauseMenu" unique_id=1678529818]
 layout_mode = 0
 offset_left = 467.40738
 offset_top = 215.55556
@@ -404,7 +441,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_wihdw")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_o5div")
 text = "Resume"
 
-[node name="Exit to menu" type="Button" parent="SettingsPanel/MainPauseMenu" unique_id=1934030678]
+[node name="Exit to menu" type="Button" parent="GUI/SettingsPanel/MainPauseMenu" unique_id=1934030678]
 layout_mode = 0
 offset_left = 342.2222
 offset_top = 366.66666
@@ -420,7 +457,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_o5div")
 text = "Quit  to Menu
 "
 
-[node name="Exit" type="Button" parent="SettingsPanel/MainPauseMenu" unique_id=1276624138]
+[node name="Exit" type="Button" parent="GUI/SettingsPanel/MainPauseMenu" unique_id=1276624138]
 layout_mode = 0
 offset_left = 487.4074
 offset_top = 497.03705
@@ -436,20 +473,50 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_o5div")
 text = "Quit
 "
 
-[node name="Player" parent="." unique_id=136917392 node_paths=PackedStringArray("game") groups=["player"] instance=ExtResource("3_nbain")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1083074, 0)
-game = NodePath("..")
+[node name="DebugTools" type="Control" parent="GUI" unique_id=123543845 node_paths=PackedStringArray("player")]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("10_ut5rl")
+player = NodePath("../../Player")
 
-[node name="Enemy" parent="." unique_id=400455958 instance=ExtResource("16_0hxc1")]
-transform = Transform3D(-0.9979056, 0, 0.06468655, 0, 1, 0, -0.06468655, 0, -0.9979056, 5.7266603, 2.1083074, -25.625185)
+[node name="DebugMenu" type="PanelContainer" parent="GUI/DebugTools" unique_id=1631523238]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(20, 20)
+theme_override_styles/panel = SubResource("StyleBoxFlat_xhnq4")
 
-[connection signal="value_changed" from="SettingsPanel/Settings/Volume" to="SettingsPanel/Settings/Volume" method="_on_value_changed"]
-[connection signal="value_changed" from="SettingsPanel/Settings/FoV" to="SettingsPanel/Settings/FoV" method="_on_value_changed"]
-[connection signal="value_changed" from="SettingsPanel/Settings/Sensitivity" to="SettingsPanel/Settings/Sensitivity" method="_on_value_changed"]
-[connection signal="value_changed" from="SettingsPanel/Settings/Brightness" to="SettingsPanel/Settings/Brightness" method="_on_value_changed"]
-[connection signal="toggled" from="SettingsPanel/Settings/ColorBlindMode" to="SettingsPanel/Settings/ColorBlindMode" method="_on_toggled"]
-[connection signal="pressed" from="SettingsPanel/Settings/Back" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="SettingsPanel/MainPauseMenu/SettingsCogButton" to="." method="_on_settings_cog_button_pressed"]
-[connection signal="pressed" from="SettingsPanel/MainPauseMenu/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="SettingsPanel/MainPauseMenu/Exit to menu" to="." method="_on_exit_to_menu_pressed"]
-[connection signal="pressed" from="SettingsPanel/MainPauseMenu/Exit" to="." method="_on_exit_pressed"]
+[node name="FPS" type="Label" parent="GUI/DebugTools/DebugMenu" unique_id=1996996298]
+layout_mode = 2
+text = "FPS: "
+label_settings = SubResource("LabelSettings_5qein")
+script = ExtResource("6_b2arr")
+
+[node name="SubtitleLabel" type="RichTextLabel" parent="GUI" unique_id=1406058893]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -108.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = SubResource("FontVariation_dtook")
+theme_override_font_sizes/normal_font_size = 30
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="finished" from="MessagePlayer" to="MessagePlayer" method="_on_finished"]
+[connection signal="value_changed" from="GUI/SettingsPanel/Settings/Volume" to="GUI/SettingsPanel/Settings/Volume" method="_on_value_changed"]
+[connection signal="value_changed" from="GUI/SettingsPanel/Settings/FoV" to="GUI/SettingsPanel/Settings/FoV" method="_on_value_changed"]
+[connection signal="value_changed" from="GUI/SettingsPanel/Settings/Sensitivity" to="GUI/SettingsPanel/Settings/Sensitivity" method="_on_value_changed"]
+[connection signal="value_changed" from="GUI/SettingsPanel/Settings/Brightness" to="GUI/SettingsPanel/Settings/Brightness" method="_on_value_changed"]
+[connection signal="toggled" from="GUI/SettingsPanel/Settings/ColorBlindMode" to="GUI/SettingsPanel/Settings/ColorBlindMode" method="_on_toggled"]
+[connection signal="pressed" from="GUI/SettingsPanel/Settings/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="GUI/SettingsPanel/MainPauseMenu/SettingsCogButton" to="." method="_on_settings_cog_button_pressed"]
+[connection signal="pressed" from="GUI/SettingsPanel/MainPauseMenu/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="GUI/SettingsPanel/MainPauseMenu/Exit to menu" to="." method="_on_exit_to_menu_pressed"]
+[connection signal="pressed" from="GUI/SettingsPanel/MainPauseMenu/Exit" to="." method="_on_exit_pressed"]

@@ -90,7 +90,7 @@ func _process_wander(delta: float) -> void:
 	else:
 		wander_timer = 0.0
 
-func _process_chase(delta: float) -> void:
+func _process_chase(_delta: float) -> void:
 	if player:
 		update_target_location(player.global_transform.origin)
 

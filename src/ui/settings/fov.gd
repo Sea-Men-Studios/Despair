@@ -6,7 +6,7 @@ extends VSlider
 func _ready() -> void:
 	pass # Replace with function body.
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	fo_v_num.text = str(value)
 
 func _on_value_changed(value: float) -> void:

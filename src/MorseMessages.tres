@@ -1,0 +1,6 @@
+[gd_resource type="Resource" format=3 uid="uid://bigm7c12ma15h"]
+
+[ext_resource type="Script" uid="uid://brfvy8jw36tet" path="res://src/morsemessages.gd" id="1_hihyq"]
+
+[resource]
+script = ExtResource("1_hihyq")
