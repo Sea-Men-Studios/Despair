@@ -6,6 +6,9 @@ extends Node3D
 @onready var player = $Player
 @onready var message_player: AudioStreamPlayer = $MessagePlayer
 @onready var subtitle_label: RichTextLabel = $GUI/SubtitleLabel
+@onready var area_3d: Area3D = $World/Area3D
+
+
 
 @export var linger_time := 2.0
 var subtitle_tween: Tween
@@ -69,3 +72,9 @@ func _on_message_started(subtitle: String, audio: AudioStream) -> void:
 
 func _on_message_finished(_index: int) -> void:
 	pass
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	if body == player:
+		receive_message()
+		$World/Area3D/CollisionShape3D.disabled = true
+	

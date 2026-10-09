@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://8f4gruphx4q2" path="res://scenes/enemy.tscn" id="16_0hxc1"]
 [ext_resource type="Script" uid="uid://c2rmuwdteiwgg" path="res://src/audio_stream_player.gd" id="17_ju4s4"]
 [ext_resource type="AudioStream" uid="uid://dxwxwwofkywwj" path="res://assets/Audio/morsecodetest.ogg" id="18_wwk3j"]
+[ext_resource type="ArrayMesh" uid="uid://d2dcjy5fqxsep" path="res://assets/models/zombie (1)/zombie (1).obj" id="24_uslcw"]
 
 [sub_resource type="Environment" id="Environment_83ng5"]
 fog_enabled = true
@@ -63,10 +64,19 @@ resource_local_to_scene = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_83ng5"]
 size = Vector3(0.8, 1, 0.122)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_dtook"]
+size = Vector3(8.559631, 2.7158203, 0.7764282)
+
 [sub_resource type="Resource" id="Resource_wwk3j"]
 script = ExtResource("7_hb1a6")
 audio = ExtResource("18_wwk3j")
 subtitle = "This is morse code"
+metadata/_custom_type_script = "uid://brfvy8jw36tet"
+
+[sub_resource type="Resource" id="Resource_kt552"]
+script = ExtResource("7_hb1a6")
+audio = ExtResource("18_wwk3j")
+subtitle = "psc[w[jw[ojvo[evwe[inqv[ionv[oinv[oiwe[rovj"
 metadata/_custom_type_script = "uid://brfvy8jw36tet"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kt552"]
@@ -200,6 +210,13 @@ shape = SubResource("BoxShape3D_83ng5")
 transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, -0.034136176, 0.7149863, 0.022112608)
 mesh = SubResource("BoxMesh_dtook")
 
+[node name="Area3D" type="Area3D" parent="World" unique_id=2042879413]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.717735)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Area3D" unique_id=56388968]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7973852, 2.5531366, -0.03360653)
+shape = SubResource("BoxShape3D_dtook")
+
 [node name="Player" parent="." unique_id=136917392 node_paths=PackedStringArray("game") groups=["player"] instance=ExtResource("3_nbain")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1083074, 0)
 game = NodePath("..")
@@ -209,7 +226,7 @@ transform = Transform3D(-0.9979056, 0, 0.06468655, 0, 1, 0, -0.06468655, 0, -0.9
 
 [node name="MessagePlayer" type="AudioStreamPlayer" parent="." unique_id=1206028808]
 script = ExtResource("17_ju4s4")
-messages = Array[ExtResource("7_hb1a6")]([SubResource("Resource_wwk3j")])
+messages = Array[ExtResource("7_hb1a6")]([SubResource("Resource_wwk3j"), SubResource("Resource_kt552")])
 
 [node name="GUI" type="CanvasLayer" parent="." unique_id=10223312]
 
@@ -509,6 +526,11 @@ theme_override_font_sizes/normal_font_size = 30
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Zombie(1)" type="MeshInstance3D" parent="." unique_id=1952416056]
+transform = Transform3D(4, 0, 0, 0, -1.7484555e-07, 4, 0, -4, -1.7484555e-07, -4.1378736, 5.205435, 25.81189)
+mesh = ExtResource("24_uslcw")
+
+[connection signal="body_entered" from="World/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="finished" from="MessagePlayer" to="MessagePlayer" method="_on_finished"]
 [connection signal="value_changed" from="GUI/SettingsPanel/Settings/Volume" to="GUI/SettingsPanel/Settings/Volume" method="_on_value_changed"]
 [connection signal="value_changed" from="GUI/SettingsPanel/Settings/FoV" to="GUI/SettingsPanel/Settings/FoV" method="_on_value_changed"]

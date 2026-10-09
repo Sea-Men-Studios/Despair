@@ -7,6 +7,13 @@ var CHASE_SPEED = 2.5
 var frame_counter := 0
 @export var run_every_n_frames := 5
 
+@onready var animation_player: AnimationPlayer = $"Parasite L Starkie/AnimationPlayer"
+const ANIM_IDLE = "Anims/Idle"
+const ANIM_WALK = "Anims/walk"
+const ANIM_RUN = "Anims/run"
+
+var current_anim := ""
+
 @onready var raycasts: Array[RayCast3D] = [
 	$Raycasts/RayCast3D,
 	$Raycasts/RayCast3D2,
@@ -30,10 +37,23 @@ var wander_timer := 0.0
 var lose_sight_timer := 0.0
 
 func _ready() -> void:
+	for anim_name in [ANIM_IDLE, ANIM_WALK, ANIM_RUN]:
+		animation_player.get_animation(anim_name).loop_mode = Animation.LOOP_LINEAR
 	player = get_tree().get_first_node_in_group("player")
 	print("Player found: ", player)
 	_pick_new_wander_point()
 
+func _update_animation() -> void:
+	var target_anim := ANIM_IDLE
+
+	# Moving = has horizontal velocity (not just a path target)
+	var horizontal_speed := Vector2(velocity.x, velocity.z).length()
+	if horizontal_speed > 0.1:
+		target_anim = ANIM_RUN if state == State.CHASE else ANIM_WALK
+
+	if target_anim != current_anim:
+		current_anim = target_anim
+		animation_player.play(current_anim, 0.3)  # 0.3s blend between animations
 
 func _physics_process(delta: float) -> void:
 	frame_counter += 1
@@ -113,3 +133,4 @@ func _on_navigation_agent_3d_target_reached() -> void:
 func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 	velocity = velocity.move_toward(safe_velocity, .25)
 	move_and_slide()
+	_update_animation()
