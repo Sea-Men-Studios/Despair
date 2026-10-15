@@ -13,22 +13,29 @@ var exertion := 0.0
 @export var min_pitch := -80.0
 @export var max_pitch := 80.0 
 
-@export var max_speed := 3.0
+@export var max_speed := 4.5
 @export var acceleration := 3.0
 @export var deceleration := 5
 @export var air_control := 0.3
 @export var step_height := 0.5
 @export var step_check_distance := 0.5
 
-const SENSITIVITY = 0.002
+@export var game: Node3D = null
 
-@onready var camera: Camera3D = $Node3D/Camera3D
-@onready var head: Node3D = $Node3D
+var fov = 75
 
+@onready var camera: Camera3D = $Head/Camera3D
+@onready var head: Node3D = $Head
+
+var can_move = true
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
+	camera.fov = Settings.fov
+	Settings.fov_changed.connect(_on_fov_changed)
+
+func _on_fov_changed(new_fov: float) -> void:
+	camera.fov = new_fov
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
@@ -36,10 +43,10 @@ func _input(event):
 		
 	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		
-	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		rotate_y(-event.relative.x * SENSITIVITY)
-		camera.rotate_x(-event.relative.y * SENSITIVITY)
+	
+	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED and can_move:
+		rotate_y(-event.relative.x * Settings.sensitivity)
+		camera.rotate_x(-event.relative.y * Settings.sensitivity)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(min_pitch), deg_to_rad(max_pitch))
 		
 func _physics_process(delta: float) -> void:
@@ -48,6 +55,8 @@ func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("left", "right", "forwards", "backwards")
 	var direction = (head.global_transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	var target_velocity = direction * max_speed
+	@warning_ignore("incompatible_ternary")
+	var current_accel = acceleration if direction.length() > 0.1 else deceleration
 	var current_accel = acceleration if direction.length() > 0.1 else deceleration
 	if not is_on_floor():
 		current_accel *= air_control
@@ -61,11 +70,11 @@ func _physics_process(delta: float) -> void:
 	var amp = breath_amp * lerp(1.0, exertion_amp_mult, exertion)
 	t_breath += delta * freq
 	camera.transform.origin = _breathe(t_breath, amp)
-	
 	if is_on_floor():
 		_try_step_up(delta)
 
-	move_and_slide()
+	if can_move == true:
+		move_and_slide()
 
 func _breathe(time: float, amp: float) -> Vector3:
 	var pos = Vector3.ZERO
