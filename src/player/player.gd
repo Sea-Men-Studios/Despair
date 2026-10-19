@@ -57,7 +57,6 @@ func _physics_process(delta: float) -> void:
 	var target_velocity = direction * max_speed
 	@warning_ignore("incompatible_ternary")
 	var current_accel = acceleration if direction.length() > 0.1 else deceleration
-	var current_accel = acceleration if direction.length() > 0.1 else deceleration
 	if not is_on_floor():
 		current_accel *= air_control
 	velocity.x = move_toward(velocity.x, target_velocity.x, current_accel * delta)
@@ -88,21 +87,16 @@ func _try_step_up(delta: float) -> void:
 		return
 	var motion = horizontal_vel.normalized() * step_check_distance
 
-	# 1. Is something blocking us at foot level right in front?
 	var forward_collision := move_and_collide(motion, true)
 	if forward_collision == null:
 		return  # nothing in the way, no step needed
 
-	# 2. Is there clear space if we lift up by step_height?
 	var up_collision := move_and_collide(Vector3.UP * step_height, true)
 	if up_collision != null:
 		return  # something overhead, can't step up (it's a wall, not a step)
 
-	# 3. With that headroom, is the path forward now clear?
 	var forward_at_height := move_and_collide(motion, true)
 	if forward_at_height != null:
 		return  # still blocked even when raised, not a valid step
 
-	# All clear: actually raise the body. move_and_slide() will then
-	# carry it forward and gravity/floor snap will settle it onto the step.
 	global_position.y += step_height
