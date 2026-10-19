@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dav75n60ubaek" path="res://assets/textures/sky.jpg" id="3_frvy6"]
 [ext_resource type="PackedScene" uid="uid://dulbjs303pf3h" path="res://scenes/Player.tscn" id="3_nbain"]
 [ext_resource type="Texture2D" uid="uid://2rrm25svrirb" path="res://assets/textures/dead_grass.jpg" id="4_b2arr"]
+[ext_resource type="Script" uid="uid://vngle3pmw87b" path="res://src/game/music_collider.gd" id="5_2qg6i"]
 [ext_resource type="FontFile" uid="uid://bdc5pulf3pph6" path="res://assets/fonts/Philophobia-0p8d.ttf" id="5_q7yga"]
 [ext_resource type="Script" uid="uid://bwgft50o7gqha" path="res://src/debug/fps.gd" id="6_b2arr"]
 [ext_resource type="Script" uid="uid://bn3i3o85qv2ar" path="res://src/objects/test_grabbable.gd" id="6_frvy6"]
@@ -52,6 +53,9 @@ uv1_scale = Vector3(50, 50, 50)
 [sub_resource type="BoxMesh" id="BoxMesh_dtook"]
 material = SubResource("StandardMaterial3D_gh7k3")
 subdivide_depth = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xhnq4"]
+size = Vector3(1, 9.499023, 9.696289)
 
 [sub_resource type="Resource" id="Resource_wwk3j"]
 script = ExtResource("7_hb1a6")
@@ -140,6 +144,15 @@ mesh = SubResource("BoxMesh_dtook")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/MeshInstance3D/StaticBody3D" unique_id=97510277]
 shape = SubResource("ConcavePolygonShape3D_5qein")
+
+[node name="MusicCollider" type="Area3D" parent="World" unique_id=947431066 node_paths=PackedStringArray("music_controller")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.3981695, 5.4527225, 0)
+script = ExtResource("5_2qg6i")
+music_controller = NodePath("../../MusicController")
+song_index = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/MusicCollider" unique_id=1243136123]
+shape = SubResource("BoxShape3D_xhnq4")
 
 [node name="Player" parent="." unique_id=136917392 instance=ExtResource("3_nbain")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6298447, 0)
