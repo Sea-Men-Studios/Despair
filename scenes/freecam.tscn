@@ -1,6 +1,3 @@
-[gd_scene format=3 uid="uid://wlypc1trm7y0"]
-
-[ext_resource type="Script" uid="uid://pako0mjr7pit" path="res://src/debug/freecam.gd" id="1_kru7p"]
-
-[node name="Player" type="Camera3D" unique_id=667282374]
-script = ExtResource("1_kru7p")
+version https://git-lfs.github.com/spec/v1
+oid sha256:624956e485529bd1eaa67de5f4aa626dd4f7cd82580ed0b0b327e5114bcc3373
+size 237
