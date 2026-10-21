@@ -23,7 +23,6 @@
 [ext_resource type="PackedScene" uid="uid://8f4gruphx4q2" path="res://scenes/enemy.tscn" id="16_0hxc1"]
 [ext_resource type="Script" uid="uid://c2rmuwdteiwgg" path="res://src/audio_stream_player.gd" id="17_ju4s4"]
 [ext_resource type="AudioStream" uid="uid://dxwxwwofkywwj" path="res://assets/Audio/morsecodetest.ogg" id="18_wwk3j"]
-[ext_resource type="ArrayMesh" uid="uid://d2dcjy5fqxsep" path="res://assets/models/zombie (1)/zombie (1).obj" id="24_uslcw"]
 
 [sub_resource type="Environment" id="Environment_83ng5"]
 fog_enabled = true
@@ -525,10 +524,6 @@ theme_override_fonts/normal_font = SubResource("FontVariation_dtook")
 theme_override_font_sizes/normal_font_size = 30
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Zombie(1)" type="MeshInstance3D" parent="." unique_id=1952416056]
-transform = Transform3D(4, 0, 0, 0, -1.7484555e-07, 4, 0, -4, -1.7484555e-07, -4.1378736, 5.205435, 25.81189)
-mesh = ExtResource("24_uslcw")
 
 [connection signal="body_entered" from="World/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="finished" from="MessagePlayer" to="MessagePlayer" method="_on_finished"]
