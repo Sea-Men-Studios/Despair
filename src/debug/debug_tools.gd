@@ -7,6 +7,7 @@ var freecam: PackedScene = preload("res://scenes/freecam.tscn")
 var freecam_instance: Camera3D = null
 
 func _ready() -> void:
+	await get_tree().physics_frame
 	player_camera = player.find_child("Head").find_child("Camera3D")
 
 func _input(event: InputEvent) -> void:

@@ -21,6 +21,7 @@ buses/default_bus_layout="uid://c5xropw4yfw"
 [autoload]
 
 Settings="*uid://b0fef7811u2ow"
+SceneLoader="*uid://cwil304xevrid"
 
 [display]
 

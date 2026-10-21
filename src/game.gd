@@ -6,7 +6,7 @@ extends Node3D
 @onready var player = $Player
 @onready var message_player: AudioStreamPlayer = $MessagePlayer
 @onready var subtitle_label: RichTextLabel = $GUI/SubtitleLabel
-@onready var area_3d: Area3D = $World/Area3D
+#@onready var area_3d: Area3D = $World/Area3D
 
 
 
