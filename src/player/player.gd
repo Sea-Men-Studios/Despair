@@ -17,8 +17,8 @@ var exertion := 0.0
 @export var acceleration := 3.0
 @export var deceleration := 5
 @export var air_control := 0.3
-@export var step_height := 0.5
-@export var step_check_distance := 0.5
+
+@onready var step_handler: Node = $StepHandler
 
 @export var game: Node3D = null
 
@@ -26,7 +26,7 @@ var fov = 75
 
 @onready var camera: Camera3D = $Head/Camera3D
 @onready var head: Node3D = $Head
-
+var previous_velocity : Vector3 = Vector3.ZERO
 var can_move = true
 
 func _ready():
@@ -50,9 +50,10 @@ func _input(event):
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(min_pitch), deg_to_rad(max_pitch))
 		
 func _physics_process(delta: float) -> void:
+	previous_velocity = velocity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-	var input_dir := Input.get_vector("left", "right", "forwards", "backwards")
+	var input_dir := get_input_direction()
 	var direction = (head.global_transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	var target_velocity = direction * max_speed
 	@warning_ignore("incompatible_ternary")
@@ -69,34 +70,18 @@ func _physics_process(delta: float) -> void:
 	var amp = breath_amp * lerp(1.0, exertion_amp_mult, exertion)
 	t_breath += delta * freq
 	camera.transform.origin = _breathe(t_breath, amp)
-	if is_on_floor():
-		_try_step_up(delta)
+	
 
 	if can_move == true:
 		move_and_slide()
+	if is_on_floor():
+		step_handler.handle_step_climbing()
+	
+func get_input_direction() -> Vector2:
+	return Input.get_vector("left", "right", "forwards", "backwards")
 
 func _breathe(time: float, amp: float) -> Vector3:
 	var pos = Vector3.ZERO
 	pos.y = (sin(time * TAU) * 0.7 + sin(time * TAU * 2.3 + 0.6) * 0.3) * amp
 	pos.x = cos(time * TAU * 0.5) * breath_sway
 	return pos
-
-func _try_step_up(delta: float) -> void:
-	var horizontal_vel = Vector3(velocity.x, 0, velocity.z)
-	if horizontal_vel.length() < 0.01:
-		return
-	var motion = horizontal_vel.normalized() * step_check_distance
-
-	var forward_collision := move_and_collide(motion, true)
-	if forward_collision == null:
-		return  # nothing in the way, no step needed
-
-	var up_collision := move_and_collide(Vector3.UP * step_height, true)
-	if up_collision != null:
-		return  # something overhead, can't step up (it's a wall, not a step)
-
-	var forward_at_height := move_and_collide(motion, true)
-	if forward_at_height != null:
-		return  # still blocked even when raised, not a valid step
-
-	global_position.y += step_height
