@@ -57,6 +57,8 @@ subdivide_depth = 1
 [sub_resource type="BoxShape3D" id="BoxShape3D_xhnq4"]
 size = Vector3(1, 9.499023, 9.696289)
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_83ng5"]
+
 [sub_resource type="Resource" id="Resource_wwk3j"]
 script = ExtResource("7_hb1a6")
 audio = ExtResource("18_wwk3j")
@@ -153,6 +155,23 @@ song_index = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/MusicCollider" unique_id=1243136123]
 shape = SubResource("BoxShape3D_xhnq4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/MusicCollider" unique_id=762259359]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.8537555, 0)
+mesh = SubResource("CylinderMesh_83ng5")
+
+[node name="MusicCollider2" type="Area3D" parent="World" unique_id=773960253 node_paths=PackedStringArray("music_controller")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.51683, 5.4527225, 0)
+script = ExtResource("5_2qg6i")
+music_controller = NodePath("../../MusicController")
+song_index = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/MusicCollider2" unique_id=1661006448]
+shape = SubResource("BoxShape3D_xhnq4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/MusicCollider2" unique_id=982909033]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.8537555, 0)
+mesh = SubResource("CylinderMesh_83ng5")
 
 [node name="Player" parent="." unique_id=136917392 instance=ExtResource("3_nbain")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6298447, 0)

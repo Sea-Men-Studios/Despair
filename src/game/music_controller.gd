@@ -6,8 +6,9 @@ var fade_length: float = 1.5
 var music_folder: String = "res://assets/audio/music/"
 
 var music: Array[AudioStreamMP3] = [
-	load(music_folder + "DespairV2.mp3"),
-	load(music_folder + "Area_1_ALT__Entrapped.mp3"),
+	load(music_folder + "Despair.mp3"),
+	load(music_folder + "Act1_Entrapped.mp3"),
+	load(music_folder + "Prologue_Itchy_Neck.mp3")
 ]
 
 var music_started: bool = false
@@ -30,7 +31,7 @@ func set_song(index: int) -> void:
 		var mp3: AudioStreamMP3 = music[index]
 		
 		set_stream(mp3)
-		print("now playing: ", mp3)
+		#print("now playing: ", mp3)
 		play()
 		music_started = true
 
@@ -40,7 +41,7 @@ func start_next_song(object: Tween):
 	var mp3: AudioStreamMP3 = music[next_song_index]
 	
 	set_stream(mp3)
-	print("now playing: ", mp3)
+	#print("now playing: ", mp3)
 	play()
 	
 	var fade_in_tween = get_tree().create_tween()
