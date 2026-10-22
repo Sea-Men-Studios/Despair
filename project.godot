@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Despair"
-run/main_scene="uid://skgr55v5oqsr"
+run/main_scene="uid://d2vfs1qvkkqlr"
 config/features=PackedStringArray("4.7", "Forward Plus")
 
 [audio]
@@ -83,3 +83,4 @@ freecam_toggle={
 
 rendering_device/driver.windows="d3d12"
 occlusion_culling/use_occlusion_culling=true
+mesh_lod/lod_change/threshold_pixels=295.5

@@ -15,6 +15,7 @@ var subtitle_tween: Tween
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	get_tree().root.mesh_lod_threshold = 4.0
 	message_player.message_started.connect(_on_message_started)
 	message_player.message_finished.connect(_on_message_finished)
 	subtitle_label.text = ""
