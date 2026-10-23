@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://fbfhc2w1txsd" path="res://assets/images/CheckBox.png" id="11_5faoh"]
 [ext_resource type="AudioStream" uid="uid://cd7ppsvm1ujy4" path="res://assets/audio/music/Despair.mp3" id="12_bky6r"]
 
-[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_l4mxc"]
+[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_70rhe"]
 file = "res://assets/audio/MainMenuVid.ogg"
 
 [sub_resource type="LabelSettings" id="LabelSettings_dtook"]
@@ -59,7 +59,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-stream = SubResource("VideoStreamTheora_l4mxc")
+stream = SubResource("VideoStreamTheora_70rhe")
 autoplay = true
 loop = true
 
