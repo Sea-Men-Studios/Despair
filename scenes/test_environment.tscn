@@ -1,18 +1,20 @@
 [gd_scene format=3 uid="uid://d2vfs1qvkkqlr"]
 
-[ext_resource type="Script" path="res://src/game.gd" id="1_0hxc1"]
+[ext_resource type="Script" path="res://src/game/game.gd" id="1_0hxc1"]
 [ext_resource type="PackedScene" uid="uid://cs6j73x812y32" path="res://scenes/road_segment.tscn" id="2_adw7c"]
 [ext_resource type="PackedScene" uid="uid://dulbjs303pf3h" path="res://scenes/Player.tscn" id="3_nbain"]
 [ext_resource type="Texture2D" uid="uid://c1ojid35x6vj0" path="res://assets/images/BloodyParchment.png" id="4_2qg6i"]
 [ext_resource type="Texture2D" uid="uid://2rrm25svrirb" path="res://assets/textures/dead_grass.jpg" id="4_b2arr"]
+[ext_resource type="Script" uid="uid://vngle3pmw87b" path="res://src/game/music_collider.gd" id="5_2qg6i"]
 [ext_resource type="FontFile" uid="uid://bdc5pulf3pph6" path="res://assets/fonts/Philophobia-0p8d.ttf" id="5_q7yga"]
 [ext_resource type="Script" uid="uid://iyl54hwv5f1r" path="res://src/ui/settings/volume.gd" id="6_adw7c"]
 [ext_resource type="Script" uid="uid://bwgft50o7gqha" path="res://src/debug/fps.gd" id="6_b2arr"]
 [ext_resource type="Script" uid="uid://bn3i3o85qv2ar" path="res://src/objects/test_grabbable.gd" id="6_frvy6"]
 [ext_resource type="FontFile" uid="uid://c8s3uhtt6pfuo" path="res://assets/fonts/WhoAsksSatan-5vxx.ttf" id="7_0hxc1"]
 [ext_resource type="Script" uid="uid://drc54agwk85uw" path="res://src/objects/note.gd" id="7_b2arr"]
-[ext_resource type="Script" uid="uid://brfvy8jw36tet" path="res://src/morsemessages.gd" id="7_hb1a6"]
+[ext_resource type="Script" uid="uid://brfvy8jw36tet" path="res://src/game/morsecode/morsemessages.gd" id="7_hb1a6"]
 [ext_resource type="Script" uid="uid://dpoe6wclu1hb4" path="res://src/ui/settings/fov.gd" id="8_ju4s4"]
+[ext_resource type="Script" uid="uid://bjidxs3d64jbk" path="res://src/game/music_controller.gd" id="9_kr1d5"]
 [ext_resource type="Script" uid="uid://cqe7uajt6fcel" path="res://src/ui/settings/sensitivity.gd" id="9_wwk3j"]
 [ext_resource type="Script" uid="uid://dqysogu0xfomq" path="res://src/ui/settings/brightness.gd" id="10_hb1a6"]
 [ext_resource type="Script" uid="uid://c4wxvsalbly6k" path="res://src/debug/debug_tools.gd" id="10_ut5rl"]
@@ -21,8 +23,8 @@
 [ext_resource type="Texture2D" uid="uid://bf8fuq0wfg4su" path="res://assets/images/Cog.png" id="13_q7yga"]
 [ext_resource type="Script" uid="uid://fo5fdsw2ihgw" path="res://src/ui/settings/color_blind_mode.gd" id="13_wjdp0"]
 [ext_resource type="PackedScene" uid="uid://8f4gruphx4q2" path="res://scenes/enemy.tscn" id="16_0hxc1"]
-[ext_resource type="Script" uid="uid://c2rmuwdteiwgg" path="res://src/audio_stream_player.gd" id="17_ju4s4"]
-[ext_resource type="AudioStream" uid="uid://dxwxwwofkywwj" path="res://assets/Audio/morsecodetest.ogg" id="18_wwk3j"]
+[ext_resource type="Script" uid="uid://c2rmuwdteiwgg" path="res://src/game/morsecode/audio_stream_player.gd" id="17_ju4s4"]
+[ext_resource type="AudioStream" uid="uid://dxwxwwofkywwj" path="res://assets/audio/morsecodetest.ogg" id="18_wwk3j"]
 
 [sub_resource type="Environment" id="Environment_83ng5"]
 fog_enabled = true
@@ -63,6 +65,11 @@ resource_local_to_scene = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_83ng5"]
 size = Vector3(0.8, 1, 0.122)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_xhnq4"]
+size = Vector3(1, 9.499023, 9.696289)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_83ng5"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_dtook"]
 size = Vector3(8.559631, 2.7158203, 0.7764282)
 
@@ -77,6 +84,8 @@ script = ExtResource("7_hb1a6")
 audio = ExtResource("18_wwk3j")
 subtitle = "psc[w[jw[ojvo[evwe[inqv[ionv[oinv[oiwe[rovj"
 metadata/_custom_type_script = "uid://brfvy8jw36tet"
+
+[sub_resource type="AudioStream" id="AudioStream_ut5rl"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kt552"]
 
@@ -209,6 +218,32 @@ shape = SubResource("BoxShape3D_83ng5")
 transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, -0.034136176, 0.7149863, 0.022112608)
 mesh = SubResource("BoxMesh_dtook")
 
+[node name="MusicCollider" type="Area3D" parent="World" unique_id=947431066 node_paths=PackedStringArray("music_controller")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.3981695, 5.4527225, 0)
+script = ExtResource("5_2qg6i")
+music_controller = NodePath("../../MusicController")
+song_index = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/MusicCollider" unique_id=1243136123]
+shape = SubResource("BoxShape3D_xhnq4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/MusicCollider" unique_id=762259359]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.8537555, 0)
+mesh = SubResource("CylinderMesh_83ng5")
+
+[node name="MusicCollider2" type="Area3D" parent="World" unique_id=773960253 node_paths=PackedStringArray("music_controller")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.51683, 5.4527225, 0)
+script = ExtResource("5_2qg6i")
+music_controller = NodePath("../../MusicController")
+song_index = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/MusicCollider2" unique_id=1661006448]
+shape = SubResource("BoxShape3D_xhnq4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/MusicCollider2" unique_id=982909033]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.8537555, 0)
+mesh = SubResource("CylinderMesh_83ng5")
+
 [node name="Area3D" type="Area3D" parent="World" unique_id=2042879413]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.717735)
 
@@ -227,7 +262,13 @@ transform = Transform3D(-0.9979056, 0, 0.06468655, 0, 1, 0, -0.06468655, 0, -0.9
 script = ExtResource("17_ju4s4")
 messages = Array[ExtResource("7_hb1a6")]([SubResource("Resource_wwk3j"), SubResource("Resource_kt552")])
 
-[node name="GUI" type="CanvasLayer" parent="." unique_id=10223312]
+[node name="MusicController" type="AudioStreamPlayer" parent="." unique_id=1004532101]
+stream = SubResource("AudioStream_ut5rl")
+script = ExtResource("9_kr1d5")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=10223312]
+
+[node name="GUI" type="CanvasLayer" parent="." unique_id=1468928528]
 
 [node name="SettingsPanel" type="TextureRect" parent="GUI" unique_id=1559758909]
 visible = false

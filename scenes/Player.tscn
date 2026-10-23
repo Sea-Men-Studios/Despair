@@ -16,9 +16,9 @@ shader_parameter/inner_radius = 0.0
 shader_parameter/outer_radius = 1.0
 shader_parameter/color = Vector3(0, 0, 0)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qu4a1"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_70d11"]
 shader = ExtResource("3_mdl7e")
-shader_parameter/alpha = 1.005
+shader_parameter/alpha = 1.0
 shader_parameter/inner_radius = -0.305
 shader_parameter/outer_radius = 2.67
 shader_parameter/color = Vector3(0.254, 0.325, 0.176)
@@ -79,14 +79,17 @@ camera = NodePath("../Head/Camera3D")
 
 [node name="GUI" type="Control" parent="." unique_id=2118452655]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
-mouse_filter = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_right = -3.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Vignette" type="ColorRect" parent="GUI" unique_id=2027000484]
-material = SubResource("ShaderMaterial_qu4a1")
-layout_mode = 0
+material = SubResource("ShaderMaterial_70d11")
+layout_mode = 1
 offset_right = 1920.0
 offset_bottom = 1080.0
 mouse_filter = 2

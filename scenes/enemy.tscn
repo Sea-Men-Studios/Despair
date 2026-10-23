@@ -1603,7 +1603,7 @@ _data = {
 [node name="Enemy" type="CharacterBody3D" unique_id=400455958 groups=["enemies"]]
 script = ExtResource("1_7p1mj")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1387245928]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1387245928]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.269043, 0)
 shape = SubResource("CapsuleShape3D_dtook")
 debug_color = Color(0.99607843, 0, 0, 0.41960785)

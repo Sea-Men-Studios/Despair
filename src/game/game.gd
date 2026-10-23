@@ -9,7 +9,6 @@ extends Node3D
 @onready var area_3d: Area3D = $World/Area3D
 
 
-
 @export var linger_time := 2.0
 var subtitle_tween: Tween
 
