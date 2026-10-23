@@ -39,10 +39,10 @@ func _on_resume_pressed() -> void:
 
 
 func _on_exit_to_menu_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
+	SceneLoader.change_scene("res://scenes/MainMenu.tscn")
 
 
-func _on_exit_pressed() -> void:
+func _on_quit_pressed() -> void:
 	get_tree().quit()
 
 

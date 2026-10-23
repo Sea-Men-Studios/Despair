@@ -8,11 +8,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	pass
-
+	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _on_play_pressed() -> void:
-	SceneLoader.change_scene("res://scenes/map.tscn")
+	SceneLoader.change_scene("res://scenes/test_environment.tscn")
 
 
 func _on_settings_pressed() -> void:

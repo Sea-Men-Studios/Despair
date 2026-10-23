@@ -19,6 +19,7 @@ var exertion := 0.0
 @export var air_control := 0.3
 
 @onready var step_handler: Node = $StepHandler
+@onready var settings_panel: TextureRect = $"../GUI/SettingsPanel"
 
 @export var game: Node3D = null
 
@@ -44,7 +45,7 @@ func _input(event):
 	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
-	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED and can_move:
+	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED and can_move and settings_panel.visible == false:
 		rotate_y(-event.relative.x * Settings.sensitivity)
 		camera.rotate_x(-event.relative.y * Settings.sensitivity)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(min_pitch), deg_to_rad(max_pitch))
