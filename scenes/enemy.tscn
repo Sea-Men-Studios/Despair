@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://8f4gruphx4q2"]
+
+[ext_resource type="Script" uid="uid://eqy877b4umb8" path="res://src/enemy.gd" id="1_7p1mj"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_dtook"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dtook"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dtook"]
+
+[node name="Enemy" type="CharacterBody3D" unique_id=400455958 groups=["enemies"]]
+script = ExtResource("1_7p1mj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=914627562]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_dtook")
+surface_material_override/0 = SubResource("StandardMaterial3D_dtook")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1387245928]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_dtook")
+debug_color = Color(0.99607843, 0, 0, 0.41960785)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1584141011]
+target_desired_distance = 2.0
+path_height_offset = 0.1
+avoidance_enabled = true
+
+[node name="Raycasts" type="Node3D" parent="." unique_id=845406590]
+
+[node name="RayCast3D" type="RayCast3D" parent="Raycasts" unique_id=279149888]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5077789, 0)
+target_position = Vector3(0, 0, -7)
+
+[node name="RayCast3D2" type="RayCast3D" parent="Raycasts" unique_id=380973886]
+transform = Transform3D(0.9848077, 0, 0.17364818, 0, 1, 0, -0.17364818, 0, 0.9848077, 0, 1.5077789, 0)
+target_position = Vector3(0, 0, -7)
+
+[node name="RayCast3D3" type="RayCast3D" parent="Raycasts" unique_id=697014513]
+transform = Transform3D(0.9848077, 0, -0.17364818, 0, 1, 0, 0.17364818, 0, 0.9848077, 0, 1.5077789, 0)
+target_position = Vector3(0, 0, -7)
+
+[node name="RayCast3D4" type="RayCast3D" parent="Raycasts" unique_id=114993320]
+transform = Transform3D(0.9396926, 0, 0.34202012, 0, 1, 0, -0.34202012, 0, 0.9396926, 0, 1.5077789, 0)
+target_position = Vector3(0, 0, -7)
+
+[node name="RayCast3D5" type="RayCast3D" parent="Raycasts" unique_id=1875327924]
+transform = Transform3D(0.9396926, 0, -0.34202012, 0, 1, 0, 0.34202012, 0, 0.9396926, 0, 1.5077789, 0)
+target_position = Vector3(0, 0, -7)
+
+[node name="RayCast3D6" type="RayCast3D" parent="Raycasts" unique_id=1916459392]
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 0, 1.5077789, 0)
+target_position = Vector3(0, 0, -7)
+
+[node name="RayCast3D7" type="RayCast3D" parent="Raycasts" unique_id=1534386288]
+transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, 0, 1.5077789, 0)
+target_position = Vector3(0, 0, -7)
+
+[connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
+[connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
