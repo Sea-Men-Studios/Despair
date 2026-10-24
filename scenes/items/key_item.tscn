@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cuyv1h4ujkhvv"]
+
+[ext_resource type="Script" uid="uid://bn3i3o85qv2ar" path="res://src/objects/test_grabbable.gd" id="1_d54tt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tp0ba"]
+
+[node name="KeyItem" type="Node3D" unique_id=1727047531]
+script = ExtResource("1_d54tt")
+item_id = 1
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="." unique_id=1907351482]
+use_collision = true
+material = SubResource("StandardMaterial3D_tp0ba")

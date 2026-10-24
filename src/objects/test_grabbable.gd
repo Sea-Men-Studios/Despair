@@ -1,5 +1,6 @@
 extends InteractableObject
 
-func interact():
-	print("touched " + self.name)
-	get_picked_up()
+@export var item_id: int
+
+func _ready():
+	set_item_type(Globals.ItemType.IMPORTANT_ITEM)

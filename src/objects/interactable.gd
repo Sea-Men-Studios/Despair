@@ -12,6 +12,9 @@ func interact():
 	get_picked_up()
 
 func get_picked_up():
+	if target_inventory.held_object:
+		target_inventory.put_away()
+	
 	target_inventory.held_object = self
 	#self.queue_free()
 

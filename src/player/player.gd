@@ -23,10 +23,12 @@ var fov = 75
 
 @onready var camera: Camera3D = $Head/Camera3D
 @onready var head: Node3D = $Head
+@onready var overlays: CanvasLayer = $CanvasLayer
 
 var can_move = true
 
 func _ready():
+	overlays.visible = true
 	camera.fov = Settings.fov
 	Settings.fov_changed.connect(_on_fov_changed)
 
