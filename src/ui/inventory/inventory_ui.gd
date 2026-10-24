@@ -4,14 +4,10 @@ extends Control
 @export var buttons: Container
 @export var panels: Container
 
-var inventory: Node3D
-
 var tab_names: Array[String] = ["Items", "Notes"]
 var tabs: Array[Dictionary]
 
 func _ready() -> void:
-	inventory = player.find_child("Inventory")
-	
 	for tab_name in tab_names:
 		var button: Button = buttons.find_child(tab_name + "Button")
 		var panel: PanelContainer = panels.find_child(tab_name + "Panel")
@@ -30,3 +26,7 @@ func _change_tab(tab_name: String) -> void:
 			tab["panel"].visible = true
 		else:
 			tab["panel"].visible = false
+
+func load_items() -> void:
+	for tab in tabs:
+		tab["panel"].load_content(self)

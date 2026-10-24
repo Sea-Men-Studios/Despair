@@ -20,6 +20,7 @@ buses/default_bus_layout="uid://c5xropw4yfw"
 
 [autoload]
 
+Globals="*uid://bjn32ehcinmwr"
 Settings="*uid://b0fef7811u2ow"
 
 [display]

@@ -5,12 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://bu1nrt81ux5cp" path="res://scenes/Player.tscn" id="3_nbain"]
 [ext_resource type="Texture2D" uid="uid://c1ojid35x6vj0" path="res://assets/images/BloodyParchment.png" id="4_2qg6i"]
 [ext_resource type="Texture2D" uid="uid://2rrm25svrirb" path="res://assets/textures/dead_grass.jpg" id="4_b2arr"]
+[ext_resource type="Script" uid="uid://44ek8jhk6ypn" path="res://src/objects/test_changer.gd" id="4_tp0ba"]
 [ext_resource type="Script" uid="uid://vngle3pmw87b" path="res://src/game/music_collider.gd" id="5_2qg6i"]
 [ext_resource type="FontFile" uid="uid://bdc5pulf3pph6" path="res://assets/fonts/Philophobia-0p8d.ttf" id="5_q7yga"]
 [ext_resource type="PackedScene" uid="uid://biq71c6xhbrpm" path="res://scenes/items/note.tscn" id="5_tp0ba"]
 [ext_resource type="Script" uid="uid://iyl54hwv5f1r" path="res://src/ui/settings/volume.gd" id="6_adw7c"]
 [ext_resource type="Script" uid="uid://bwgft50o7gqha" path="res://src/debug/fps.gd" id="6_b2arr"]
-[ext_resource type="Script" uid="uid://bn3i3o85qv2ar" path="res://src/objects/test_grabbable.gd" id="6_frvy6"]
 [ext_resource type="FontFile" uid="uid://c8s3uhtt6pfuo" path="res://assets/fonts/WhoAsksSatan-5vxx.ttf" id="7_0hxc1"]
 [ext_resource type="Script" uid="uid://brfvy8jw36tet" path="res://src/game/morsecode/morsemessages.gd" id="7_hb1a6"]
 [ext_resource type="Script" uid="uid://dpoe6wclu1hb4" path="res://src/ui/settings/fov.gd" id="8_ju4s4"]
@@ -25,7 +25,9 @@
 [ext_resource type="PackedScene" uid="uid://8f4gruphx4q2" path="res://scenes/enemy.tscn" id="16_0hxc1"]
 [ext_resource type="Script" uid="uid://c2rmuwdteiwgg" path="res://src/game/morsecode/audio_stream_player.gd" id="17_ju4s4"]
 [ext_resource type="AudioStream" uid="uid://dxwxwwofkywwj" path="res://assets/audio/morsecodetest.ogg" id="18_wwk3j"]
-[ext_resource type="Script" uid="uid://b6bjw7vkw7ws" path="res://src/ui/inventory_ui.gd" id="26_tp0ba"]
+[ext_resource type="Script" uid="uid://b6bjw7vkw7ws" path="res://src/ui/inventory/inventory_ui.gd" id="26_tp0ba"]
+[ext_resource type="Script" uid="uid://cghb00qjvfyid" path="res://src/ui/inventory/inventory_panel.gd" id="27_oyolb"]
+[ext_resource type="Script" uid="uid://c5ru58qsgbcww" path="res://src/ui/inventory/notes_panel.gd" id="28_mcnec"]
 
 [sub_resource type="Environment" id="Environment_83ng5"]
 fog_enabled = true
@@ -56,6 +58,8 @@ subdivide_depth = 1
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_nbain"]
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tp0ba"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xhnq4"]
 size = Vector3(1, 9.499023, 9.696289)
@@ -182,12 +186,14 @@ shape = SubResource("ConcavePolygonShape3D_nbain")
 [node name="RoadSegment" parent="World/NavigationRegion3D" unique_id=1578908710 instance=ExtResource("2_adw7c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.18717, 2.4155931, 0)
 
-[node name="Object" type="Node3D" parent="World" unique_id=163337176]
+[node name="Object" type="Node3D" parent="World" unique_id=163337176 node_paths=PackedStringArray("model")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.375145, 2.1616497, -4.880603)
-script = ExtResource("6_frvy6")
+script = ExtResource("4_tp0ba")
+model = NodePath("CSGSphere3D")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="World/Object" unique_id=431777044]
 use_collision = true
+material = SubResource("StandardMaterial3D_tp0ba")
 
 [node name="Prism2" type="CSGBox3D" parent="World" unique_id=266470229]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.221624, 3.7913022, -7.639598)
@@ -196,6 +202,7 @@ size = Vector3(5.2021484, 5.3620605, 3.7041016)
 
 [node name="Note" parent="World" unique_id=1317929733 instance=ExtResource("5_tp0ba")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 3.5, 2.198248, -2.51)
+note_number = 1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World" unique_id=1660636337]
 transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, -0.034136176, 0.7149863, 0.022112608)
@@ -614,13 +621,16 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_83ng5")
 [node name="ItemsPanel" type="PanelContainer" parent="GUI/Inventory/VBoxContainer/Panels" unique_id=1440940214]
 visible = false
 layout_mode = 2
+script = ExtResource("27_oyolb")
 
 [node name="Label" type="Label" parent="GUI/Inventory/VBoxContainer/Panels/ItemsPanel" unique_id=1752261459]
 layout_mode = 2
 text = "items"
 
-[node name="NotesPanel" type="PanelContainer" parent="GUI/Inventory/VBoxContainer/Panels" unique_id=1796295450]
+[node name="NotesPanel" type="PanelContainer" parent="GUI/Inventory/VBoxContainer/Panels" unique_id=1796295450 node_paths=PackedStringArray("note_container")]
 layout_mode = 2
+script = ExtResource("28_mcnec")
+note_container = NodePath("ScrollContainer/VBoxContainer")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="GUI/Inventory/VBoxContainer/Panels/NotesPanel" unique_id=199386142]
 layout_mode = 2
@@ -628,18 +638,6 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="GUI/Inventory/VBoxContainer/Panels/NotesPanel/ScrollContainer" unique_id=1990513564]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="Note1" type="MarginContainer" parent="GUI/Inventory/VBoxContainer/Panels/NotesPanel/ScrollContainer/VBoxContainer" unique_id=1104373224]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="Button" type="Button" parent="GUI/Inventory/VBoxContainer/Panels/NotesPanel/ScrollContainer/VBoxContainer/Note1" unique_id=596644176]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Note #1"
 
 [connection signal="body_entered" from="World/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="finished" from="MessagePlayer" to="MessagePlayer" method="_on_finished"]

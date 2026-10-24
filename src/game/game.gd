@@ -37,6 +37,7 @@ func _unhandled_input(event):
 	if event.is_action_pressed("inventory") and not in_ui:
 		in_ui = true
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		inventory.load_items()
 		inventory._change_tab("Items")
 		inventory.visible = true
 	
