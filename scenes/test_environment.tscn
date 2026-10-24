@@ -2,16 +2,16 @@
 
 [ext_resource type="Script" path="res://src/game/game.gd" id="1_0hxc1"]
 [ext_resource type="PackedScene" uid="uid://cs6j73x812y32" path="res://scenes/road_segment.tscn" id="2_adw7c"]
-[ext_resource type="PackedScene" uid="uid://dulbjs303pf3h" path="res://scenes/Player.tscn" id="3_nbain"]
+[ext_resource type="PackedScene" uid="uid://bu1nrt81ux5cp" path="res://scenes/Player.tscn" id="3_nbain"]
 [ext_resource type="Texture2D" uid="uid://c1ojid35x6vj0" path="res://assets/images/BloodyParchment.png" id="4_2qg6i"]
 [ext_resource type="Texture2D" uid="uid://2rrm25svrirb" path="res://assets/textures/dead_grass.jpg" id="4_b2arr"]
 [ext_resource type="Script" uid="uid://vngle3pmw87b" path="res://src/game/music_collider.gd" id="5_2qg6i"]
 [ext_resource type="FontFile" uid="uid://bdc5pulf3pph6" path="res://assets/fonts/Philophobia-0p8d.ttf" id="5_q7yga"]
+[ext_resource type="PackedScene" uid="uid://biq71c6xhbrpm" path="res://scenes/items/note.tscn" id="5_tp0ba"]
 [ext_resource type="Script" uid="uid://iyl54hwv5f1r" path="res://src/ui/settings/volume.gd" id="6_adw7c"]
 [ext_resource type="Script" uid="uid://bwgft50o7gqha" path="res://src/debug/fps.gd" id="6_b2arr"]
 [ext_resource type="Script" uid="uid://bn3i3o85qv2ar" path="res://src/objects/test_grabbable.gd" id="6_frvy6"]
 [ext_resource type="FontFile" uid="uid://c8s3uhtt6pfuo" path="res://assets/fonts/WhoAsksSatan-5vxx.ttf" id="7_0hxc1"]
-[ext_resource type="Script" uid="uid://drc54agwk85uw" path="res://src/objects/note.gd" id="7_b2arr"]
 [ext_resource type="Script" uid="uid://brfvy8jw36tet" path="res://src/game/morsecode/morsemessages.gd" id="7_hb1a6"]
 [ext_resource type="Script" uid="uid://dpoe6wclu1hb4" path="res://src/ui/settings/fov.gd" id="8_ju4s4"]
 [ext_resource type="Script" uid="uid://bjidxs3d64jbk" path="res://src/game/music_controller.gd" id="9_kr1d5"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://8f4gruphx4q2" path="res://scenes/enemy.tscn" id="16_0hxc1"]
 [ext_resource type="Script" uid="uid://c2rmuwdteiwgg" path="res://src/game/morsecode/audio_stream_player.gd" id="17_ju4s4"]
 [ext_resource type="AudioStream" uid="uid://dxwxwwofkywwj" path="res://assets/audio/morsecodetest.ogg" id="18_wwk3j"]
+[ext_resource type="Script" uid="uid://b6bjw7vkw7ws" path="res://src/ui/inventory_ui.gd" id="26_tp0ba"]
 
 [sub_resource type="Environment" id="Environment_83ng5"]
 fog_enabled = true
@@ -55,15 +56,6 @@ subdivide_depth = 1
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_nbain"]
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
-
-[sub_resource type="BoxMesh" id="BoxMesh_frvy6"]
-size = Vector3(0.8, 1, 0.011)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0hxc1"]
-resource_local_to_scene = true
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_83ng5"]
-size = Vector3(0.8, 1, 0.122)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xhnq4"]
 size = Vector3(1, 9.499023, 9.696289)
@@ -144,6 +136,8 @@ font_size = 32
 base_font = ExtResource("5_q7yga")
 spacing_glyph = 5
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_83ng5"]
+
 [node name="Game" type="Node3D" unique_id=204302908]
 script = ExtResource("1_0hxc1")
 
@@ -200,19 +194,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.221624, 3.7913022, -7.639
 use_collision = true
 size = Vector3(5.2021484, 5.3620605, 3.7041016)
 
-[node name="Note" type="Node3D" parent="World" unique_id=101931614]
+[node name="Note" parent="World" unique_id=1317929733 instance=ExtResource("5_tp0ba")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 3.5, 2.198248, -2.51)
-script = ExtResource("7_b2arr")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Note" unique_id=1545694441]
-transform = Transform3D(1, 0, 0, 0, 1, -7.1054274e-15, 0, 0, 1, 0, 0, 0)
-mesh = SubResource("BoxMesh_frvy6")
-surface_material_override/0 = SubResource("StandardMaterial3D_0hxc1")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="World/Note" unique_id=1747417670]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Note/StaticBody3D" unique_id=728807953]
-shape = SubResource("BoxShape3D_83ng5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World" unique_id=1660636337]
 transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, -0.034136176, 0.7149863, 0.022112608)
@@ -566,6 +549,98 @@ theme_override_font_sizes/normal_font_size = 30
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Inventory" type="Control" parent="GUI" unique_id=855864642 node_paths=PackedStringArray("player", "buttons", "panels")]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("26_tp0ba")
+player = NodePath("../../Player")
+buttons = NodePath("VBoxContainer/Buttons")
+panels = NodePath("VBoxContainer/Panels")
+
+[node name="Back" type="Button" parent="GUI/Inventory" unique_id=1103589980]
+layout_mode = 0
+offset_left = 487.0
+offset_top = 214.0
+offset_right = 546.0
+offset_bottom = 342.0
+theme_override_fonts/font = ExtResource("5_q7yga")
+theme_override_font_sizes/font_size = 90
+theme_override_styles/normal = SubResource("StyleBoxEmpty_kt552")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_uslcw")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_gvjof")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tp0ba")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_o8806")
+text = "x"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/Inventory" unique_id=1492532894]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -405.0
+offset_top = -302.0
+offset_right = 405.0
+offset_bottom = 302.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="Buttons" type="HBoxContainer" parent="GUI/Inventory/VBoxContainer" unique_id=366357591]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ItemsButton" type="Button" parent="GUI/Inventory/VBoxContainer/Buttons" unique_id=1194851472]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Items"
+
+[node name="NotesButton" type="Button" parent="GUI/Inventory/VBoxContainer/Buttons" unique_id=2099234902]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Notes"
+
+[node name="Panels" type="PanelContainer" parent="GUI/Inventory/VBoxContainer" unique_id=1376432029]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_83ng5")
+
+[node name="ItemsPanel" type="PanelContainer" parent="GUI/Inventory/VBoxContainer/Panels" unique_id=1440940214]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GUI/Inventory/VBoxContainer/Panels/ItemsPanel" unique_id=1752261459]
+layout_mode = 2
+text = "items"
+
+[node name="NotesPanel" type="PanelContainer" parent="GUI/Inventory/VBoxContainer/Panels" unique_id=1796295450]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GUI/Inventory/VBoxContainer/Panels/NotesPanel" unique_id=199386142]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/Inventory/VBoxContainer/Panels/NotesPanel/ScrollContainer" unique_id=1990513564]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Note1" type="MarginContainer" parent="GUI/Inventory/VBoxContainer/Panels/NotesPanel/ScrollContainer/VBoxContainer" unique_id=1104373224]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Button" type="Button" parent="GUI/Inventory/VBoxContainer/Panels/NotesPanel/ScrollContainer/VBoxContainer/Note1" unique_id=596644176]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Note #1"
+
 [connection signal="body_entered" from="World/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="finished" from="MessagePlayer" to="MessagePlayer" method="_on_finished"]
 [connection signal="value_changed" from="GUI/SettingsPanel/Settings/Volume" to="GUI/SettingsPanel/Settings/Volume" method="_on_value_changed"]
@@ -578,3 +653,4 @@ vertical_alignment = 1
 [connection signal="pressed" from="GUI/SettingsPanel/MainPauseMenu/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="GUI/SettingsPanel/MainPauseMenu/Exit to menu" to="." method="_on_exit_to_menu_pressed"]
 [connection signal="pressed" from="GUI/SettingsPanel/MainPauseMenu/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="GUI/Inventory/Back" to="." method="_on_back_inventory_pressed"]
