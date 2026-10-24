@@ -28,6 +28,7 @@
 [ext_resource type="Script" uid="uid://b6bjw7vkw7ws" path="res://src/ui/inventory/inventory_ui.gd" id="26_tp0ba"]
 [ext_resource type="Script" uid="uid://cghb00qjvfyid" path="res://src/ui/inventory/inventory_panel.gd" id="27_oyolb"]
 [ext_resource type="Script" uid="uid://c5ru58qsgbcww" path="res://src/ui/inventory/notes_panel.gd" id="28_mcnec"]
+[ext_resource type="PackedScene" uid="uid://b15qg1smd4ujj" path="res://scenes/items/note2.tscn" id="29_mcnec"]
 
 [sub_resource type="Environment" id="Environment_83ng5"]
 fog_enabled = true
@@ -240,6 +241,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.717735)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/Area3D" unique_id=56388968]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7973852, 2.5531366, -0.03360653)
 shape = SubResource("BoxShape3D_dtook")
+
+[node name="Note2" parent="World" unique_id=1152542224 instance=ExtResource("29_mcnec")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 5, 2, -3)
+note_number = 2
 
 [node name="Player" parent="." unique_id=136917392 node_paths=PackedStringArray("game") groups=["player"] instance=ExtResource("3_nbain")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1083074, 0)
