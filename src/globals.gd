@@ -1,3 +1,19 @@
 extends Node
 
 enum ItemType {NULL, NOTE_ITEM, IMPORTANT_ITEM}
+
+var song_folder: String = "res://assets/audio/music/"
+var songs: Array[AudioStreamMP3] = [
+	load(song_folder + "Despair.mp3"),
+	load(song_folder + "Act1_Entrapped.mp3"),
+	load(song_folder + "Prologue_Itchy_Neck.mp3")
+]
+
+var notes: Dictionary = {
+	"1": {"scene": load("res://scenes/items/note.tscn")},
+	"2": {"scene": load("res://scenes/items/note2.tscn")}
+}
+
+var key_items: Dictionary = {
+	"1": {"scene": load("res://scenes/items/key_item.tscn"), "name": "Test Key Item"},
+}
