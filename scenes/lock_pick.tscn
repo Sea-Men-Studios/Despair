@@ -1,0 +1,127 @@
+[gd_scene format=3 uid="uid://f365xctk06hf"]
+
+[ext_resource type="Script" path="res://src/lock_pick.gd" id="1_absej"]
+[ext_resource type="Texture2D" uid="uid://d2o8mpylaxn8" path="res://assets/textures/lockpick.png" id="2_5n8eg"]
+[ext_resource type="Texture2D" uid="uid://clo2qswhlb0nc" path="res://assets/textures/lock.png" id="3_eqfxr"]
+[ext_resource type="FontFile" uid="uid://bdc5pulf3pph6" path="res://assets/fonts/Philophobia-0p8d.ttf" id="4_ac71u"]
+[ext_resource type="AudioStream" path="res://assets/Audio/click.wav" id="5_61vm6"]
+[ext_resource type="AudioStream" path="res://assets/Audio/lock_opened.wav" id="6_5n8eg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dtook"]
+size = Vector2(15, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gh7k3"]
+size = Vector2(9.5, 9.5)
+
+[sub_resource type="FontVariation" id="FontVariation_dtook"]
+base_font = ExtResource("4_ac71u")
+spacing_glyph = 3
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1147552192]
+script = ExtResource("1_absej")
+
+[node name="Bg" type="ColorRect" parent="." unique_id=513007462]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6313726)
+
+[node name="LockPickArea" type="Area2D" parent="." unique_id=255024788]
+position = Vector2(1250, 485)
+
+[node name="LockPick" type="TextureRect" parent="LockPickArea" unique_id=431265322]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -8.0
+offset_right = 666.0
+offset_bottom = 83.90625
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("2_5n8eg")
+
+[node name="LockPickCollision" type="CollisionShape2D" parent="LockPickArea" unique_id=1517681584]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_dtook")
+
+[node name="Pin1" type="Area2D" parent="." unique_id=24454899]
+position = Vector2(500, 450)
+
+[node name="PinCollison1" type="CollisionShape2D" parent="Pin1" unique_id=1983411095]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_gh7k3")
+debug_color = Color(0.9818799, 0.13292336, 0, 0.41960785)
+
+[node name="Pin2" type="Area2D" parent="." unique_id=1491597335]
+position = Vector2(475, 450)
+
+[node name="PinCollison2" type="CollisionShape2D" parent="Pin2" unique_id=1355952530]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_gh7k3")
+debug_color = Color(0.8651692, 0.35507813, 0, 0.41960785)
+
+[node name="Pin3" type="Area2D" parent="." unique_id=1098861541]
+position = Vector2(450, 450)
+
+[node name="PinCollison3" type="CollisionShape2D" parent="Pin3" unique_id=464656381]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_gh7k3")
+debug_color = Color(0.759043, 0.4547832, 7.70092e-07, 0.41960785)
+
+[node name="Pin4" type="Area2D" parent="." unique_id=1098715582]
+position = Vector2(425, 450)
+
+[node name="PinCollison4" type="CollisionShape2D" parent="Pin4" unique_id=327921485]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_gh7k3")
+debug_color = Color(0.5556423, 0.56295097, 5.7756904e-07, 0.41960785)
+
+[node name="Pin5" type="Area2D" parent="." unique_id=1543570536]
+position = Vector2(400, 450)
+
+[node name="PinCollison5" type="CollisionShape2D" parent="Pin5" unique_id=1071504049]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_gh7k3")
+debug_color = Color(1.3957917e-06, 0.63673973, 0.41440964, 0.41960785)
+
+[node name="Pin6" type="Area2D" parent="." unique_id=1038602369]
+position = Vector2(375, 450)
+
+[node name="PinCollison6" type="CollisionShape2D" parent="Pin6" unique_id=1207135362]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_gh7k3")
+debug_color = Color(0.29319993, 0.4985739, 1, 0.41960785)
+
+[node name="Lock" type="TextureRect" parent="." unique_id=1831406217]
+z_index = 10
+offset_left = 8.0
+offset_top = 371.0
+offset_right = 563.1429
+offset_bottom = 663.0
+texture = ExtResource("3_eqfxr")
+expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=447988442]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -466.0
+offset_right = 402.0
+offset_bottom = 228.0
+grow_horizontal = 2
+theme_override_fonts/normal_font = SubResource("FontVariation_dtook")
+theme_override_font_sizes/normal_font_size = 36
+text = "PIck the lock, use the 'W' key to move the pick, listen for the click and press 'Enter' to move to the next pin"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ClickSound" type="AudioStreamPlayer2D" parent="." unique_id=1403666639]
+stream = ExtResource("5_61vm6")
+
+[node name="UnlockSound" type="AudioStreamPlayer2D" parent="." unique_id=208274454]
+stream = ExtResource("6_5n8eg")
