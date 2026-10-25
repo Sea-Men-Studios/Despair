@@ -18,7 +18,7 @@ func load_content(inventory: Control):
 			var new_item_element_button: Button = new_item_element.find_child("Button")
 			
 			new_item_element_button.pressed.connect(_load_note.bind(int(note_id), player_inventory))
-			new_item_element_button.text = "Note #" + note_id
+			new_item_element_button.text = "Note No." + note_id
 			
 			note_container.add_child(new_item_element)
 
