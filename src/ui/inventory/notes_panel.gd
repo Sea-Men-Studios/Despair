@@ -12,8 +12,8 @@ func load_content(inventory: Control):
 	for child in note_container.get_children():
 		child.queue_free()
 		
-	for note_id in player_inventory.notes.keys():
-		if player_inventory.notes[note_id]["aquired"] == true:
+	for note_id in player_inventory.notes_aquired.keys():
+		if player_inventory.notes_aquired[note_id] == true:
 			var new_item_element = item_element.instantiate()
 			var new_item_element_button: Button = new_item_element.find_child("Button")
 			
@@ -26,7 +26,7 @@ func _load_note(id: int, inventory: Node3D):
 	if inventory.held_object:
 		inventory.put_away()
 	
-	var new_note_item = inventory.notes[str(id)]["scene"].instantiate()
+	var new_note_item = Globals.notes[str(id)]["scene"].instantiate()
 	
 	game.find_child("World").add_child(new_note_item)
 	inventory.held_object = new_note_item

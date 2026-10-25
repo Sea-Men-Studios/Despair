@@ -30,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://bs404jcov0tgr" path="res://assets/textures/bloodypaper.png" id="29_7tpdc"]
 [ext_resource type="Script" uid="uid://smjlml2rh2m3" path="res://src/ui/inventory/items_panel.gd" id="29_ff35y"]
 [ext_resource type="PackedScene" uid="uid://b15qg1smd4ujj" path="res://scenes/items/note2.tscn" id="29_mcnec"]
+[ext_resource type="Script" uid="uid://bane8av86uw23" path="res://src/game/objective_controller.gd" id="31_t1q1e"]
 
 [sub_resource type="Environment" id="Environment_83ng5"]
 fog_enabled = true
@@ -223,8 +224,9 @@ model = NodePath("CSGSphere3D")
 use_collision = true
 material = SubResource("StandardMaterial3D_tp0ba")
 
-[node name="KeyItem" parent="World" unique_id=1727047531 instance=ExtResource("7_ff35y")]
+[node name="KeyItem" parent="World" unique_id=1727047531 node_paths=PackedStringArray("objectives_controller") instance=ExtResource("7_ff35y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4437203, 2.1616497, -4.880603)
+objectives_controller = NodePath("../../GUI/Objectives")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World" unique_id=1660636337]
 transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, -0.034136176, 0.7149863, 0.022112608)
@@ -692,6 +694,36 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="GUI/Inventory/VBoxContainer/Panels/NotesPanel/ScrollContainer" unique_id=1990513564]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="Objectives" type="Control" parent="GUI" unique_id=1192381324 node_paths=PackedStringArray("objective_container")]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 255.0
+offset_bottom = 40.0
+script = ExtResource("31_t1q1e")
+objective_container = NodePath("MarginContainer/VBoxContainer/VBoxContainer")
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Objectives" unique_id=1195590460]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/Objectives/MarginContainer" unique_id=11481420]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GUI/Objectives/MarginContainer/VBoxContainer" unique_id=1023408247]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_q7yga")
+theme_override_font_sizes/font_size = 48
+text = "Objectives"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/Objectives/MarginContainer/VBoxContainer" unique_id=2074478946]
+layout_mode = 2
 
 [connection signal="body_entered" from="World/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="finished" from="MessagePlayer" to="MessagePlayer" method="_on_finished"]
