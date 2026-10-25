@@ -16,6 +16,7 @@ var notes: Dictionary = {
 
 var key_items: Dictionary = {
 	"1": {"scene": load("res://scenes/items/key_item.tscn"), "name": "Test Key Item"},
+	"2": {"scene": load("res://scenes/items/radio.tscn"), "name": "Radio"},
 }
 
 var objectives: Dictionary = {

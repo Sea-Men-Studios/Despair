@@ -31,6 +31,7 @@
 [ext_resource type="Script" uid="uid://smjlml2rh2m3" path="res://src/ui/inventory/items_panel.gd" id="29_ff35y"]
 [ext_resource type="PackedScene" uid="uid://b15qg1smd4ujj" path="res://scenes/items/note2.tscn" id="29_mcnec"]
 [ext_resource type="Script" uid="uid://bane8av86uw23" path="res://src/game/objective_controller.gd" id="31_t1q1e"]
+[ext_resource type="PackedScene" uid="uid://db0bomgu2h0cb" path="res://scenes/items/radio.tscn" id="32_t1q1e"]
 
 [sub_resource type="Environment" id="Environment_83ng5"]
 fog_enabled = true
@@ -264,6 +265,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.717735)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/Area3D" unique_id=56388968]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7973852, 2.5531366, -0.03360653)
 shape = SubResource("BoxShape3D_dtook")
+
+[node name="Radio" parent="World" unique_id=385049594 instance=ExtResource("32_t1q1e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1865172, 2.028441, -1.340151)
 
 [node name="Player" parent="." unique_id=136917392 node_paths=PackedStringArray("game") groups=["player"] instance=ExtResource("3_nbain")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1083074, 0)

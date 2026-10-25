@@ -32,4 +32,4 @@ func put_away():
 func _process(_delta: float) -> void:
 	if held_object:
 		held_object.global_rotation = camera.global_rotation +  held_object.held_orientation
-		held_object.global_position = camera.global_position + -camera.global_transform.basis.z + camera.global_transform.basis.x*0.8
+		held_object.global_position = camera.global_position + -camera.global_transform.basis.z * 1.2 + camera.global_transform.basis.x*0.8

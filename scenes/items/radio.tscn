@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://db0bomgu2h0cb"]
+
+[ext_resource type="Script" uid="uid://d38gn21lcjrs6" path="res://src/objects/radio.gd" id="1_d8bp5"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_83ng5"]
+size = Vector3(0.45410156, 0.34765625, 0.9091797)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_83ng5"]
+size = Vector3(0.6230469, 0.2705078, 1)
+
+[node name="Radio" type="Node3D" unique_id=1727047531]
+script = ExtResource("1_d8bp5")
+item_id = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=810164887]
+transform = Transform3D(1, 0, 0, 0, 0.60166186, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_83ng5")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1006731100]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=442093706]
+shape = SubResource("BoxShape3D_83ng5")
