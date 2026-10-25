@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://8f4gruphx4q2"]
 
-[ext_resource type="Script" uid="uid://eqy877b4umb8" path="res://src/enemy.gd" id="1_7p1mj"]
+[ext_resource type="Script" uid="uid://eqy877b4umb8" path="res://src/game/enemy.gd" id="1_7p1mj"]
 [ext_resource type="Texture2D" uid="uid://dggmcwg4u36wj" path="res://assets/models/Parasite L Starkie_0.png" id="2_5uy6h"]
 [ext_resource type="Texture2D" uid="uid://dc4gsbwmxe4e4" path="res://assets/models/Parasite L Starkie_3.png" id="3_c4w8v"]
 [ext_resource type="Texture2D" uid="uid://bq6r4cvnh0ddt" path="res://assets/models/Parasite L Starkie_1.png" id="4_xwavj"]

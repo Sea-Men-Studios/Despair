@@ -11,4 +11,4 @@ func _ready():
 func _on_body_entered(area) -> void: 
 	if area.name == "Player" and toggled == false:
 		music_controller.set_song(song_index)
-		toggled = false
+		toggled = true

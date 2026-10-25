@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1ojid35x6vj0"
-path="res://.godot/imported/BloodyParchment.png-b5ee964e198a11e89c54e7d5f78da2d6.ctex"
+uid="uid://bs404jcov0tgr"
+path="res://.godot/imported/bloodypaper.png-94ae1e30a81729e9d2cf47bb7e2b9775.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/BloodyParchment.png"
-dest_files=["res://.godot/imported/BloodyParchment.png-b5ee964e198a11e89c54e7d5f78da2d6.ctex"]
+source_file="res://assets/textures/bloodypaper.png"
+dest_files=["res://.godot/imported/bloodypaper.png-94ae1e30a81729e9d2cf47bb7e2b9775.ctex"]
 
 [params]
 

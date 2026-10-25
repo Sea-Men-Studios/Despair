@@ -3,7 +3,7 @@ extends Control
 @export var player: CharacterBody3D
 var player_camera: Camera3D
 
-var freecam: PackedScene = preload("res://scenes/freecam.tscn")
+var freecam: PackedScene = preload("res://scenes/debug/freecam.tscn")
 var freecam_instance: Camera3D = null
 
 func _ready() -> void:

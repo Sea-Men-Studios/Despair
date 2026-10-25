@@ -3,38 +3,60 @@ extends Node3D
 @onready var settings_panel: TextureRect = $GUI/SettingsPanel
 @onready var settings: Control = $GUI/SettingsPanel/Settings
 @onready var main_pause_menu: Control = $GUI/SettingsPanel/MainPauseMenu
+@onready var inventory: Control = $GUI/Inventory
 @onready var player = $Player
 @onready var message_player: AudioStreamPlayer = $MessagePlayer
 @onready var subtitle_label: RichTextLabel = $GUI/SubtitleLabel
 @onready var area_3d: Area3D = $World/Area3D
 
-
 @export var linger_time := 2.0
 var subtitle_tween: Tween
 
+var in_ui: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	message_player.message_started.connect(_on_message_started)
 	message_player.message_finished.connect(_on_message_finished)
 	subtitle_label.text = ""
 	subtitle_label.visible = false
 
 func _unhandled_input(event):
-	if event.is_action_pressed("ui_cancel"):
+	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
+		if not in_ui:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
+	if event.is_action_pressed("ui_cancel") and not in_ui:
+		in_ui = true
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		settings_panel.visible = true
-
+	
+	if event.is_action_pressed("inventory") and not in_ui:
+		in_ui = true
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		inventory.load_items()
+		inventory._change_tab("Items")
+		inventory.visible = true
+	
 	if event.is_action_pressed("messsage_debug"):
 		receive_message()
 
 func _on_back_pressed() -> void:
-		settings.visible = false
-		main_pause_menu.visible = true
+	settings.visible = false
+	main_pause_menu.visible = true
+
+func _on_back_inventory_pressed() -> void:
+	in_ui = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	inventory.visible = false
 
 func _on_resume_pressed() -> void:
+	in_ui = false
 	settings_panel.visible = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
 
 func _on_exit_to_menu_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")

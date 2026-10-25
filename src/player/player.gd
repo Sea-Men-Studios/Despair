@@ -23,11 +23,12 @@ var fov = 75
 
 @onready var camera: Camera3D = $Head/Camera3D
 @onready var head: Node3D = $Head
+@onready var overlays: CanvasLayer = $CanvasLayer
 
 var can_move = true
 
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	overlays.visible = true
 	camera.fov = Settings.fov
 	Settings.fov_changed.connect(_on_fov_changed)
 
@@ -35,13 +36,9 @@ func _on_fov_changed(new_fov: float) -> void:
 	camera.fov = new_fov
 
 func _input(event):
-	if event.is_action_pressed("ui_cancel"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		
-	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
-	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED and can_move:
+	if (event is InputEventMouseMotion 
+		and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED 
+		and can_move):
 		rotate_y(-event.relative.x * Settings.sensitivity)
 		camera.rotate_x(-event.relative.y * Settings.sensitivity)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(min_pitch), deg_to_rad(max_pitch))
@@ -49,8 +46,7 @@ func _input(event):
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
-
+	
 	var input_dir := Input.get_vector("left", "right", "forwards", "backwards")
 	var direction = (head.global_transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	var target_velocity = direction * max_speed

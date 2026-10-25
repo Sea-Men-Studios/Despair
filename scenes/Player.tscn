@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dulbjs303pf3h"]
+[gd_scene format=3 uid="uid://bu1nrt81ux5cp"]
 
 [ext_resource type="Script" uid="uid://db34a3xstkoq7" path="res://src/player/player.gd" id="1_p0vlq"]
 [ext_resource type="Script" uid="uid://digqebucckmc6" path="res://src/player/interaction.gd" id="2_3li8b"]
@@ -45,6 +45,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.33607864)
 far = 50.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1696356131]
+visible = false
 
 [node name="BrightnessOverlay" type="ColorRect" parent="CanvasLayer" unique_id=1766832078]
 anchors_preset = 15

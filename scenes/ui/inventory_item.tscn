@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://c5ltymndajhh3"]
+
+[ext_resource type="FontFile" uid="uid://bojumlha8tr5r" path="res://assets/fonts/DemonSker-zyzD.ttf" id="1_5nues"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7tpdc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t1q1e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_71ex4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v10bb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g5ro0"]
+
+[node name="Note1" type="MarginContainer" unique_id=298275587]
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Button" type="Button" parent="." unique_id=1612225524]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_5nues")
+theme_override_font_sizes/font_size = 52
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7tpdc")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_t1q1e")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_71ex4")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_v10bb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_g5ro0")
+text = "Test 1"
