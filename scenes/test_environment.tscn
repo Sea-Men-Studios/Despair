@@ -213,8 +213,9 @@ size = Vector3(5.2021484, 5.3620605, 3.7041016)
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 3.5, 2.198248, -2.51)
 note_id = 1
 
-[node name="Note2" parent="World" unique_id=1152542224 instance=ExtResource("29_mcnec")]
+[node name="Note2" parent="World" unique_id=1152542224 node_paths=PackedStringArray("objectives_controller") instance=ExtResource("29_mcnec")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 5, 2, -3)
+objectives_controller = NodePath("../../GUI/Objectives")
 
 [node name="Object" type="Node3D" parent="World" unique_id=163337176 node_paths=PackedStringArray("model")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.375145, 2.1616497, -4.880603)
