@@ -19,5 +19,8 @@ func get_picked_up():
 	target_inventory.held_object = self
 	#self.queue_free()
 
+func use():
+	pass
+
 func set_item_type(type: Globals.ItemType):
 	item_type = type

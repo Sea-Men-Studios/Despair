@@ -16,8 +16,11 @@ func _ready() -> void:
 		notes_aquired[str(key_item_id)] = false
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.is_action_pressed("put_away") and held_object != null:
-		put_away()
+	if held_object != null:
+		if event is InputEventKey and event.is_action_pressed("put_away"):
+			put_away()
+		if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_RIGHT and event.is_pressed() == true:
+			held_object.use()
 
 func put_away():
 	if held_object.item_type == Globals.ItemType.NOTE_ITEM:
