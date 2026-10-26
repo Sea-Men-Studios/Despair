@@ -6,6 +6,7 @@ var item_type: Globals.ItemType
 
 var target_inventory = null
 
+var held_offset = Vector3(0.5, -0.1, -1)
 var held_orientation = Vector3(0, 0, 0)
 
 func interact():

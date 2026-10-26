@@ -22,3 +22,11 @@ var key_items: Dictionary = {
 var objectives: Dictionary = {
 	"1": "Pick up Test Key Item"
 }
+
+var dialogue_lines: Dictionary = {
+	"1": "Dialogue 1",
+	"2": "Dialogue 2",
+	"3": "Dialogue 3",
+	"4": "Dialogue 4",
+	"5": "Dialogue 5",
+}

@@ -31,5 +31,8 @@ func put_away():
 
 func _process(_delta: float) -> void:
 	if held_object:
-		held_object.global_rotation = camera.global_rotation +  held_object.held_orientation
-		held_object.global_position = camera.global_position + -camera.global_transform.basis.z * 1.2 + camera.global_transform.basis.x*0.8
+		var camera_quat = Quaternion(camera.global_transform.basis)
+		var held_quat = Quaternion.from_euler(held_object.held_orientation)
+		held_object.global_rotation = (camera_quat * held_quat).get_euler()
+		
+		held_object.global_position = camera.global_position + camera.global_transform.basis * held_object.held_offset

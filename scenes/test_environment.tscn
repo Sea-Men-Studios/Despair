@@ -129,17 +129,6 @@ spacing_glyph = 5
 base_font = ExtResource("5_q7yga")
 spacing_glyph = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xhnq4"]
-bg_color = Color(0.09411765, 0.09411765, 0.09411765, 0.34901962)
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color(0.09411765, 0.09411765, 0.09411765, 0.34901962)
-
-[sub_resource type="LabelSettings" id="LabelSettings_5qein"]
-font_size = 32
-
 [sub_resource type="FontVariation" id="FontVariation_dtook"]
 base_font = ExtResource("5_q7yga")
 spacing_glyph = 5
@@ -159,6 +148,17 @@ spacing_glyph = 5
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_71ex4"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t1q1e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xhnq4"]
+bg_color = Color(0.09411765, 0.09411765, 0.09411765, 0.34901962)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.09411765, 0.09411765, 0.09411765, 0.34901962)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5qein"]
+font_size = 32
 
 [node name="Game" type="Node3D" unique_id=204302908]
 script = ExtResource("1_0hxc1")
@@ -551,29 +551,6 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_o5div")
 text = "Quit
 "
 
-[node name="DebugTools" type="Control" parent="GUI" unique_id=123543845 node_paths=PackedStringArray("player")]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("10_ut5rl")
-player = NodePath("../../Player")
-
-[node name="DebugMenu" type="PanelContainer" parent="GUI/DebugTools" unique_id=1631523238]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-offset_transform_enabled = true
-offset_transform_position = Vector2(20, 20)
-theme_override_styles/panel = SubResource("StyleBoxFlat_xhnq4")
-
-[node name="FPS" type="Label" parent="GUI/DebugTools/DebugMenu" unique_id=1996996298]
-layout_mode = 2
-text = "FPS: "
-label_settings = SubResource("LabelSettings_5qein")
-script = ExtResource("6_b2arr")
-
 [node name="SubtitleLabel" type="RichTextLabel" parent="GUI" unique_id=1406058893]
 anchors_preset = 12
 anchor_top = 1.0
@@ -696,6 +673,7 @@ note_container = NodePath("ScrollContainer/VBoxContainer")
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GUI/Inventory/VBoxContainer/Panels/NotesPanel/ScrollContainer" unique_id=1990513564]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -728,6 +706,29 @@ text = "Objectives"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GUI/Objectives/MarginContainer/VBoxContainer" unique_id=2074478946]
 layout_mode = 2
+
+[node name="DebugTools" type="Control" parent="GUI" unique_id=123543845 node_paths=PackedStringArray("player")]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("10_ut5rl")
+player = NodePath("../../Player")
+
+[node name="DebugMenu" type="PanelContainer" parent="GUI/DebugTools" unique_id=1631523238]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(20, 20)
+theme_override_styles/panel = SubResource("StyleBoxFlat_xhnq4")
+
+[node name="FPS" type="Label" parent="GUI/DebugTools/DebugMenu" unique_id=1996996298]
+layout_mode = 2
+text = "FPS: "
+label_settings = SubResource("LabelSettings_5qein")
+script = ExtResource("6_b2arr")
 
 [connection signal="body_entered" from="World/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="finished" from="MessagePlayer" to="MessagePlayer" method="_on_finished"]

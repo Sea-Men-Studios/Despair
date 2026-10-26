@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://drn5cf8i88yoc" path="res://assets/models/walkietalkie.glb" id="2_l3dmj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_83ng5"]
-size = Vector3(0.6230469, 0.2705078, 1)
+size = Vector3(0.36523438, 0.20532227, 0.52319336)
 
 [node name="Radio" type="Node3D" unique_id=1727047531]
 script = ExtResource("1_d8bp5")
@@ -17,4 +17,4 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -
 shape = SubResource("BoxShape3D_83ng5")
 
 [node name="Sketchfab_Scene" parent="." unique_id=1117529275 instance=ExtResource("2_l3dmj")]
-transform = Transform3D(-0.004, -3.8253833e-10, 6.0398336e-10, -3.8253822e-10, 0.004000001, 0, -6.0398325e-10, -5.776168e-17, -0.004000001, -0.12272692, 0.08177374, -0.07913643)
+transform = Transform3D(-0.002, -1.9126911e-10, 3.0199163e-10, -1.9126911e-10, 0.002, 0, -3.0199163e-10, -2.8880832e-17, -0.002, -0.071830034, 0.0067761987, -0.07913643)
