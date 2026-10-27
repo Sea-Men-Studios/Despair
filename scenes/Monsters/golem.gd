@@ -10,4 +10,4 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	golem.rotation.y += 0.001
+	golem.rotation.y += 0.0001

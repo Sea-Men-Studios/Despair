@@ -9,4 +9,4 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	charcharosaurus.rotation.y += 0.001
+	charcharosaurus.rotation.y += 0.0001

@@ -91,4 +91,3 @@ put_away={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
-mesh_lod/lod_change/threshold_pixels=300.0
