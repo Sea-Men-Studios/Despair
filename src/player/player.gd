@@ -31,6 +31,7 @@ func _ready():
 	overlays.visible = true
 	camera.fov = Settings.fov
 	Settings.fov_changed.connect(_on_fov_changed)
+	
 
 func _on_fov_changed(new_fov: float) -> void:
 	camera.fov = new_fov
