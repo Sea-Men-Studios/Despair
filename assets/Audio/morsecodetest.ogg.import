@@ -3,12 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://dxwxwwofkywwj"
-path="res://.godot/imported/morsecodetest.ogg-e65df7b13c2a080603b9703a0c5759d1.oggvorbisstr"
+path="res://.godot/imported/morsecodetest.ogg-aa888d3159f71e14eb3b5c45f2aa36bb.oggvorbisstr"
 
 [deps]
 
-source_file="res://assets/Audio/morsecodetest.ogg"
-dest_files=["res://.godot/imported/morsecodetest.ogg-e65df7b13c2a080603b9703a0c5759d1.oggvorbisstr"]
+source_file="res://assets/audio/morsecodetest.ogg"
+dest_files=["res://.godot/imported/morsecodetest.ogg-aa888d3159f71e14eb3b5c45f2aa36bb.oggvorbisstr"]
 
 [params]
 
