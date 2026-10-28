@@ -9,5 +9,5 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	fo_v_num.text = str(value)
 
-func _on_value_changed(value: float) -> void:
-	Settings.fov = value
+func _on_value_changed(new_value: float) -> void:
+	Settings.fov = new_value
