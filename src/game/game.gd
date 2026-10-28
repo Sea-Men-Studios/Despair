@@ -8,18 +8,25 @@ extends Node3D
 @onready var message_player: AudioStreamPlayer = $MessagePlayer
 @onready var subtitle_label: RichTextLabel = $GUI/SubtitleLabel
 
+@onready var morse_code_test: AudioStreamOggVorbis = load("res://assets/audio/morsecodetest.ogg")
+
 @export var linger_time := 2.0
 var subtitle_tween: Tween
 
 var in_ui: bool = false
 
+var current_group_id: int = 0
+var dialogue_group_over: bool = false
+var dialogue_id: int = 0
+var can_progress_dialogue: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	message_player.message_started.connect(_on_message_started)
-	message_player.message_finished.connect(_on_message_finished)
+	message_player.finished.connect(_on_message_finished)
 	subtitle_label.text = ""
 	subtitle_label.visible = false
+	receive_message()
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
@@ -66,22 +73,64 @@ func _on_settings_cog_button_pressed() -> void:
 	settings.visible = true
 	main_pause_menu.visible = false
 
-func _on_message_started(subtitle: String, audio: AudioStream) -> void:
-	subtitle_label.text = subtitle
-	subtitle_label.visible_characters = 0
+func receive_message() -> void:
+	if dialogue_group_over == false:
+		var message_group = Globals.dialogue_groups[current_group_id]
+		var message = Globals.dialogue_lines[message_group[dialogue_id]]
+		
+		message_start(message)
+		message_player.stream = morse_code_test
+		message_player.play()
+		
+		dialogue_id += 1
+
+		if dialogue_id >= Globals.dialogue_groups[current_group_id].size():
+			dialogue_group_over = true
+			can_progress_dialogue = true
+			dialogue_id = 0
+
+func message_start(subtitle: String) -> void:
+	subtitle_label.text = ""
 	subtitle_label.visible = true
 	subtitle_label.modulate.a = 1.0
 
 	if subtitle_tween:
 		subtitle_tween.kill()
 
-	var duration = audio.get_length()
+	var char_count = subtitle.length()
+	var duration = subtitle.length() * 0.1
+	var step_time = duration / char_count
 
+	message_player.volume_db = -35
 	subtitle_tween = create_tween()
-	subtitle_tween.tween_property(subtitle_label, "visible_characters", subtitle.length(), duration)
+	
+	var text_buffer = [""]
+	for i in range(char_count):
+		var char_index = i
+		subtitle_tween.tween_interval(step_time)
+		subtitle_tween.tween_callback(func(): 
+			text_buffer[0] += subtitle[char_index]
+			subtitle_label.text = text_buffer[0]
+		)
+	
 	subtitle_tween.tween_interval(linger_time)
-	subtitle_tween.tween_property(subtitle_label, "modulate:a", 0.0, 0.4)  # quick fade out
-	subtitle_tween.tween_callback(func(): subtitle_label.visible = false)
+	subtitle_tween.tween_property(subtitle_label, "modulate:a", 0.0, 0.4)
+	subtitle_tween.tween_callback(_on_message_text_finished)
 
-func _on_message_finished(_index: int) -> void:
-	pass
+func dialogue_progress() -> void:
+	print(can_progress_dialogue)
+	if can_progress_dialogue == true:
+		can_progress_dialogue = false
+		dialogue_group_over = false
+		current_group_id += 1
+		receive_message()
+
+func _on_message_text_finished() -> void:
+	message_player.volume_db = -100
+	subtitle_label.visible = false
+	
+	if dialogue_group_over == false:
+		receive_message()
+	
+func _on_message_finished() -> void:
+	message_player.play()

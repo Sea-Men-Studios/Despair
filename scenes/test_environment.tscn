@@ -12,7 +12,6 @@
 [ext_resource type="Script" uid="uid://bwgft50o7gqha" path="res://src/debug/fps.gd" id="6_b2arr"]
 [ext_resource type="FontFile" uid="uid://c8s3uhtt6pfuo" path="res://assets/fonts/WhoAsksSatan-5vxx.ttf" id="7_0hxc1"]
 [ext_resource type="PackedScene" uid="uid://cuyv1h4ujkhvv" path="res://scenes/items/key_item.tscn" id="7_ff35y"]
-[ext_resource type="Script" uid="uid://brfvy8jw36tet" path="res://src/game/morsecode/morsemessages.gd" id="7_hb1a6"]
 [ext_resource type="Script" uid="uid://dpoe6wclu1hb4" path="res://src/ui/settings/fov.gd" id="8_ju4s4"]
 [ext_resource type="Script" uid="uid://bjidxs3d64jbk" path="res://src/game/music_controller.gd" id="9_kr1d5"]
 [ext_resource type="Script" uid="uid://cqe7uajt6fcel" path="res://src/ui/settings/sensitivity.gd" id="9_wwk3j"]
@@ -23,8 +22,6 @@
 [ext_resource type="Texture2D" uid="uid://bf8fuq0wfg4su" path="res://assets/textures/Cog.png" id="13_q7yga"]
 [ext_resource type="Script" uid="uid://fo5fdsw2ihgw" path="res://src/ui/settings/color_blind_mode.gd" id="13_wjdp0"]
 [ext_resource type="PackedScene" uid="uid://8f4gruphx4q2" path="res://scenes/enemy.tscn" id="16_0hxc1"]
-[ext_resource type="Script" uid="uid://c2rmuwdteiwgg" path="res://src/game/morsecode/audio_stream_player.gd" id="17_ju4s4"]
-[ext_resource type="AudioStream" uid="uid://dxwxwwofkywwj" path="res://assets/audio/morsecodetest.ogg" id="18_wwk3j"]
 [ext_resource type="Script" uid="uid://b6bjw7vkw7ws" path="res://src/ui/inventory/inventory_ui.gd" id="26_tp0ba"]
 [ext_resource type="Script" uid="uid://c5ru58qsgbcww" path="res://src/ui/inventory/notes_panel.gd" id="28_mcnec"]
 [ext_resource type="Texture2D" uid="uid://bs404jcov0tgr" path="res://assets/textures/bloodypaper.png" id="29_7tpdc"]
@@ -69,18 +66,6 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0
 size = Vector3(1, 9.499023, 9.696289)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_83ng5"]
-
-[sub_resource type="Resource" id="Resource_wwk3j"]
-script = ExtResource("7_hb1a6")
-audio = ExtResource("18_wwk3j")
-subtitle = "This is morse code"
-metadata/_custom_type_script = "uid://brfvy8jw36tet"
-
-[sub_resource type="Resource" id="Resource_kt552"]
-script = ExtResource("7_hb1a6")
-audio = ExtResource("18_wwk3j")
-subtitle = "psc[w[jw[ojvo[evwe[inqv[ionv[oinv[oiwe[rovj"
-metadata/_custom_type_script = "uid://brfvy8jw36tet"
 
 [sub_resource type="AudioStream" id="AudioStream_ut5rl"]
 
@@ -267,8 +252,7 @@ game = NodePath("..")
 transform = Transform3D(-0.9979056, 0, 0.06468655, 0, 1, 0, -0.06468655, 0, -0.9979056, 5.7266603, 2.1083074, -25.625185)
 
 [node name="MessagePlayer" type="AudioStreamPlayer" parent="." unique_id=1206028808]
-script = ExtResource("17_ju4s4")
-messages = Array[ExtResource("7_hb1a6")]([SubResource("Resource_wwk3j"), SubResource("Resource_kt552")])
+volume_db = -35.0
 
 [node name="MusicController" type="AudioStreamPlayer" parent="." unique_id=1004532101]
 stream = SubResource("AudioStream_ut5rl")
