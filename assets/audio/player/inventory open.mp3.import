@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bpnr3bkuhiydl"
+path="res://.godot/imported/inventory open.mp3-cc4b6fc65b77f6ebe1dcf939cfd7c711.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/player/inventory open.mp3"
+dest_files=["res://.godot/imported/inventory open.mp3-cc4b6fc65b77f6ebe1dcf939cfd7c711.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
