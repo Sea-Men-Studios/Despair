@@ -43,6 +43,9 @@ func check_hovered():
 		else:
 			crosshair.set_size(init_crosshair_size)
 			hovered_obj = null
+	else:
+		crosshair.set_size(init_crosshair_size)
+		hovered_obj = null
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:

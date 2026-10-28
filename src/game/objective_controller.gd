@@ -10,7 +10,6 @@ var fade_length: float = 1.5
 func _ready() -> void:
 	visible = true
 	modulate = Color(1.0, 1.0, 1.0, 0.0)
-	await get_tree().create_timer(5).timeout
 	add_objective("1")
 
 func add_objective(id: String) -> void:	
