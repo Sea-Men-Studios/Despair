@@ -57,9 +57,14 @@ func _physics_process(delta: float) -> void:
 		velocity.y -= gravity * delta
 	
 	var input_dir := Input.get_vector("left", "right", "forwards", "backwards")
-	var direction = (head.global_transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var direction = (head.global_transform.basis * Vector3(input_dir.x, 0, input_dir.y))
 	var target_velocity = direction * max_speed
-
+	if direction.length_squared() > 0:
+		direction = direction.normalized()
+		# Apply your movement velocity here
+	else:
+		# Handle stopping or friction here
+		pass
 	@warning_ignore("incompatible_ternary")
 	var current_accel = acceleration if direction.length() > 0.1 else deceleration
 	if not is_on_floor():
