@@ -2,6 +2,8 @@ extends AudioStreamPlayer
 
 @export var messages: Array[MorseMessage] = []
 
+@onready var morse_code_test: AudioStreamMP3 = load("res://assets/audio/morsecodetest.ogg")
+
 var current_index := 0
 
 signal message_started(subtitle: String, audio: AudioStream)
@@ -14,7 +16,9 @@ func play_next_message() -> void:
 		return
 	var msg = messages[current_index]
 	stream = msg.audio
+	
 	play()
+	
 	message_started.emit(msg.subtitle, msg.audio)
 
 func _on_finished() -> void:

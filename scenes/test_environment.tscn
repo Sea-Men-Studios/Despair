@@ -70,9 +70,6 @@ size = Vector3(1, 9.499023, 9.696289)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_83ng5"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_dtook"]
-size = Vector3(8.559631, 2.7158203, 0.7764282)
-
 [sub_resource type="Resource" id="Resource_wwk3j"]
 script = ExtResource("7_hb1a6")
 audio = ExtResource("18_wwk3j")
@@ -258,13 +255,6 @@ shape = SubResource("BoxShape3D_xhnq4")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/MusicCollider2" unique_id=982909033]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.8537555, 0)
 mesh = SubResource("CylinderMesh_83ng5")
-
-[node name="Area3D" type="Area3D" parent="World" unique_id=2042879413]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.717735)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Area3D" unique_id=56388968]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7973852, 2.5531366, -0.03360653)
-shape = SubResource("BoxShape3D_dtook")
 
 [node name="Radio" parent="World" unique_id=385049594 instance=ExtResource("32_t1q1e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1865172, 2.028441, -1.340151)
@@ -729,7 +719,6 @@ text = "FPS: "
 label_settings = SubResource("LabelSettings_5qein")
 script = ExtResource("6_b2arr")
 
-[connection signal="body_entered" from="World/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="finished" from="MessagePlayer" to="MessagePlayer" method="_on_finished"]
 [connection signal="value_changed" from="GUI/SettingsPanel/Settings/Volume" to="GUI/SettingsPanel/Settings/Volume" method="_on_value_changed"]
 [connection signal="value_changed" from="GUI/SettingsPanel/Settings/FoV" to="GUI/SettingsPanel/Settings/FoV" method="_on_value_changed"]

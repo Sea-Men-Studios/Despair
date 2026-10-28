@@ -30,3 +30,7 @@ var dialogue_lines: Dictionary = {
 	"4": "Dialogue 4",
 	"5": "Dialogue 5",
 }
+
+var dialogue_groups: Dictionary = {
+	"1": ["1", "2", "3", "4", "5"]
+}

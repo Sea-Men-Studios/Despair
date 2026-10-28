@@ -7,7 +7,6 @@ extends Node3D
 @onready var player = $Player
 @onready var message_player: AudioStreamPlayer = $MessagePlayer
 @onready var subtitle_label: RichTextLabel = $GUI/SubtitleLabel
-@onready var area_3d: Area3D = $World/Area3D
 
 @export var linger_time := 2.0
 var subtitle_tween: Tween
@@ -40,9 +39,6 @@ func _unhandled_input(event):
 		inventory.load_items()
 		inventory._change_tab("Items")
 		inventory.visible = true
-	
-	if event.is_action_pressed("messsage_debug"):
-		receive_message()
 
 func _on_back_pressed() -> void:
 	settings.visible = false
@@ -70,10 +66,6 @@ func _on_settings_cog_button_pressed() -> void:
 	settings.visible = true
 	main_pause_menu.visible = false
 
-func receive_message() -> void:
-	
-	message_player.play_next_message()
-
 func _on_message_started(subtitle: String, audio: AudioStream) -> void:
 	subtitle_label.text = subtitle
 	subtitle_label.visible_characters = 0
@@ -93,9 +85,3 @@ func _on_message_started(subtitle: String, audio: AudioStream) -> void:
 
 func _on_message_finished(_index: int) -> void:
 	pass
-
-func _on_area_3d_body_entered(body: Node3D) -> void:
-	if body == player:
-		receive_message()
-		$World/Area3D/CollisionShape3D.disabled = true
-	
