@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://megu56c6r8nu"
+path="res://.godot/imported/radio static.mp3-ff59464be6675e8e3a4e18868804e517.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/walkie talkie/radio static.mp3"
+dest_files=["res://.godot/imported/radio static.mp3-ff59464be6675e8e3a4e18868804e517.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://brio0ej3kpxd2"
+path="res://.godot/imported/radio send out signal.mp3-3386b1aed4f17dafbfd64546e01b2b3c.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/walkie talkie/radio send out signal.mp3"
+dest_files=["res://.godot/imported/radio send out signal.mp3-3386b1aed4f17dafbfd64546e01b2b3c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
