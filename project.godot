@@ -90,4 +90,6 @@ put_away={
 
 [rendering]
 
+occlusion_culling/jitter_projection=false
 rendering_device/driver.windows="d3d12"
+occlusion_culling/occlusion_rays_per_thread=128
