@@ -25,3 +25,7 @@ func _on_exit_pressed() -> void:
 
 func _on_back_pressed() -> void:
 	$Control/SettingsPanel.visible = false
+
+
+func _on_controls_pressed() -> void:
+	pass # Replace with function body.
