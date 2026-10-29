@@ -28,4 +28,4 @@ func _on_back_pressed() -> void:
 
 
 func _on_controls_pressed() -> void:
-	pass # Replace with function body.
+	$Control/ControlPanel.visible = false
