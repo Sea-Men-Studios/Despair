@@ -1,14 +1,5 @@
 extends Node
-#
-#
-#
-#
-#
-# TODO fix jittering
-#
-#
-#
-#
+
 @onready var player: CharacterBody3D = $".."
 
 @export_category("References")
