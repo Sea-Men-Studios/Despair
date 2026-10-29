@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cjpll3i6iufa4"
-valid=false
+path="res://.godot/imported/ashley_apartment.glb-84813486868b00ca2bd4c4122707c9b6.scn"
 
 [deps]
 
 source_file="res://assets/prologueassets/ashley_apartment.glb"
+dest_files=["res://.godot/imported/ashley_apartment.glb-84813486868b00ca2bd4c4122707c9b6.scn"]
 
 [params]
 

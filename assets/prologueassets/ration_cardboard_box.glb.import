@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bwqy4sva46wuw"
-valid=false
+path="res://.godot/imported/ration_cardboard_box.glb-6d3083ddd25e323414a439bed05a03b0.scn"
 
 [deps]
 
 source_file="res://assets/prologueassets/ration_cardboard_box.glb"
+dest_files=["res://.godot/imported/ration_cardboard_box.glb-6d3083ddd25e323414a439bed05a03b0.scn"]
 
 [params]
 

@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dv1apvxmlsfve"
-valid=false
+path="res://.godot/imported/christ_the_redeemer.glb-b0239c78bef801572b04490a08a4c130.scn"
 
 [deps]
 
 source_file="res://assets/prologueassets/christ_the_redeemer.glb"
+dest_files=["res://.godot/imported/christ_the_redeemer.glb-b0239c78bef801572b04490a08a4c130.scn"]
 
 [params]
 

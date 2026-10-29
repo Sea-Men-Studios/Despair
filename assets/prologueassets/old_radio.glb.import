@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bi2va6st4181e"
-valid=false
+path="res://.godot/imported/old_radio.glb-79f902213f9a6e063a1763f261501fe4.scn"
 
 [deps]
 
 source_file="res://assets/prologueassets/old_radio.glb"
+dest_files=["res://.godot/imported/old_radio.glb-79f902213f9a6e063a1763f261501fe4.scn"]
 
 [params]
 

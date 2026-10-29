@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://c6pnfxydm46vl"
-valid=false
+path="res://.godot/imported/rations.glb-0ac9e49f854613a9c9014ab0fa71a75c.scn"
 
 [deps]
 
 source_file="res://assets/prologueassets/rations.glb"
+dest_files=["res://.godot/imported/rations.glb-0ac9e49f854613a9c9014ab0fa71a75c.scn"]
 
 [params]
 

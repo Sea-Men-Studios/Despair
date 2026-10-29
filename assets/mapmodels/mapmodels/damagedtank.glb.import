@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://jgvnk0cwpsy6"
-valid=false
+path="res://.godot/imported/damagedtank.glb-48db4d9d3149df40ce72d18d276f4532.scn"
 
 [deps]
 
 source_file="res://assets/mapmodels/mapmodels/damagedtank.glb"
+dest_files=["res://.godot/imported/damagedtank.glb-48db4d9d3149df40ce72d18d276f4532.scn"]
 
 [params]
 

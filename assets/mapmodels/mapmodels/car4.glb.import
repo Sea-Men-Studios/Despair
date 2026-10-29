@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://2hguol4h2b7a"
-valid=false
+path="res://.godot/imported/car4.glb-3bf40d15b7758d307a4d941dbb543d76.scn"
 
 [deps]
 
 source_file="res://assets/mapmodels/mapmodels/car4.glb"
+dest_files=["res://.godot/imported/car4.glb-3bf40d15b7758d307a4d941dbb543d76.scn"]
 
 [params]
 

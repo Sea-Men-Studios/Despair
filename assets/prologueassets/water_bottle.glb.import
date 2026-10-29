@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://oa5o8s68ktdt"
-valid=false
+path="res://.godot/imported/water_bottle.glb-292a379e9c0df4365d11df6be0538309.scn"
 
 [deps]
 
 source_file="res://assets/prologueassets/water_bottle.glb"
+dest_files=["res://.godot/imported/water_bottle.glb-292a379e9c0df4365d11df6be0538309.scn"]
 
 [params]
 

@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bhbayeuk83vpt"
-valid=false
+path="res://.godot/imported/cementtruck.glb-0d4b7b40c5cf42cb7709ee413d6f3652.scn"
 
 [deps]
 
 source_file="res://assets/mapmodels/mapmodels/cementtruck.glb"
+dest_files=["res://.godot/imported/cementtruck.glb-0d4b7b40c5cf42cb7709ee413d6f3652.scn"]
 
 [params]
 

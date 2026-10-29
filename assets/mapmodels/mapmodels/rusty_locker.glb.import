@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bxcrh64t5q6oc"
-valid=false
+path="res://.godot/imported/rusty_locker.glb-62eb401b9c8d1750b4f1aa39aeac645e.scn"
 
 [deps]
 
 source_file="res://assets/mapmodels/mapmodels/rusty_locker.glb"
+dest_files=["res://.godot/imported/rusty_locker.glb-62eb401b9c8d1750b4f1aa39aeac645e.scn"]
 
 [params]
 
