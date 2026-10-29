@@ -3,6 +3,7 @@ extends Node3D
 @onready var settings_panel: TextureRect = $GUI/SettingsPanel
 @onready var settings: Control = $GUI/SettingsPanel/Settings
 @onready var main_pause_menu: Control = $GUI/SettingsPanel/MainPauseMenu
+@onready var controls: Control = $GUI/SettingsPanel/Controls
 @onready var inventory: Control = $GUI/Inventory
 @onready var player = $Player
 @onready var message_player: AudioStreamPlayer = $MessagePlayer
@@ -51,6 +52,10 @@ func _on_back_pressed() -> void:
 	settings.visible = false
 	main_pause_menu.visible = true
 
+func _on_back_2_pressed() -> void:
+	controls.visible = false
+	main_pause_menu.visible = true
+
 func _on_back_inventory_pressed() -> void:
 	in_ui = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -68,6 +73,9 @@ func _on_exit_to_menu_pressed() -> void:
 func _on_exit_pressed() -> void:
 	get_tree().quit()
 
+func _on_controls_pressed() -> void:
+	main_pause_menu.visible = false
+	controls.visible = true
 
 func _on_settings_cog_button_pressed() -> void:
 	settings.visible = true

@@ -12,7 +12,7 @@ func _process(_delta: float) -> void:
 
 
 func _on_play_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/map.tscn")
+	get_tree().change_scene_to_file("res://scenes/test_environment.tscn")
 
 
 func _on_settings_pressed() -> void:
@@ -28,4 +28,8 @@ func _on_back_pressed() -> void:
 
 
 func _on_controls_pressed() -> void:
+	$Control/ControlPanel.visible = true
+
+
+func _on_back_2_pressed() -> void:
 	$Control/ControlPanel.visible = false
