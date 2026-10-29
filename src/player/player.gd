@@ -9,6 +9,8 @@ extends CharacterBody3D
 @export var exertion_smoothing := 2.0
 var t_breath := 0.0
 var exertion := 0.0
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var has_gravity = true
 
 @export var min_pitch := -80.0
 @export var max_pitch := 80.0 
@@ -23,38 +25,46 @@ var fov = 75
 
 @onready var camera: Camera3D = $Head/Camera3D
 @onready var head: Node3D = $Head
+@onready var overlays: CanvasLayer = $CanvasLayer
 
 var can_move = true
 
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	overlays.visible = true
 	camera.fov = Settings.fov
 	Settings.fov_changed.connect(_on_fov_changed)
+	
+func  _in_locker():
+	$CollisionShape3D.disabled = true
+	has_gravity = false
+	can_move = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	print("In Locker")
 
 func _on_fov_changed(new_fov: float) -> void:
 	camera.fov = new_fov
 
 func _input(event):
-	if event.is_action_pressed("ui_cancel"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		
-	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
-	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED and can_move:
+	if (event is InputEventMouseMotion 
+		and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED 
+		and can_move):
 		rotate_y(-event.relative.x * Settings.sensitivity)
 		camera.rotate_x(-event.relative.y * Settings.sensitivity)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(min_pitch), deg_to_rad(max_pitch))
 		
 func _physics_process(delta: float) -> void:
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
-
+	if has_gravity and not is_on_floor():
+		velocity.y -= gravity * delta
+	
 	var input_dir := Input.get_vector("left", "right", "forwards", "backwards")
-	var direction = (head.global_transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var direction = (head.global_transform.basis * Vector3(input_dir.x, 0, input_dir.y))
 	var target_velocity = direction * max_speed
-
+	if direction.length_squared() > 0:
+		direction = direction.normalized()
+		# Apply your movement velocity here
+	else:
+		# Handle stopping or friction here
+		pass
 	@warning_ignore("incompatible_ternary")
 	var current_accel = acceleration if direction.length() > 0.1 else deceleration
 	if not is_on_floor():

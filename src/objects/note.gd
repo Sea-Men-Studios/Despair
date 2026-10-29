@@ -1,7 +1,6 @@
 extends InteractableObject
 
-#func _init():
-	#held_orientation = Vector3(90, 0, 0)
+@export var note_id: int
 
-func interact():
-	get_picked_up()
+func _ready():
+	set_item_type(Globals.ItemType.NOTE_ITEM)

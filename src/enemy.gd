@@ -72,7 +72,14 @@ func _physics_process(delta: float) -> void:
 	var current_location = global_transform.origin
 	var next_location = nav_agent.get_next_path_position()
 	var speed = CHASE_SPEED if state == State.CHASE else SPEED
-	var new_velocity = (next_location - current_location).normalized() * speed
+	var direction = next_location - current_location
+	var new_velocity = Vector3.ZERO
+
+	# Check if the enemy actually needs to move
+	if direction.length_squared() > 0.0001:
+		new_velocity = direction.normalized() * speed
+	else:
+		new_velocity = Vector3.ZERO # The enemy has arrived, stop moving
 	
 	if new_velocity.length() > 0.1:
 		var target_yaw = atan2(-new_velocity.x, -new_velocity.z)

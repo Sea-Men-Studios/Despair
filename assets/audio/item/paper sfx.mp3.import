@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://vm3aqqi4rnf5"
+path="res://.godot/imported/paper sfx.mp3-ddc99fe1b8b32ee60b04096fce5a0bbd.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/item/paper sfx.mp3"
+dest_files=["res://.godot/imported/paper sfx.mp3-ddc99fe1b8b32ee60b04096fce5a0bbd.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

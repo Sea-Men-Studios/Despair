@@ -14,6 +14,6 @@ func _process(_delta: float) -> void:
 	volume_num.text = str(value) 
 
 
-func _on_value_changed(value: float) -> void:
-	var db = linear_to_db(value)
+func _on_value_changed(new_value: float) -> void:
+	var db = linear_to_db(new_value)
 	AudioServer.set_bus_volume_db(audio_bus_id, db)
