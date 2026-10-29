@@ -27,9 +27,12 @@ var fov = 75
 @onready var head: Node3D = $Head
 @onready var overlays: CanvasLayer = $CanvasLayer
 
+var current_checkpoint: Vector3
+
 var can_move = true
 
 func _ready():
+	current_checkpoint = global_position
 	overlays.visible = true
 	camera.fov = Settings.fov
 	Settings.fov_changed.connect(_on_fov_changed)
@@ -86,10 +89,15 @@ func _physics_process(delta: float) -> void:
 	if can_move == true:
 		move_and_slide()
 
-
-
 func _breathe(time: float, amp: float) -> Vector3:
 	var pos = Vector3.ZERO
 	pos.y = (sin(time * TAU) * 0.7 + sin(time * TAU * 2.3 + 0.6) * 0.3) * amp
 	pos.x = cos(time * TAU * 0.5) * breath_sway
 	return pos
+
+func set_checkpoint():
+	current_checkpoint = global_position
+
+func kill():
+	# Reset stuff here
+	global_position = current_checkpoint
