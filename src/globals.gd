@@ -11,9 +11,14 @@ var songs: Array[AudioStreamMP3] = [
 	load(song_folder + "Fight_Or_Flight.mp3"),
 ]
 
+
+
 var notes: Dictionary = {
-	"1": {"scene": load("res://scenes/items/note.tscn")},
-	"2": {"scene": load("res://scenes/items/note2.tscn")}
+	"1": {"scene": load("res://scenes/lore_notes/LoreNote1.tscn")},
+	"2": {"scene": load("res://scenes/lore_notes/LoreNote2.tscn")},
+	"3": {"scene": load("res://scenes/lore_notes/LoreNote3.tscn")},
+	"4": {"scene": load("res://scenes/lore_notes/LoreNote4.tscn")},
+	"5": {"scene": load("res://scenes/lore_notes/LoreNote5.tscn")}
 }
 
 var key_items: Dictionary = {
