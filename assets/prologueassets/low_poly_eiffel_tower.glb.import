@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://b5ghfp757a8t7"
-path="res://.godot/imported/low_poly_eiffel_tower.glb-e0494480b58856f81696c1428c4608e7.scn"
+valid=false
 
 [deps]
 
 source_file="res://assets/prologueassets/low_poly_eiffel_tower.glb"
-dest_files=["res://.godot/imported/low_poly_eiffel_tower.glb-e0494480b58856f81696c1428c4608e7.scn"]
 
 [params]
 

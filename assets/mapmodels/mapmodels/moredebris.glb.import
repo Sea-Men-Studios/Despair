@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bwqbs3ordysnl"
-path="res://.godot/imported/moredebris.glb-cfc3accba9ac8fa6d7f5b506208dcdeb.scn"
+valid=false
 
 [deps]
 
 source_file="res://assets/mapmodels/mapmodels/moredebris.glb"
-dest_files=["res://.godot/imported/moredebris.glb-cfc3accba9ac8fa6d7f5b506208dcdeb.scn"]
 
 [params]
 

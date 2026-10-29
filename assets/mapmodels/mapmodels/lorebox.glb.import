@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bga1ac1gdf3on"
-path="res://.godot/imported/lorebox.glb-aac5cfae946ebdda1e0b3133308a8ffc.scn"
+valid=false
 
 [deps]
 
 source_file="res://assets/mapmodels/mapmodels/lorebox.glb"
-dest_files=["res://.godot/imported/lorebox.glb-aac5cfae946ebdda1e0b3133308a8ffc.scn"]
 
 [params]
 

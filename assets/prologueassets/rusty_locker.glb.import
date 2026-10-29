@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://br15lj14qlt0y"
-path="res://.godot/imported/rusty_locker.glb-1c1c0d2634b0595fa897770652ef4721.scn"
+valid=false
 
 [deps]
 
 source_file="res://assets/prologueassets/rusty_locker.glb"
-dest_files=["res://.godot/imported/rusty_locker.glb-1c1c0d2634b0595fa897770652ef4721.scn"]
 
 [params]
 

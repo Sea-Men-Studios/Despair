@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://c6huagomoxktk"
-path="res://.godot/imported/cow.glb-a936be3751b0534eff213c5338655737.scn"
+valid=false
 
 [deps]
 
 source_file="res://assets/prologueassets/cow.glb"
-dest_files=["res://.godot/imported/cow.glb-a936be3751b0534eff213c5338655737.scn"]
 
 [params]
 

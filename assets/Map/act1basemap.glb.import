@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://c3mjj8n7wkxn0"
-path="res://.godot/imported/act1basemap.glb-805e83347855e98c9baf1418b85991c6.scn"
+valid=false
 
 [deps]
 
 source_file="res://assets/Map/act1basemap.glb"
-dest_files=["res://.godot/imported/act1basemap.glb-805e83347855e98c9baf1418b85991c6.scn"]
 
 [params]
 

@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://c27m8633nny1c"
-path="res://.godot/imported/rubblepile.glb-76f8d57b846e7b38ae552427d2369683.scn"
+valid=false
 
 [deps]
 
 source_file="res://assets/mapmodels/mapmodels/rubblepile.glb"
-dest_files=["res://.godot/imported/rubblepile.glb-76f8d57b846e7b38ae552427d2369683.scn"]
 
 [params]
 

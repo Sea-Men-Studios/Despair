@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://ctq5sddt3vy77"
-path="res://.godot/imported/verity.glb-0f1928c6d5c1050f0bc81cd5e319dda5.scn"
+valid=false
 
 [deps]
 
 source_file="res://assets/prologueassets/verity.glb"
-dest_files=["res://.godot/imported/verity.glb-0f1928c6d5c1050f0bc81cd5e319dda5.scn"]
 
 [params]
 

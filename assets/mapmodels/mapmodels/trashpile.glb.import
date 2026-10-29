@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://l364ytjt1d8s"
-path="res://.godot/imported/trashpile.glb-3c2ac1b6fb7ad94a0b9044e047a8190b.scn"
+valid=false
 
 [deps]
 
 source_file="res://assets/mapmodels/mapmodels/trashpile.glb"
-dest_files=["res://.godot/imported/trashpile.glb-3c2ac1b6fb7ad94a0b9044e047a8190b.scn"]
 
 [params]
 
