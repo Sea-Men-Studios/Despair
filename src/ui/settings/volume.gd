@@ -1,19 +1,25 @@
 extends VSlider
 
-@export var audio_bus_name: String
+
 @onready var volume_num: Label = $VolumeNum
-
-var audio_bus_id
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	audio_bus_id = AudioServer.get_bus_index(audio_bus_name)
 
 
 func _process(_delta: float) -> void:
 	volume_num.text = str(value) 
+func _ready() -> void:
+	# Set the slider from the global value without firing value_changed.
+	set_value_no_signal(Settings.volume)
+	_update_label(value)
+
+	if not value_changed.is_connected(_on_value_changed):
+		value_changed.connect(_on_value_changed)
 
 
 func _on_value_changed(new_value: float) -> void:
-	var db = linear_to_db(new_value)
-	AudioServer.set_bus_volume_db(audio_bus_id, db)
+	Settings.volume = new_value
+	_update_label(new_value)
+
+
+func _update_label(new_value: float) -> void:
+	volume_num.text = str(roundi(new_value))
+	
