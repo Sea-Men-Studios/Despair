@@ -31,6 +31,10 @@ window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 window/vsync/vsync_mode=0
 
+[editor]
+
+import/atlas_max_width=13416
+
 [input]
 
 interact={

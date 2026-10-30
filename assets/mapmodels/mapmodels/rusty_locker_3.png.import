@@ -1,44 +1,20 @@
 [remap]
 
-importer="texture"
-type="CompressedTexture2D"
+importer="texture_atlas"
+type="Texture2D"
 uid="uid://c0va5ce4hnfif"
-path.s3tc="res://.godot/imported/rusty_locker_3.png-2ad43fa586348fbf7d9310356604e3f8.s3tc.ctex"
-metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
-}
-generator_parameters={
-"md5": "51690ee3f0fbd80b07895aa57849c06e"
-}
-
+path="res://.godot/imported/rusty_locker_3.png-2ad43fa586348fbf7d9310356604e3f8.res"
+group_file="res://assets/textures/textureatlas.png"
+valid=true
 [deps]
 
+
 source_file="res://assets/mapmodels/mapmodels/rusty_locker_3.png"
-dest_files=["res://.godot/imported/rusty_locker_3.png-2ad43fa586348fbf7d9310356604e3f8.s3tc.ctex"]
+dest_files=["res://.godot/imported/rusty_locker_3.png-2ad43fa586348fbf7d9310356604e3f8.res"]
 
 [params]
 
-compress/mode=2
-compress/high_quality=false
-compress/lossy_quality=0.7
-compress/uastc_level=0
-compress/rdo_quality_loss=0.0
-compress/hdr_compression=1
-compress/normal_map=1
-compress/channel_pack=0
-mipmaps/generate=true
-mipmaps/limit=-1
-roughness/mode=1
-roughness/src_normal="res://assets/mapmodels/mapmodels/rusty_locker_3.png"
-process/channel_remap/red=0
-process/channel_remap/green=1
-process/channel_remap/blue=2
-process/channel_remap/alpha=3
-process/fix_alpha_border=true
-process/premult_alpha=false
-process/normal_map_invert_y=false
-process/hdr_as_srgb=false
-process/hdr_clamp_exposure=false
-process/size_limit=0
-detect_3d/compress_to=0
+atlas_file="res://assets/textures/textureatlas.png"
+import_mode=0
+crop_to_region=false
+trim_alpha_border_from_region=true
