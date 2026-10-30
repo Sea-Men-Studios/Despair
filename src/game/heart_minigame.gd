@@ -17,37 +17,32 @@ var spawned_notes: Array = []
 
 var current_score: float = 150
 
-var can_trigger: bool = true
+var cancel_fail: bool = false
 
 func _ready():
-	spawn_note()
+	while true:
+		spawn_note()
+		await get_tree().create_timer(2).timeout
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
-		if event.is_action_pressed("minigame_interact") and can_trigger == true:
+		if event.is_action_pressed("minigame_interact"):
 			heart_grow(null)
 			stream_player.play()
 			stream_player.get_stream_playback().start(0.33)
-			can_trigger = false
 
 func spawn_note():
-	can_trigger = true
+	cancel_fail = false
+	
 	var note: TextureRect = heart_note.instantiate()
 	canvas.add_child(note)
 	
 	var shrink_tween = get_tree().create_tween()
-	shrink_tween.tween_property(note, "size", normal_size - Vector2(10, 10), note_shrink_length)
-	shrink_tween.parallel().tween_property(note, "global_position", original_position + Vector2(5, 5), note_shrink_length)
+	shrink_tween.tween_property(note, "size", normal_size - Vector2(5, 5), note_shrink_length)
+	shrink_tween.parallel().tween_property(note, "global_position", original_position + Vector2(2.5, 2.5), note_shrink_length)
 	shrink_tween.set_trans(Tween.TRANS_BOUNCE)
-	shrink_tween.tween_callback(end_note.bind(shrink_tween, note))
-	spawned_notes.append(note)
-
-func end_note(tween: Tween, note: TextureRect):
-	note_triggered()
-	tween.stop()
-	note.queue_free()
-	spawned_notes.pop_at(0)
-	spawn_note()
+	shrink_tween.tween_callback(note_trigger_fail)
+	spawned_notes.append([note, shrink_tween])
 
 func heart_grow(object):
 	if object != null: object.stop()
@@ -58,8 +53,7 @@ func heart_grow(object):
 	grow_tween.set_trans(Tween.TRANS_BOUNCE)
 	grow_tween.tween_callback(heart_shrink.bind(grow_tween))
 	
-	if not spawned_notes.is_empty():
-		note_triggered()
+	note_trigger()
 
 func heart_shrink(object):
 	if object != null: object.stop()
@@ -71,13 +65,40 @@ func heart_shrink(object):
 	
 	stream_player.stop()
 
-func note_triggered():
-	var distance = (spawned_notes[0].size - normal_size).x
-	var score: float = clamp((-0.035 * pow(distance - 92, 2) + 300), -50, 0)
-	
-	if can_trigger == true:
+func note_trigger():
+	if not spawned_notes.is_empty():
+		var distance = (spawned_notes[0][0].size - normal_size).x
+		var score: float = clamp((-0.0016 * pow(distance - 18.4, 2) + 1), -50, 0)
+		
 		current_score += score
-		print("current score: ", current_score, "+", score, " distance: ", distance)
+		
+		cancel_fail = true
+		
+		var disappear_tween = get_tree().create_tween()
+		disappear_tween.tween_property(spawned_notes[0][0], "modulate", Color(1, 1, 1, 0), shrink_length)
+		disappear_tween.set_ease(Tween.EASE_OUT)
+		disappear_tween.tween_callback(delete_note)
+	else:
+		current_score -= 25
+	
+	check_score()
+
+func note_trigger_fail():
+	if cancel_fail == false:
+		current_score -= 50
+		
+		delete_note()
+		
+		check_score()
+
+func delete_note():
+	if not spawned_notes.is_empty():
+		spawned_notes[0][1].stop()
+		spawned_notes[0][0].queue_free()
+		spawned_notes.pop_at(0)
+
+func check_score():
+	heart.modulate = Color(1, (255-(150-current_score))/255, (255-(150-current_score))/255)
 	
 	if current_score <= 0:
-		heart.modulate = Color(255, 0, 0)
+		print("die")
