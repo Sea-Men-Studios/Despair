@@ -18,7 +18,19 @@ var notes: Dictionary = {
 	"2": {"scene": load("res://scenes/lore_notes/LoreNote2.tscn")},
 	"3": {"scene": load("res://scenes/lore_notes/LoreNote3.tscn")},
 	"4": {"scene": load("res://scenes/lore_notes/LoreNote4.tscn")},
-	"5": {"scene": load("res://scenes/lore_notes/LoreNote5.tscn")}
+	"5": {"scene": load("res://scenes/lore_notes/LoreNote5.tscn")},
+	"8": {"scene": load("res://scenes/lore_notes/LoreMisc1.tscn")},
+	"9": {"scene": load("res://scenes/lore_notes/LoreMisc2.tscn")},
+	"10": {"scene": load("res://scenes/lore_notes/LoreMisc3.tscn")},
+	"11": {"scene": load("res://scenes/lore_notes/LoreMisc4.tscn")},
+	"12": {"scene": load("res://scenes/lore_notes/LoreMisc5.tscn")},
+	"13": {"scene": load("res://scenes/lore_notes/LoreMisc6.tscn")},
+	"14": {"scene": load("res://scenes/lore_notes/LoreMisc7.tscn")},
+	"15": {"scene": load("res://scenes/lore_notes/LoreMisc8.tscn")},
+	"16": {"scene": load("res://scenes/lore_notes/LoreMisc9.tscn")},
+	"17": {"scene": load("res://scenes/lore_notes/LoreMisc10.tscn")},
+	"18": {"scene": load("res://scenes/lore_notes/LoreMisc11.tscn")},
+	"19": {"scene": load("res://scenes/lore_notes/LoreMisc12.tscn")},
 }
 
 var key_items: Dictionary = {
