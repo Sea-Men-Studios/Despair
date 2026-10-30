@@ -41,6 +41,8 @@ func  _in_locker():
 	$CollisionShape3D.disabled = true
 	has_gravity = false
 	can_move = false
+	camera.rotation = Vector3(0, 0, 0)
+	camera.fov = 50
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	print("In Locker")
 
