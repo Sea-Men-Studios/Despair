@@ -27,6 +27,6 @@ func _load_item(id: int, inventory: Node3D):
 	
 	var new_item = Globals.key_items[str(id)]["scene"].instantiate()
 	
-	game.find_child("World").add_child(new_item)
+	game.add_child(new_item)
 	inventory.held_object = new_item
 	inventory.held_from_inventory = true

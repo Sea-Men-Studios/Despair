@@ -10,12 +10,14 @@ var dialogue_controller
 
 func _ready():
 	game = get_tree().current_scene
-	
+
+	held_offset = Vector3(0.2, -0.1, -0.35)
 	held_orientation = Vector3(0, -30.0/180.0*PI, 0)
 	set_item_type(Globals.ItemType.IMPORTANT_ITEM)
 
 func use():
-	game.dialogue_progress()
-	
-	stream_player.stream = beep_sound
-	stream_player.play()
+	if Globals.batteries_inserted == true:
+		game.dialogue_progress()
+		
+		stream_player.stream = beep_sound
+		stream_player.play()

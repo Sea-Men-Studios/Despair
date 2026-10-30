@@ -26,6 +26,7 @@ var fov = 75
 @onready var camera: Camera3D = $Head/Camera3D
 @onready var head: Node3D = $Head
 @onready var overlays: CanvasLayer = $CanvasLayer
+@onready var inventory: Node3D = $Inventory
 
 var current_checkpoint: Vector3
 

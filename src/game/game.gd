@@ -8,6 +8,7 @@ extends Node3D
 @onready var player = $Player
 @onready var message_player: AudioStreamPlayer = $MessagePlayer
 @onready var subtitle_label: RichTextLabel = $GUI/SubtitleLabel
+@onready var objective_controller: Control = $GUI/Objectives
 
 @onready var morse_code_test: AudioStreamOggVorbis = load("res://assets/audio/morsecodetest.ogg")
 
@@ -27,7 +28,6 @@ func _ready() -> void:
 	message_player.finished.connect(_on_message_finished)
 	subtitle_label.text = ""
 	subtitle_label.visible = false
-	receive_message()
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
