@@ -19,6 +19,8 @@ var notes: Dictionary = {
 	"3": {"scene": load("res://scenes/lore_notes/LoreNote3.tscn")},
 	"4": {"scene": load("res://scenes/lore_notes/LoreNote4.tscn")},
 	"5": {"scene": load("res://scenes/lore_notes/LoreNote5.tscn")},
+	"6": {"scene": load("res://scenes/lore_notes/LoreNote6.tscn")},
+	"7": {"scene": load("res://scenes/lore_notes/LoreNote7.tscn")},
 	"8": {"scene": load("res://scenes/lore_notes/LoreMisc1.tscn")},
 	"9": {"scene": load("res://scenes/lore_notes/LoreMisc2.tscn")},
 	"10": {"scene": load("res://scenes/lore_notes/LoreMisc3.tscn")},
