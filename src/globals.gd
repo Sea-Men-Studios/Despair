@@ -11,8 +11,6 @@ var songs: Array[AudioStreamMP3] = [
 	load(song_folder + "Fight_Or_Flight.mp3"),
 ]
 
-
-
 var notes: Dictionary = {
 	"1": {"scene": load("res://scenes/lore_notes/LoreNote1.tscn")},
 	"2": {"scene": load("res://scenes/lore_notes/LoreNote2.tscn")},
@@ -25,10 +23,12 @@ var key_items: Dictionary = {
 	"1": {"scene": load("res://scenes/items/key_item.tscn"), "name": "Test Key Item"},
 	"2": {"scene": load("res://scenes/items/radio.tscn"), "name": "Radio"},
 	"3": {"scene": load("res://scenes/items/killeritem.tscn"), "name": "KILL"},
+	"4": {"scene": load("res://scenes/items/batteries.tscn"), "name": "Batteries"},
 }
 
 var objectives: Dictionary = {
-	"1": "Pick up Test Key Item"
+	"1": "Pick up the batteries",
+	"2": "Place the batteries into the walkie talkie"
 }
 
 var dialogue_lines: Dictionary = {
@@ -43,6 +43,7 @@ var dialogue_lines: Dictionary = {
 
 var dialogue_groups: Array = [
 	["1", "2"],
-	["3", "4", "5", "6"],
+	["3", "4", "5"],
 ]
 	
+var batteries_inserted: bool = false

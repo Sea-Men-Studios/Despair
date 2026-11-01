@@ -11,3 +11,7 @@ func interact():
 		player._in_locker()
 		player.rotation.y = rotationAxis.rotation.y
 		animation_player.play("Take 001")
+		
+		var heart_scene = load("res://scenes/ui/heart_minigame.tscn")
+		var canvas_layer = heart_scene.instantiate()
+		get_tree().root.add_child(canvas_layer)

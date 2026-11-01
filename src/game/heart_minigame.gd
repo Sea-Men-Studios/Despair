@@ -36,13 +36,15 @@ func spawn_note():
 	
 	var note: TextureRect = heart_note.instantiate()
 	canvas.add_child(note)
+	note.global_position = heart.global_position + (heart.size / 2) - (note.size / 2)
 	
 	var shrink_tween = get_tree().create_tween()
 	shrink_tween.tween_property(note, "size", normal_size - Vector2(5, 5), note_shrink_length)
-	shrink_tween.parallel().tween_property(note, "global_position", original_position + Vector2(2.5, 2.5), note_shrink_length)
+	shrink_tween.parallel().tween_property(note, "global_position", heart.global_position + (heart.size / 2) - ((normal_size - Vector2(5, 5)) / 2) + Vector2(2.5, 2.5), note_shrink_length)
 	shrink_tween.set_trans(Tween.TRANS_BOUNCE)
 	shrink_tween.tween_callback(note_trigger_fail)
 	spawned_notes.append([note, shrink_tween])
+
 
 func heart_grow(object):
 	if object != null: object.stop()

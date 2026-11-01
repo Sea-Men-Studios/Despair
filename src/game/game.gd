@@ -8,9 +8,8 @@ extends Node3D
 @onready var player = $Player
 @onready var message_player: AudioStreamPlayer = $MessagePlayer
 @onready var subtitle_label: RichTextLabel = $GUI/SubtitleLabel
-@onready var morse_code_test: AudioStreamOggVorbis = load(
-	"res://assets/audio/morsecodetest.ogg"
-)
+@onready var objective_controller: Control = $GUI/Objectives
+@onready var morse_code_test: AudioStreamOggVorbis = load("res://assets/audio/morsecodetest.ogg")
 
 @export var linger_time := 2.0
 @export var characters_per_second := 25.0
@@ -29,12 +28,10 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	subtitle_label.text = ""
 	subtitle_label.visible = false
-
 	message_player.finished.connect(_on_message_audio_finished)
 
 	# Start the first dialogue line from Globals.
 	receive_message()
-
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton \
