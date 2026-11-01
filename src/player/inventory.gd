@@ -13,7 +13,7 @@ func _ready() -> void:
 		notes_aquired[str(note_id)] = false
 	
 	for key_item_id in Globals.key_items.keys():
-		notes_aquired[str(key_item_id)] = false
+		key_items_aquired[str(key_item_id)] = false
 
 func _input(event: InputEvent) -> void:
 	if held_object != null:

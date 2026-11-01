@@ -9,7 +9,6 @@ var next_song_index: int = 0
 func _ready() -> void:
 	volume_db = -5
 	finished.connect(_on_player_finished)
-	set_song(0)
 
 func _on_player_finished() -> void:
 	play()

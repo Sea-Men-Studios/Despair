@@ -26,6 +26,9 @@ extends CharacterBody3D
 @onready var overlays: CanvasLayer = $CanvasLayer
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
 @onready var jumpscare_video: VideoStreamPlayer = $JumpscareLayer/VideoStreamPlayer
+@onready var inventory: Node3D = $Inventory
+
+var current_checkpoint: Vector3
 
 var jumpscare_playing := false
 
@@ -39,6 +42,7 @@ var camera_rest_position := Vector3.ZERO
 
 
 func _ready() -> void:
+	current_checkpoint = global_position
 	overlays.visible = true
 	camera_rest_position = camera.position
 	camera.fov = Settings.fov
@@ -137,11 +141,12 @@ func _breathe(time: float, amplitude: float) -> Vector3:
 	offset.x = cos(time * TAU * 0.5) * breath_sway
 	return offset
 
-
 func _in_locker() -> void:
 	collision_shape.disabled = true
 	has_gravity = false
 	can_move = false
+	camera.rotation = Vector3(0, 0, 0)
+	camera.fov = 50
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	print("In Locker")
 
@@ -171,9 +176,15 @@ func play_jumpscare() -> void:
 		can_move = true
 		jumpscare_video.visible = false
 
-
 func _on_video_stream_player_finished() -> void:
 	get_tree().call_deferred(
 		"change_scene_to_file",
 		"res://scenes/ui/JumpScare.tscn"
 	)
+
+func set_checkpoint():
+	current_checkpoint = global_position
+
+func kill():
+	# Reset stuff here
+	global_position = current_checkpoint
