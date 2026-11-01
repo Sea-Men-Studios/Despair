@@ -28,6 +28,6 @@ func _load_note(id: int, inventory: Node3D):
 	
 	var new_note_item = Globals.notes[str(id)]["scene"].instantiate()
 	
-	game.find_child("World").add_child(new_note_item)
+	game.add_child(new_note_item)
 	inventory.held_object = new_note_item
 	inventory.held_from_inventory = true
