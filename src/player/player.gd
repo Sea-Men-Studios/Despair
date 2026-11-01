@@ -14,8 +14,8 @@ extends CharacterBody3D
 
 @export_category("Movement")
 @export var max_speed := 4.5
-@export var acceleration := 3.0
-@export var deceleration := 5.0
+@export var acceleration := 4.0
+@export var deceleration := 7.0
 @export_range(0.0, 1.0) var air_control := 0.3
 
 @export_category("References")
