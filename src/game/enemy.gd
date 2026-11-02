@@ -36,6 +36,10 @@ enum State { WANDER, CHASE }
 @export var decision_interval := 0.1
 @export var target_update_distance := 0.5
 
+
+@export var spawn_point: Node3D
+
+
 var state := State.WANDER
 var player: Node3D
 var current_anim := ""
@@ -48,6 +52,7 @@ var last_player_target := Vector3.ZERO
 
 
 func _ready() -> void:
+	respawn()
 	jumpscare_area.body_entered.connect(_on_jumpscare_area_body_entered)
 	for anim_name in [ANIM_IDLE, ANIM_WALK, ANIM_RUN]:
 		var anim := animation_player.get_animation(anim_name)
@@ -193,3 +198,9 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 func _on_jumpscare_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player") and body.has_method("play_jumpscare"):
 		body.play_jumpscare()
+		
+func respawn() -> void:
+	if spawn_point:
+		global_transform = spawn_point.global_transform
+	show()
+	set_physics_process(true)
