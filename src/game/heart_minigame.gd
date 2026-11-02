@@ -6,6 +6,7 @@ extends Node2D
 @onready var original_position: Vector2 = heart.global_position
 @onready var canvas: CanvasLayer = $CanvasLayer
 
+
 var normal_size: Vector2 = Vector2(140, 140)
 var grow_size: Vector2 = Vector2(160, 160)
 
@@ -30,6 +31,9 @@ func _input(event: InputEvent) -> void:
 			heart_grow(null)
 			stream_player.play()
 			stream_player.get_stream_playback().start(0.33)
+			
+		if event.is_action_pressed("ui_cancel"):
+			Globals.left_locker = true
 
 func spawn_note():
 	cancel_fail = false
@@ -104,3 +108,9 @@ func check_score():
 	
 	if current_score <= 0:
 		print("die")
+		await get_tree().create_timer(0.2).timeout
+		Globals.notify_locker_left()
+		queue_free()
+		
+		
+		

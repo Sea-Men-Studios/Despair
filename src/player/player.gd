@@ -46,6 +46,7 @@ func _ready() -> void:
 	overlays.visible = true
 	camera_rest_position = camera.position
 	camera.fov = Settings.fov
+	Globals.locker_left.connect(_leave_locker)
 
 	if not Settings.fov_changed.is_connected(_on_fov_changed):
 		Settings.fov_changed.connect(_on_fov_changed)
@@ -55,6 +56,7 @@ func _ready() -> void:
 
 	jumpscare_video.autoplay = false
 	jumpscare_video.visible = false
+
 
 
 func _input(event: InputEvent) -> void:
@@ -149,6 +151,15 @@ func _in_locker() -> void:
 	camera.fov = 50
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	print("In Locker")
+
+func _leave_locker():
+	collision_shape.disabled = false
+	has_gravity = true
+	can_move = true
+	camera.fov = Settings.fov
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	global_position += -global_basis.z * 2.0
+
 
 
 func _on_fov_changed(new_fov: float) -> void:

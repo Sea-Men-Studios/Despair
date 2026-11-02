@@ -7,7 +7,7 @@ var music_started: bool = false
 var next_song_index: int = 0
 
 func _ready() -> void:
-	volume_db = -5
+	volume_db = -7
 	finished.connect(_on_player_finished)
 
 func _on_player_finished() -> void:
