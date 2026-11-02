@@ -67,7 +67,9 @@ func try_set_pin() -> void:
 			unlock_sound.play()
 			print("Lock opened!")
 			await get_tree().create_timer(0.5).timeout
+			Globals.notify_lock_opened()
 			queue_free()
+			
 	else:
 		start_reset()
 
