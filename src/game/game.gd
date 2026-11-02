@@ -7,6 +7,7 @@ extends Node3D
 @onready var inventory: Control = $GUI/Inventory
 @onready var player = $Player
 @onready var message_player: AudioStreamPlayer = $MessagePlayer
+@onready var music_player: AudioStreamPlayer = $MusicController
 @onready var subtitle_label: RichTextLabel = $GUI/SubtitleLabel
 @onready var objective_controller: Control = $GUI/Objectives
 @onready var morse_code_test: AudioStreamOggVorbis = load("res://assets/audio/morsecodetest.ogg")
