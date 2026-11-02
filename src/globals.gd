@@ -2,7 +2,7 @@ extends Node
 
 signal locker_left
 
-enum ItemType {NULL, NOTE_ITEM, IMPORTANT_ITEM}
+enum ItemType {NULL, NOTE_ITEM, MISC_NOTE_ITEM, IMPORTANT_ITEM}
 
 var song_folder: String = "res://assets/audio/music/"
 var songs: Array[AudioStreamMP3] = [
@@ -56,11 +56,22 @@ var dialogue_lines: Dictionary = {
 	"5": "I guess you’ll do. As an employee of Orison: Bio-Solutions, it is your responsibility to follow company orders.",
 	"6": "Not like there’s much else to do, go take a look outside for us. Over.",
 	"7": "Are you there yet? Report back. Over.",
+	"8": "I'm worried you've stopped prioritizing the mission and you're focusing on deliberately going out of your way to piss me off.",
+	"9": "Forget the past of the company, don't even think about knowing more. Just get here and fix this. Over.",
+	"10": "Report here immediately, we are sick of you messing with our stuff. Get here now.",
+	"11": "The company now identifies you as a threat to our health and safety.",
+	"12": "Orison Bio-Solutions has had no part in any of this. On to the next person.",
+	"13": "Please remove yourself from this world and die with the information you have. You are fired. Over.",
+	"14": "What is that thing? Whatever it is, keep your distance. If you die, the mission done for.",
+	"15": "They seem to have horrible eyesight, hiding in a locker or standing behind them might help you get away. Over.",
 }
 
 var dialogue_groups: Array = [
 	["1", "2"],
 	["3", "4", "5"],
+	["8", "9"],
+	["10", "11", "12", "13"],
+	["14", "15"]
 ]
 	
 var batteries_inserted: bool = false

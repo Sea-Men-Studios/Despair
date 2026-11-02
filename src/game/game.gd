@@ -24,7 +24,6 @@ var dialogue_group_over := false
 var dialogue_id := 0
 var can_progress_dialogue := false
 
-
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	subtitle_label.text = ""
@@ -59,7 +58,9 @@ func _unhandled_input(event: InputEvent) -> void:
 func receive_message(subtitle: String = "") -> void:
 	# No argument: take the next line from Globals.
 	# With an argument: display the supplied text directly.
-	if subtitle.is_empty():
+	var is_forced = !subtitle.is_empty()
+	
+	if !is_forced:
 		if dialogue_group_over:
 			return
 
@@ -80,7 +81,7 @@ func receive_message(subtitle: String = "") -> void:
 			dialogue_group_over = true
 			can_progress_dialogue = true
 
-	message_start(subtitle)
+	message_start(subtitle, is_forced)
 
 	# Repeat the Morse sound until this message's subtitle sequence ends.
 	message_player.stop()
@@ -89,8 +90,12 @@ func receive_message(subtitle: String = "") -> void:
 	message_audio_active = true
 	message_player.play()
 
+func receive_group_message(group_id: int) -> void:
+	can_progress_dialogue = true
+	current_group_id = group_id
+	dialogue_progress(false)
 
-func message_start(subtitle: String) -> void:
+func message_start(subtitle: String, forced: bool) -> void:
 	if subtitle_tween:
 		subtitle_tween.kill()
 
@@ -110,31 +115,31 @@ func message_start(subtitle: String) -> void:
 	)
 	subtitle_tween.tween_interval(linger_time)
 	subtitle_tween.tween_property(subtitle_label, "modulate:a", 0.0, 0.4)
-	subtitle_tween.tween_callback(_on_message_text_finished)
-
+	subtitle_tween.tween_callback(_on_message_text_finished.bind(forced))
 
 func _on_message_audio_finished() -> void:
 	if message_audio_active:
 		message_player.play()
 
 
-func _on_message_text_finished() -> void:
+func _on_message_text_finished(forced: bool) -> void:
 	message_audio_active = false
 	message_player.stop()
 	subtitle_label.visible = false
 
 	# Continue automatically unless the dialogue group has ended.
-	if not dialogue_group_over:
+	if not dialogue_group_over and not forced:
 		receive_message()
 
 
-func dialogue_progress() -> void:
+func dialogue_progress(increase_group_id: bool = true) -> void:
 	if not can_progress_dialogue:
 		return
 
 	can_progress_dialogue = false
 	dialogue_group_over = false
-	current_group_id += 1
+	if increase_group_id: 
+		current_group_id += 1
 	dialogue_id = 0
 	receive_message()
 
