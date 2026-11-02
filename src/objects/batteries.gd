@@ -27,3 +27,6 @@ func use():
 		Globals.batteries_inserted = true
 		game.receive_message()
 		game.objective_controller.complete_objective("2")
+		game.objective_controller.add_objective("3")
+	else:
+		pass

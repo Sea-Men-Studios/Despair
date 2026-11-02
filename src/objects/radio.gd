@@ -18,6 +18,8 @@ func _ready():
 func use():
 	if Globals.batteries_inserted == true:
 		game.dialogue_progress()
-		
+		game.objective_controller.complete_objective("3")
+		game.objective_controller.add_objective("4")
 		stream_player.stream = beep_sound
 		stream_player.play()
+		

@@ -13,7 +13,7 @@ func _ready() -> void:
 	if get_tree().current_scene.name == "PrologueLevel":
 		add_objective("1")
 	elif get_tree().current_scene.name == "Map":
-		add_objective("3")
+		add_objective("5")
 
 func add_objective(id: String) -> void:	
 	var objective = Label.new()

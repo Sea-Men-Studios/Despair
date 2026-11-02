@@ -44,9 +44,11 @@ var key_items: Dictionary = {
 }
 
 var objectives: Dictionary = {
-	"1": "Pick up the batteries",
-	"2": "Place the batteries into the walkie talkie",
-	"3": "Collect all notes"
+	"1": "Pick up the batteries ",
+	"2": "Place the batteries into the walkie talkie, Press right click with batteries in hand",
+	"3": "Respond by holding the walkie talkie and pressing right click",
+	"4": "Go Outside by clicking the door",
+	"5": "Collect all notes"
 }
 
 var dialogue_lines: Dictionary = {
@@ -69,7 +71,7 @@ var dialogue_lines: Dictionary = {
 
 var dialogue_groups: Array = [
 	["1", "2"],
-	["3", "4", "5"],
+	["3", "4", "5", "6"],
 	["8", "9"],
 	["10", "11", "12", "13"],
 	["14", "15"]

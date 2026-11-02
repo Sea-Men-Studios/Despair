@@ -7,6 +7,7 @@ extends CanvasLayer
 @onready var godot_logo: TextureRect = $GodotLogo
 
 func _ready() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	music.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

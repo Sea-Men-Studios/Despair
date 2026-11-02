@@ -33,7 +33,8 @@ func _input(event: InputEvent) -> void:
 			stream_player.get_stream_playback().start(0.33)
 			
 		if event.is_action_pressed("ui_cancel"):
-			Globals.left_locker = true
+			Globals.notify_locker_left()
+			queue_free()
 
 func spawn_note():
 	cancel_fail = false

@@ -11,9 +11,24 @@ extends Node3D
 @onready var subtitle_label: RichTextLabel = $GUI/SubtitleLabel
 @onready var objective_controller: Control = $GUI/Objectives
 @onready var morse_code_test: AudioStreamOggVorbis = load("res://assets/audio/morsecodetest.ogg")
+@onready var sfxplayer: AudioStreamPlayer = $Sfxplayer
+@onready var end_game: Area3D = $EndGame
+
 
 @export var linger_time := 2.0
 @export var characters_per_second := 25.0
+
+var random_sfx_paths := [
+	"res://assets/audio/monster/giant monster roar 2.mp3",
+	"res://assets/audio/monster/giant monster roar 3.mp3",
+	"res://assets/audio/monster/giant monster roar 4.mp3",
+	"res://assets/audio/ambient/wind ambience 1.mp3",
+	"res://assets/audio/ambient/wind ambience 2.mp3",
+	"res://assets/audio/ambient/wind ambience 3.mp3",
+]
+
+
+
 
 var subtitle_tween: Tween
 var in_ui := false
@@ -25,10 +40,12 @@ var dialogue_id := 0
 var can_progress_dialogue := false
 
 func _ready() -> void:
+	end_game.body_entered.connect(_on_end_game_body_entered)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	subtitle_label.text = ""
 	subtitle_label.visible = false
 	message_player.finished.connect(_on_message_audio_finished)
+	play_random_sfx_loop()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton \
@@ -182,3 +199,23 @@ func _on_controls_pressed() -> void:
 func _on_settings_cog_button_pressed() -> void:
 	settings.visible = true
 	main_pause_menu.visible = false
+
+
+func play_random_sfx_loop() -> void:
+	while is_inside_tree():
+		await get_tree().create_timer(randf_range(3.0, 8.0)).timeout
+
+		if not is_inside_tree():
+			return
+
+		sfxplayer.stream = load(random_sfx_paths.pick_random())
+		sfxplayer.volume_db = -40.0
+		sfxplayer.play()
+
+		var fade := create_tween()
+		fade.tween_property(sfxplayer, "volume_db", 0.0, 1.0)
+
+
+func _on_end_game_body_entered(body: Node3D) -> void:
+	if body == player:
+		SceneLoader.change_scene("res://scenes/ui/credits.tscn")
