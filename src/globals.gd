@@ -1,6 +1,7 @@
 extends Node
 
 signal locker_left
+signal lock_opened
 
 enum ItemType {NULL, NOTE_ITEM, MISC_NOTE_ITEM, IMPORTANT_ITEM}
 
@@ -81,3 +82,6 @@ var key_items_aquired: Dictionary = {}
 
 func notify_locker_left() -> void:
 	locker_left.emit()
+	
+func notify_lock_opened() -> void:
+	lock_opened.emit()

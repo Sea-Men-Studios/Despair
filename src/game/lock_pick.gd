@@ -70,7 +70,9 @@ func try_set_pin() -> void:
 			print("Lock opened!")
 			await get_tree().create_timer(0.5).timeout
 			lorebox.queue_free()
+			Globals.notify_lock_opened()
 			queue_free()
+			
 	else:
 		start_reset()
 
