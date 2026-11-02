@@ -37,14 +37,15 @@ var notes: Dictionary = {
 
 var key_items: Dictionary = {
 	"1": {"scene": load("res://scenes/items/key_item.tscn"), "name": "Test Key Item"},
-	"2": {"scene": load("res://scenes/items/radio.tscn"), "name": "Radio"},
+	"2": {"scene": load("res://scenes/items/radio.tscn"), "name": "Walkie Talkie"},
 	"3": {"scene": load("res://scenes/items/killeritem.tscn"), "name": "KILL"},
 	"4": {"scene": load("res://scenes/items/batteries.tscn"), "name": "Batteries"},
 }
 
 var objectives: Dictionary = {
 	"1": "Pick up the batteries",
-	"2": "Place the batteries into the walkie talkie"
+	"2": "Place the batteries into the walkie talkie",
+	"3": "Collect all notes"
 }
 
 var dialogue_lines: Dictionary = {
@@ -64,6 +65,8 @@ var dialogue_groups: Array = [
 	
 var batteries_inserted: bool = false
 
+var current_objectives: Dictionary = {}
+var key_items_aquired: Dictionary = {}
 
 func notify_locker_left() -> void:
 	locker_left.emit()

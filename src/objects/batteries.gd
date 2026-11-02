@@ -21,9 +21,9 @@ func interact():
 	game.objective_controller.add_objective("2")
 
 func use():
-	if player.inventory.key_items_aquired["2"] == true:
+	if Globals.key_items_aquired["2"] == true:
 		player.inventory.put_away()
-		player.inventory.key_items_aquired[str(item_id)] = false
+		Globals.key_items_aquired[str(item_id)] = false
 		Globals.batteries_inserted = true
 		game.receive_message()
 		game.objective_controller.complete_objective("2")

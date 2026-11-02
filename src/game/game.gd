@@ -31,9 +31,6 @@ func _ready() -> void:
 	subtitle_label.visible = false
 	message_player.finished.connect(_on_message_audio_finished)
 
-	# Start the first dialogue line from Globals.
-	receive_message()
-
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton \
 	and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
