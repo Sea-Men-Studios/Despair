@@ -1,5 +1,7 @@
 extends Node
 
+signal locker_left
+
 enum ItemType {NULL, NOTE_ITEM, IMPORTANT_ITEM}
 
 var song_folder: String = "res://assets/audio/music/"
@@ -61,3 +63,7 @@ var dialogue_groups: Array = [
 ]
 	
 var batteries_inserted: bool = false
+
+
+func notify_locker_left() -> void:
+	locker_left.emit()
