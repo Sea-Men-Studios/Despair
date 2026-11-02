@@ -1,7 +1,7 @@
 extends InteractableObject
 
 @export var note_id: int
-@export var game: Node3D
+var game: Node3D
 
 func _ready():
 	game = get_tree().current_scene
