@@ -9,4 +9,4 @@ func _ready() -> void:
 	Globals.lock_opened.connect(lock_opened)
 	
 func lock_opened():
-	pass
+	queue_free()
