@@ -29,6 +29,8 @@ var resetting := false
 var pick_target := Vector2.ZERO
 var in_sweet_spot := false
 
+var lorebox: Node3D
+
 func _ready() -> void:
 	pins = [pin_1, pin_2, pin_3, pin_4, pin_5, pin_6]
 	for pin in pins:
@@ -67,6 +69,7 @@ func try_set_pin() -> void:
 			unlock_sound.play()
 			print("Lock opened!")
 			await get_tree().create_timer(0.5).timeout
+			lorebox.queue_free()
 			Globals.notify_lock_opened()
 			queue_free()
 			

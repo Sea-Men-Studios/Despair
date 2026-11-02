@@ -6,14 +6,20 @@ var held_object: Node3D = null
 var held_from_inventory: bool = false
 
 var notes_aquired: Dictionary = {}
-var key_items_aquired: Dictionary = {}
+
+var game
+
+var main_notes_aquired: int = 0
 
 func _ready() -> void:
+	game = get_tree().current_scene
+	
 	for note_id in Globals.notes.keys():
 		notes_aquired[str(note_id)] = false
 	
-	for key_item_id in Globals.key_items.keys():
-		key_items_aquired[str(key_item_id)] = false
+	if Globals.key_items.is_empty():
+		for key_item_id in Globals.key_items.keys():
+			Globals.key_items_aquired[str(key_item_id)] = false
 
 func _input(event: InputEvent) -> void:
 	if held_object != null:
@@ -27,8 +33,20 @@ func put_away():
 		if held_from_inventory == false: notes_aquired[str(held_object.note_id)] = true
 		held_object.queue_free()
 		held_from_inventory = false
+		
+		main_notes_aquired += 1
+		
+		if main_notes_aquired == 4:
+			game.receive_group_message(2)
+		elif main_notes_aquired == 7:
+			game.objective_controller.complete_objective("3")
+			game.receive_group_message(3)
+	elif held_object.item_type == Globals.ItemType.MISC_NOTE_ITEM:
+		if held_from_inventory == false: notes_aquired[str(held_object.note_id)] = true
+		held_object.queue_free()
+		held_from_inventory = false
 	elif held_object.item_type == Globals.ItemType.IMPORTANT_ITEM:
-		if held_from_inventory == false: key_items_aquired[str(held_object.item_id)] = true
+		if held_from_inventory == false: Globals.key_items_aquired[str(held_object.item_id)] = true
 		held_object.queue_free()
 		held_from_inventory = false
 

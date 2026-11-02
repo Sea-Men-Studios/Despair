@@ -6,3 +6,4 @@ func _ready():
 func collided(area: Node3D):
 	if area.name == "Player":
 		area.set_checkpoint()
+		print("checkpoint")

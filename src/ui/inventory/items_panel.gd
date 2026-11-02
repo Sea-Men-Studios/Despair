@@ -11,8 +11,8 @@ func load_content(inventory: Control):
 	for child in item_container.get_children():
 		child.queue_free()
 		
-	for key_item_id in player_inventory.key_items_aquired.keys():
-		if player_inventory.key_items_aquired[key_item_id] == true:
+	for key_item_id in Globals.key_items_aquired.keys():
+		if Globals.key_items_aquired[key_item_id] == true:
 			var new_item_element = item_element.instantiate()
 			var new_item_element_button: Button = new_item_element.find_child("Button")
 			

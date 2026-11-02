@@ -50,8 +50,15 @@ var decision_timer := 0.0
 var sight_check_timer := 0.0
 var last_player_target := Vector3.ZERO
 
+var game
+
+@onready var stream_player: AudioStreamPlayer = $AudioStreamPlayer
+
+var jumpscare_sound: AudioStreamMP3 = load("res://assets/audio/monster/monster roar.mp3")
 
 func _ready() -> void:
+	game = get_tree().current_scene
+	
 	respawn()
 	jumpscare_area.body_entered.connect(_on_jumpscare_area_body_entered)
 	for anim_name in [ANIM_IDLE, ANIM_WALK, ANIM_RUN]:
@@ -126,6 +133,7 @@ func _check_raycasts(delta: float) -> void:
 				update_target_location(player.global_position)
 				last_player_target = player.global_position
 			print("Spotted player - chasing")
+			game.music_player.set_song(4)
 
 	elif state == State.CHASE:
 		lose_sight_timer += delta
@@ -134,6 +142,7 @@ func _check_raycasts(delta: float) -> void:
 			state = State.WANDER
 			print("Lost player - back to wandering")
 			_pick_new_wander_point()
+			game.music_player.set_song(1)
 
 
 func _process_wander(delta: float) -> void:
@@ -197,6 +206,8 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 
 func _on_jumpscare_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player") and body.has_method("play_jumpscare"):
+		stream_player.stream = jumpscare_sound
+		stream_player.play()
 		body.play_jumpscare()
 		
 func respawn() -> void:
